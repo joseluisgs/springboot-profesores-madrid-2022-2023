@@ -31,9 +31,9 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 4. [Elementos de Java: POO, Colecciones, Optional, Streams, Lombock, etc.](./04-Java/README.md)
 5. Introducción al desarrollo de servicios Web con SPRING MVC
 6. Desarrollo de componentes en SPRING BOOT con SPRING DATA y JPA
-1. Seguridad en servicios con SPRING SECURITY
-2. Test, pruebas, despliegue y documentación de proyectos.
-3.  Elementos avanzados en SPRING BOOT
+7. Seguridad en servicios con SPRING SECURITY
+8. Test, pruebas, despliegue y documentación de proyectos.
+9.  Elementos avanzados en SPRING BOOT
 
 ## Referencias
 Las referencias importantes o recomendadas para el curso las encontrarás en el [apartado de referencias](/REFERENCIAS.md).
