@@ -2,11 +2,21 @@
 
 Material del curso de formación del profesorado de la Comunidad de Madrid: Desarrollo en entorno cliente con Vue.js y JavaScript.
 
-[![SpringBoot](https://img.shields.io/badge/Code-Vue.js-%2342b983)](https://spring.io/projects/spring-boot)
+[![SpringBoot](https://img.shields.io/badge/Code-SpringBoot-%2342b983)](https://spring.io/projects/spring-boot)
 [![LICENSE](https://img.shields.io/badge/License-CC-%23e64545)](https://joseluisgs.github.dev/docs/license/)
 ![GitHub](https://img.shields.io/github/last-commit/joseluisgs/springboot-profesores-madrid-2022-2023)
 
 ![logo](https://rubensa.files.wordpress.com/2021/05/spring-boot-logo.png)
+
+- [Spring Boot para Profesores de la Comunidad de Madrid 2022-2022](#spring-boot-para-profesores-de-la-comunidad-de-madrid-2022-2022)
+  - [Acerca de](#acerca-de)
+  - [Contenidos](#contenidos)
+  - [Referencias](#referencias)
+  - [Autor](#autor)
+    - [Contacto](#contacto)
+    - [¿Un café?](#un-café)
+  - [Licencia de uso](#licencia-de-uso)
+
 
 ## Acerca de
 Este repositorio engloba el conjunto de materiales y proyectos del curso de formación del profesorado de la Comunidad de Madrid: Desarrollo Web en entorno Servidor con Spring Boot.
@@ -15,13 +25,16 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 
 ## Contenidos
 
-1. Patrones de diseño, arquitecturas y principios Solid
-2. Introducción al desarrollo de servicios Web con SPRING MVC
-3. Desarrollo de componentes en SPRING BOOT
-4. Acceso a datos con SPRING DATA y JPA
-5. Seguridad en servicios con SPRING SECURITY
-6. Test, pruebas, despliegue y documentación de proyectos.
-7. Elementos avanzados en SPRING BOOT
+1. [Instalación y configuración del entorno de trabajo](./01-Entorno-Preparaci%C3%B3n/README.md)
+2. [Principios SOLID, Arquitecturas y Patrones de diseño](./02-Principios/README.md)
+3. [HTTP: métodos, status, cabeceras, etc.](./03-HTTP/README.md)
+4. Elementos de Java: POO, Colecciones, Streams, Lambdas, Lombock, etc.
+5. Introducción al desarrollo de servicios Web con SPRING MVC
+6. Desarrollo de componentes en SPRING BOOT
+7. Acceso a datos con SPRING DATA y JPA
+8. Seguridad en servicios con SPRING SECURITY
+9. Test, pruebas, despliegue y documentación de proyectos.
+10. Elementos avanzados en SPRING BOOT
 
 ## Referencias
 Las referencias importantes o recomendadas para el curso las encontrarás en el [apartado de referencias](/REFERENCIAS.md).

@@ -12,3 +12,4 @@
 - Arquitecturas Software: https://apiumhub.com/es/tech-blog-barcelona/principales-patrones-arquitectura-software/
 - HTTP Status Codes: https://developer.mozilla.org/es/docs/Web/HTTP/Status
 - HTTP Methods: https://developer.mozilla.org/es/docs/Web/HTTP/Methods
+- Patrones de diseño: https://refactoring.guru/es/design-patterns
