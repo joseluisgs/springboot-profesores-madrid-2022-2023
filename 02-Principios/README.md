@@ -1,10 +1,8 @@
-# Spring Boot para Profesores de la Comunidad de Madrid 2022-2022
-
-Principios SOLID, Arquitecturas y Patrones de diseño
+# Principios SOLID, Arquitecturas y Patrones de diseño
 
 ![logo](https://rubensa.files.wordpress.com/2021/05/spring-boot-logo.png)
 
-- [Spring Boot para Profesores de la Comunidad de Madrid 2022-2022](#spring-boot-para-profesores-de-la-comunidad-de-madrid-2022-2022)
+- [Principios SOLID, Arquitecturas y Patrones de diseño](#principios-solid-arquitecturas-y-patrones-de-diseño)
   - [Principios SOLID](#principios-solid)
     - [Single Responsibility Principle (Principio de Responsabilidad Única)](#single-responsibility-principle-principio-de-responsabilidad-única)
     - [Open-Closed Principle (Principio de Abierto-Cerrado)](#open-closed-principle-principio-de-abierto-cerrado)
@@ -13,6 +11,7 @@ Principios SOLID, Arquitecturas y Patrones de diseño
     - [Dependency Inversion Principle (Principio de Inversión de Dependencias)](#dependency-inversion-principle-principio-de-inversión-de-dependencias)
   - [Arquitecturas Software](#arquitecturas-software)
   - [Patrones de diseño](#patrones-de-diseño)
+  - [DTO y Mapeadores](#dto-y-mapeadores)
 
  ## Principios SOLID
 Principios SOLID son una serie de principios de diseño orientado a objetos que nos ayudan a crear código más mantenible y reutilizable. Estos principios fueron definidos por Robert C. Martin (Uncle Bob) en su libro “Agile Software Development, Principles, Patterns, and Practices” en 2000.
@@ -47,4 +46,62 @@ Llamamos arquitectura de software a la estructura de un sistema de software, es 
 - Arquitectura basada en microservicios: la arquitectura basada en microservicios es una arquitectura de software en la que los componentes del sistema se organizan en microservicios. Cada microservicio se encarga de una parte del sistema, y los microservicios se comunican entre sí mediante interfaces.
 
 ## Patrones de diseño
-Los patrones de diseño son soluciones a problemas comunes de diseño de software. Los patrones de diseño se pueden clasificar en diferentes tipos, como patrones de creación, patrones estructurales y patrones de comportamiento. Son numerosos y los veremos a lo largo del curso los que más vamos a usar.
+Los [patrones de diseño](https://refactoring.guru/es/design-patterns) son soluciones a problemas comunes de diseño de software. Los patrones de diseño se pueden clasificar en diferentes tipos, como patrones de creación, patrones estructurales y patrones de comportamiento. Son numerosos y los veremos a lo largo del curso los que más vamos a usar.
+
+## DTO y Mapeadores
+Los data transfer objects (DTO) son objetos que se utilizan para transferir datos entre distintas capas de una aplicación. A su vez nos sirve para transferir datos entre distintas aplicaciones y fusionar datos de distintas fuentes o tipo, ya que nos permiten encapsular los datos y ocultarlos de las capas superiores. De esta forma, si cambiamos la estructura de los datos, no tendremos que modificar las capas superiores, ya que los DTOs encapsulan los datos y las capas superiores no tienen que conocer la estructura de los datos.
+
+Los mapeadores son clases que se encargan de convertir objetos de un tipo a objetos de otro tipo. Por ejemplo, si tenemos una clase Coche y queremos convertirla a un DTO, podemos crear un mapeador que se encargue de convertir un objeto de tipo Coche a un objeto de tipo CocheDTO.
+
+```java
+public class Coche {
+  private String marca;
+  private String modelo;
+  private String color;
+  private Motor motor;
+
+  public Coche(String marca, String modelo, String color, Motor motor) {
+    this.marca = marca;
+    this.modelo = modelo;
+    this.color = color;
+    this.motor = motor;
+  }
+}
+
+public class Motor {
+  private String tipo;
+  private int cilindrada;
+
+  public Motor(String tipo, int cilindrada) {
+    this.tipo = tipo;
+    this.cilindrada = cilindrada;
+  }
+}
+
+public class CocheDTO {
+  private String marca;
+  private String modelo;
+  private String color;
+  private String tipoMotor;
+  private int cilindradaMotor;
+
+  public CocheDTO(String marca, String modelo, String color, String tipoMotor, int cilindradaMotor) {
+    this.marca = marca;
+    this.modelo = modelo;
+    this.color = color;
+    this.tipoMotor = tipoMotor;
+    this.cilindradaMotor = cilindradaMotor;
+  }
+}
+
+public class CocheMapper {
+  public static CocheDTO map(Coche coche) {
+    return new CocheDTO(
+      coche.getMarca(),
+      coche.getModelo(),
+      coche.getColor(),
+      coche.getMotor().getTipo(),
+      coche.getMotor().getCilindrada()
+    );
+  }
+}
