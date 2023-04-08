@@ -1,0 +1,14 @@
+# Referencias
+- Spring Boot: https://spring.io/projects/spring-boot
+- Spring MVC: https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html
+- Spring REST: https://spring.io/guides/tutorials/rest/
+- Spring Data: https://spring.io/projects/spring-data
+- Spring Security: https://spring.io/projects/spring-security
+- JUnit: https://junit.org/junit5/
+- Mockito: https://site.mockito.org/
+- Java 17: https://openjdk.java.net/projects/jdk/17/
+- Java Streams: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/package-summary.html
+- SOLID: https://devexperto.com/principios-solid/
+- Arquitecturas Software: https://apiumhub.com/es/tech-blog-barcelona/principales-patrones-arquitectura-software/
+- HTTP Status Codes: https://developer.mozilla.org/es/docs/Web/HTTP/Status
+- HTTP Methods: https://developer.mozilla.org/es/docs/Web/HTTP/Methods

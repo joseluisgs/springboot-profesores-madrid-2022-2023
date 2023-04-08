@@ -1,3 +1,32 @@
+# Spring Boot para Profesores de la Comunidad de Madrid 2022-2022
+
+Material del curso de formación del profesorado de la Comunidad de Madrid: Desarrollo en entorno cliente con Vue.js y JavaScript.
+
+[![SpringBoot](https://img.shields.io/badge/Code-Vue.js-%2342b983)](https://spring.io/projects/spring-boot)
+[![LICENSE](https://img.shields.io/badge/License-CC-%23e64545)](https://joseluisgs.github.dev/docs/license/)
+![GitHub](https://img.shields.io/github/last-commit/joseluisgs/springboot-profesores-madrid-2022-2023)
+
+![logo](https://rubensa.files.wordpress.com/2021/05/spring-boot-logo.png)
+
+## Acerca de
+Este repositorio engloba el conjunto de materiales y proyectos del curso de formación del profesorado de la Comunidad de Madrid: Desarrollo Web en entorno Servidor con Spring Boot.
+
+Estos materiales se irán actualizando a medida que se vaya impartiendo el curso de acuerdo a las necesidades del alumnado.
+
+## Contenidos
+
+1. Patrones de diseño, arquitecturas y principios Solid
+2. Introducción al desarrollo de servicios Web con SPRING MVC
+3. Desarrollo de componentes en SPRING BOOT
+4. Acceso a datos con SPRING DATA y JPA
+5. Seguridad en servicios con SPRING SECURITY
+6. Test, pruebas, despliegue y documentación de proyectos.
+7. Elementos avanzados en SPRING BOOT
+
+## Referencias
+Las referencias importantes o recomendadas para el curso las encontrarás en el [apartado de referencias](/REFERENCIAS.md).
+
+
 ## Autor
 
 Codificado con :sparkling_heart: por [José Luis González Sánchez](https://twitter.com/joseluisgonsan)
