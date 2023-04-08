@@ -27,7 +27,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 
 1. [Instalación y configuración del entorno de trabajo](./01-Entorno-Preparaci%C3%B3n/README.md)
 2. [Principios SOLID, Arquitecturas y Patrones de diseño](./02-Principios/README.md)
-3. [HTTP: métodos, status, cabeceras, etc.](./03-HTTP/README.md)
+3. [HTTP: métodos, status, cabeceras, etc.](./03-http/README.md)
 4. [Elementos de Java: POO, Colecciones, Optional, Streams, Lombock, etc.](./04-Java/README.md)
 5. Introducción al desarrollo de servicios Web con SPRING MVC
 6. Desarrollo de componentes en SPRING BOOT
