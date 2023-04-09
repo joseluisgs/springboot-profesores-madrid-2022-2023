@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "8a3e8975-9f42-4f79-b9ec-25ec928a4f7a",
+		"name": "Spring Boot Profesores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11271351"
+	},
+	"item": [
+		{
+			"name": "Raquetas",
+			"item": [
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"marca\": \"Babolat\",\n    \"modelo\": \"Pure Drive\",\n    \"precio\": 199.95,\n    \"imagen\": \"https://img.tenniswarehouse-europe.com/watermark/rs.php?path=BPAR22-1.jpg\",\n    \"createdAt\": \"2023-04-09T12:58:49.076914231\",\n    \"updatedAt\": \"2023-04-09T12:58:49.076927542\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"marca\": \"Babolat\",\n    \"modelo\": \"Pure Drive Updated\",\n    \"precio\": 199.95,\n    \"imagen\": \"https://img.tenniswarehouse-europe.com/watermark/rs.php?path=BPAR22-1.jpg\",\n    \"createdAt\": \"2023-04-09T12:58:49.076914231\",\n    \"updatedAt\": \"2023-04-09T12:58:49.076927542\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

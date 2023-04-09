@@ -1,13 +1,13 @@
-# Introducción al desarrollo de servicios web con Spring Boot y Spring MVC
+# Introducción al desarrollo de servicios web con Spring Boot y Spring Web
 
 ![logo](https://rubensa.files.wordpress.com/2021/05/spring-boot-logo.png)
 
-- [Introducción al desarrollo de servicios web con Spring Boot y Spring MVC](#introducción-al-desarrollo-de-servicios-web-con-spring-boot-y-spring-mvc)
+- [Introducción al desarrollo de servicios web con Spring Boot y Spring Web](#introducción-al-desarrollo-de-servicios-web-con-spring-boot-y-spring-web)
   - [Spring Boot](#spring-boot)
     - [Creando un proyecto](#creando-un-proyecto)
     - [Punto de Entrada](#punto-de-entrada)
     - [Parametrizando la aplicación](#parametrizando-la-aplicación)
-  - [Spring MVC](#spring-mvc)
+  - [Spring MVC y Spring Web](#spring-mvc-y-spring-web)
   - [Componentes de Spring Boot](#componentes-de-spring-boot)
     - [IoC y DI en SpringBoot](#ioc-y-di-en-springboot)
     - [Creando rutas](#creando-rutas)
@@ -17,6 +17,7 @@
       - [Parámetros de consulta](#parámetros-de-consulta)
       - [Peticiones con datos serializados](#peticiones-con-datos-serializados)
   - [Postman](#postman)
+  - [Practica](#practica)
 
 
 
@@ -43,6 +44,15 @@ implementación de rutinas transversales.
 Podemos crear un proyecto Spring Boot usando el plugin IntelliJ, desde su web. Con
 estos [asistentes](https://start.spring.io/) podemos crear un proyecto Ktor con las opciones que queramos (plugins),
 destacamos el routing, el uso de json, etc.
+
+Para nuestro proyecto deberemos usar las siguientes dependencias:
+- Lombok: nos permite usar anotaciones para generar código de forma automática.
+- Spring Web: nos permite crear aplicaciones web de forma rápida y sencilla.
+
+Posteriormente podemos añadir las dependencias que necesitemos, por ejemplo para usar una base de datos, seguridad, testing, etc.
+
+
+Si se nos olvida alguna dependencia, podemos añadirla posteriormente desde el fichero pom.xml sin problemas
 
 ### Punto de Entrada
 
@@ -85,8 +95,8 @@ upload.root-location=uploads
 spring.profiles.active=dev
 ```
 
-## Spring MVC
-Spring MVC es el conjunto de librerías que nos permite crear aplicaciones web de forma rápida y sencilla. Spring MVC es nos permite mediante su starter crear un proyecto con las librerías necesarias para crear por ejemplo una API REST obteniendo todas las librerías y configuración básica para ello, por ejemplo tener nuestro propio servidor web para gestionar las peticiones.
+## Spring MVC y Spring Web
+Spring MVC es el conjunto de librerías que nos permite crear aplicaciones web de forma rápida y sencilla. Spring Web es nos permite mediante su starter crear un proyecto con las librerías necesarias para crear por ejemplo una API REST obteniendo todas las librerías y configuración básica para ello, por ejemplo tener nuestro propio servidor web para gestionar las peticiones.
 
 ## Componentes de Spring Boot
 
@@ -128,7 +138,7 @@ deseada a nuestro contrato.
 
 El contenedor Spring IoC lee el elemento de configuración durante el tiempo de ejecución y luego ensambla el Bean a
 través de la configuración. La inyección de dependencia de Spring se puede lograr a través del constructor, el método
-Setter y el dominio de entidad. Podemos hacer uso de la anotación *@Autowired* para inyectar la dependencia en el
+Setter y el dominio de entidad. Podemos hacer uso de la anotación **@Autowired** para inyectar la dependencia en el
 contexto requerido.
 
 El contenedor llamará al constructor con parámetros al instanciar el bean, y cada parámetro representa la dependencia
@@ -296,3 +306,18 @@ El fichero para probar nuestra api lo tienes en la carpera [postman](./postman) 
 probar el resultado.
 
 ![postman](../images/postman.png)
+
+
+## Practica
+
+1. Crea un proyecto Spring Boot con las dependencias de Spring Web
+2. Crea el modelo Raquetas con los siguientes atributos: id, uuid, marca, modelo, precio, imagen, fecha de creación y
+   fecha de actualización
+3. Crea el repositorio de Raquetas en base a la colección que quieras
+4. Crea el controlador de Raquetas con las siguientes rutas:
+   - GET /raquetas: Devuelve todas las raquetas. 200 OK
+   - GET /raquetas/{id}: Devuelve la raqueta con el id indicado. 200 OK, 404 NOT FOUND
+   - POST /raquetas: Crea una nueva raqueta. 201 CREATED
+   - PUT /raquetas/{id}: Actualiza la raqueta con el id indicado: 200 OK, 404 NOT FOUND
+   - DELETE /raquetas/{id}: Elimina la raqueta con el id indicado. 204 NO CONTENT, 404 NOT FOUND
+5. Prueba las rutas con Postman

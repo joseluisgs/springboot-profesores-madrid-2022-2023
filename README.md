@@ -11,6 +11,8 @@ Material del curso de formación del profesorado de la Comunidad de Madrid: Desa
 - [Spring Boot para Profesores de la Comunidad de Madrid 2022-2022](#spring-boot-para-profesores-de-la-comunidad-de-madrid-2022-2022)
   - [Acerca de](#acerca-de)
   - [Contenidos](#contenidos)
+  - [Sesiones presenciales](#sesiones-presenciales)
+  - [Tareas por sesión](#tareas-por-sesión)
   - [Referencias](#referencias)
   - [Autor](#autor)
     - [Contacto](#contacto)
@@ -29,11 +31,33 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 2. [Principios SOLID, Arquitecturas y Patrones de diseño](./02-Principios/README.md)
 3. [HTTP: métodos, status, cabeceras, etc.](./03-http/README.md)
 4. [Elementos de Java: POO, Colecciones, Optional, Streams, Lombock, etc.](./04-Java/README.md)
-5. [Introducción al desarrollo de servicios web con Spring Boot y Spring MVC](./05-SpringMVC/README.md)
-6. Desarrollo de componentes en SPRING BOOT con SPRING DATA y JPA
-7. Elementos avanzados en SPRING BOOT
-8. Seguridad en servicios con SPRING SECURITY
-9. Test, pruebas, despliegue y documentación de proyectos.
+5. [Introducción al desarrollo de servicios web con Spring Boot y Spring Web](./05-SpringWeb/README.md)
+6. Desarrollo de componentes en SPRING BOOT con SPRING DATA y JPA: repositorios, servicios, etc.
+7. Elementos avanzados en SPRING BOOT: cache, excepciones, etc.
+8. Seguridad en servicios con SPRING SECURITY: SSL, JWT, etc.
+9. Test, pruebas, despliegue y documentación de proyectos: JUnit, Mockito, Swagger, Docker, etc.
+
+## Sesiones presenciales
+1. 12 abril 2023:
+2. 19 abril 2023:
+3. 26 abril 2023:
+4. 3 mayo 2023:
+5. 10 mayo 2023:
+6. 17 mayo 2023:
+7. 24 mayo 2023:
+8. 31 mayo 2023:
+
+## Tareas por sesión
+1. 12 abril 2023: 
+2. 19 abril 2023:
+3. 26 abril 2023:
+4. 3 mayo 2023:
+5. 10 mayo 2023:
+6. 17 mayo 2023:
+7. 24 mayo 2023:
+8. 31 mayo 2023:
+9. Tareas finales: recopilación de todo lo aprendido en el curso y entrega de un proyecto final.
+
 
 ## Referencias
 Las referencias importantes o recomendadas para el curso las encontrarás en el [apartado de referencias](/REFERENCIAS.md).
