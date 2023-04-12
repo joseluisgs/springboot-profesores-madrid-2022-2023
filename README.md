@@ -38,7 +38,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 9. Test, pruebas, despliegue y documentación de proyectos: JUnit, Mockito, Swagger, Docker, etc.
 
 ## Sesiones presenciales
-1. 12 abril 2023:
+1. 12 abril 2023: Presentación, introducción, preparación del entorno de trabajo. Mi primer proyecto con Spring Boot.
 2. 19 abril 2023:
 3. 26 abril 2023:
 4. 3 mayo 2023:
@@ -48,7 +48,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 8. 31 mayo 2023:
 
 ## Tareas por sesión
-1. 12 abril 2023: 
+1. 12 abril 2023: Tu primera aplicación con Spring Boot. [Tarea 1](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=256772&forceview=1)
 2. 19 abril 2023:
 3. 26 abril 2023:
 4. 3 mayo 2023:
