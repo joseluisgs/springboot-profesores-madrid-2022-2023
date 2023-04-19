@@ -1,6 +1,9 @@
 package dev.joseluisgs.tenistasprofesores.controllers.raquetas;
 
 
+import dev.joseluisgs.tenistasprofesores.dto.Tenistas.TenistaRequestDto;
+import dev.joseluisgs.tenistasprofesores.dto.Tenistas.TenistaResponseDto;
+import dev.joseluisgs.tenistasprofesores.mapper.TenistaMapper;
 import dev.joseluisgs.tenistasprofesores.models.Tenista;
 import dev.joseluisgs.tenistasprofesores.services.Raquetas.RaquetasService;
 import dev.joseluisgs.tenistasprofesores.services.Tenistas.TenistasService;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -20,38 +24,51 @@ public class TenistasController {
     private final TenistasService tenistasService;
     private final RaquetasService raquetasService;
 
+    private final TenistaMapper tenistaMapper;
+
     @Autowired
-    public TenistasController(TenistasService tenistasService, RaquetasService raquetasService) {
+    public TenistasController(TenistasService tenistasService, RaquetasService raquetasService, TenistaMapper tenistaMapper) {
         this.tenistasService = tenistasService;
         this.raquetasService = raquetasService;
+        this.tenistaMapper = tenistaMapper;
     }
 
     @GetMapping("")
-    public ResponseEntity<Iterable<Tenista>> getAllTenistas(
+    public ResponseEntity<List<TenistaResponseDto>> getAllTenistas(
             @RequestParam @Nullable String nombre,
             @RequestParam @Nullable String pais
     ) {
         log.info("getAllTenistas");
 
         if (nombre != null && !nombre.isEmpty()) {
-            return ResponseEntity.ok(tenistasService.findAllByNombre(nombre));
-        }
-        
-        if (pais != null && !pais.isEmpty()) {
-            return ResponseEntity.ok(tenistasService.findAllByPais(pais));
+            return ResponseEntity.ok(
+                    tenistaMapper.toResponse(tenistasService.findAllByNombre(nombre))
+            );
         }
 
-        return ResponseEntity.ok(tenistasService.findAll());
+        if (pais != null && !pais.isEmpty()) {
+            return ResponseEntity.ok(
+                    tenistaMapper.toResponse(tenistasService.findAllByPais(pais))
+            );
+        }
+
+        return ResponseEntity.ok(
+                tenistaMapper.toResponse(tenistasService.findAll())
+        );
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Tenista> getTenistaById(@PathVariable Long id) {
+    public ResponseEntity<TenistaResponseDto> getTenistaById(
+            @PathVariable Long id
+    ) {
         log.info("getTenistaById");
         // Existe el tenista?
         var tenista = tenistasService.findById(id);
         // Si existe lo devolvemos
         if (tenista.isPresent()) {
-            return ResponseEntity.ok(tenista.get());
+            return ResponseEntity.ok(
+                    tenistaMapper.toResponse(tenista.get())
+            );
         } else {
             // Si no existe devolvemos un 404
             return ResponseEntity.notFound().build();
@@ -59,13 +76,17 @@ public class TenistasController {
     }
 
     @GetMapping("/find/{uuid}")
-    public ResponseEntity<Tenista> getTenistaByUuid(@PathVariable UUID uuid) {
+    public ResponseEntity<TenistaResponseDto> getTenistaByUuid(
+            @PathVariable UUID uuid
+    ) {
         log.info("getTenistaByUuid");
         // Existe el tenista?
         var tenista = tenistasService.findByUuid(uuid);
         // Si existe lo devolvemos
         if (tenista.isPresent()) {
-            return ResponseEntity.ok(tenista.get());
+            return ResponseEntity.ok(
+                    tenistaMapper.toResponse(tenista.get())
+            );
         } else {
             // Si no existe devolvemos un 404
             return ResponseEntity.notFound().build();
@@ -73,7 +94,9 @@ public class TenistasController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Tenista> postTenista(@RequestBody Tenista tenista) {
+    public ResponseEntity<TenistaResponseDto> postTenista(
+            @RequestBody TenistaRequestDto tenista
+    ) {
         log.info("addTenista");
         // Comprobamos si hay raqueta comprobamos que exista antes
         if (tenista.getRaquetaId() != null) {
@@ -85,12 +108,17 @@ public class TenistasController {
             }
         }
         // Pase lo que pase guardamos el tenista
-        var tenistaSaved = tenistasService.save(tenista);
-        return ResponseEntity.ok(tenistaSaved);
+        var tenistaSaved = tenistasService.save(tenistaMapper.toModel(tenista));
+        return ResponseEntity.created(null).body(
+                tenistaMapper.toResponse(tenistaSaved)
+        );
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tenista> putTenista(@PathVariable Long id, @RequestBody Tenista tenista) {
+    public ResponseEntity<TenistaResponseDto> putTenista(
+            @PathVariable Long id,
+            @RequestBody Tenista tenista
+    ) {
         log.info("putTenista");
         // Comprobamos si hay raqueta comprobamos que exista antes
         if (tenista.getRaquetaId() != null) {
@@ -116,11 +144,15 @@ public class TenistasController {
         tenistaDB.get().setRaquetaId(tenista.getRaquetaId());
         // Guardamos los cambios
         var tenistaSaved = tenistasService.save(tenistaDB.get());
-        return ResponseEntity.ok(tenistaSaved);
+        return ResponseEntity.ok(
+                tenistaMapper.toResponse(tenistaSaved)
+        );
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Tenista> deleteTenista(@PathVariable Long id) {
+    public ResponseEntity<TenistaResponseDto> deleteTenista(
+            @PathVariable Long id
+    ) {
         log.info("deleteTenista");
         // Existe el tenista?
         var tenistaDB = tenistasService.findById(id);
@@ -130,6 +162,6 @@ public class TenistasController {
         }
         // Borramos el tenista
         tenistasService.deleteById(tenistaDB.get().getId());
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }

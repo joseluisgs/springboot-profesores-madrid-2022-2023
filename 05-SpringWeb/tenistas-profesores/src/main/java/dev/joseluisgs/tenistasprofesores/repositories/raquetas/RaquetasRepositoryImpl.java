@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -29,10 +30,10 @@ public class RaquetasRepositoryImpl implements RaquetasRepository {
      * @return Iterable<Raqueta> con todas las raquetas
      */
     @Override
-    public Iterable<Raqueta> findAll() {
+    public List<Raqueta> findAll() {
         log.info("findAll");
         // Devolvemos el mapa de raquetas
-        return raquetas.values();
+        return List.copyOf(raquetas.values());
     }
 
     /**
@@ -188,7 +189,7 @@ public class RaquetasRepositoryImpl implements RaquetasRepository {
      * @return Iterable<Raqueta> con las raquetas de una marca
      */
     @Override
-    public Iterable<Raqueta> findAllByMarca(String marca) {
+    public List<Raqueta> findAllByMarca(String marca) {
         log.info("findAllByMarca");
         // Devolvemos todas las raquetas de una marca
         return raquetas.values().stream()

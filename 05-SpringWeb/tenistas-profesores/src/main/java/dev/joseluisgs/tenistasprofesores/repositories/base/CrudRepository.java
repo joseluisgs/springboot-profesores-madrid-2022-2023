@@ -1,5 +1,6 @@
 package dev.joseluisgs.tenistasprofesores.repositories.base;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Optional;
  * @param <ID> Tipo de dato del ID
  */
 public interface CrudRepository<T, ID> {
-    Iterable<T> findAll();
+    List<T> findAll();
 
     Optional<T> findById(ID id);
 

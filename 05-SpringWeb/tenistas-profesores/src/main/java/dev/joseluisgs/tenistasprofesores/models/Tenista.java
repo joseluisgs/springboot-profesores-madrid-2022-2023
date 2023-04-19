@@ -9,14 +9,14 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 public class Tenista {
-    Long id;
-    UUID uuid;
-    String nombre;
-    Integer ranking;
-    String pais;
-    String imagen;
-    Long raquetaId; // Id de la raqueta, puede ser null
+    private Long id;
+    private UUID uuid;
+    private String nombre;
+    private Integer ranking;
+    private String pais;
+    private String imagen;
+    private Long raquetaId; // Id de la raqueta, puede ser null
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private boolean deleted = false;
+    private Boolean deleted;
 }

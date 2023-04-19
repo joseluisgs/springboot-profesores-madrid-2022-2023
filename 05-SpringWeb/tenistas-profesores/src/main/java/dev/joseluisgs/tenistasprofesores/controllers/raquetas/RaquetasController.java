@@ -1,6 +1,8 @@
 package dev.joseluisgs.tenistasprofesores.controllers.raquetas;
 
-import dev.joseluisgs.tenistasprofesores.models.Raqueta;
+import dev.joseluisgs.tenistasprofesores.dto.Raquetas.RaquetaRequestDto;
+import dev.joseluisgs.tenistasprofesores.dto.Raquetas.RaquetaResponseDto;
+import dev.joseluisgs.tenistasprofesores.mapper.RaquetaMapper;
 import dev.joseluisgs.tenistasprofesores.services.Raquetas.RaquetasService;
 import jakarta.annotation.Nullable;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -20,38 +23,50 @@ import java.util.UUID;
 @RequestMapping("/api/raquetas")
 @Slf4j // Para el log
 public class RaquetasController {
+    // Mis dependecias
     private final RaquetasService raquetasService;
+    private final RaquetaMapper raquetaMapper;
 
     // Inyectamos el repositorio de raquetas con la anotación @Autowired
     @Autowired
-    public RaquetasController(RaquetasService raquetasService) {
+    public RaquetasController(RaquetasService raquetasService, RaquetaMapper raquetaMapper) {
         this.raquetasService = raquetasService;
+        this.raquetaMapper = raquetaMapper;
     }
 
     // Aquí se implementan los métodos de la API REST
 
     // GET: /api/raquetas
     @GetMapping("")
-    public ResponseEntity<Iterable<Raqueta>> getAllRaquetas(
+    public ResponseEntity<List<RaquetaResponseDto>> getAllRaquetas(
             @RequestParam @Nullable String marca
     ) {
         log.info("getAllRaquetas");
+
         if (marca != null && !marca.isEmpty()) {
-            return ResponseEntity.ok(raquetasService.findAllByMarca(marca));
+            return ResponseEntity.ok(
+                    raquetaMapper.toResponse(raquetasService.findAllByMarca(marca))
+            );
         }
-        return ResponseEntity.ok(raquetasService.findAll());
+        return ResponseEntity.ok(
+                raquetaMapper.toResponse(raquetasService.findAll())
+        );
     }
 
     // GET: /api/raquetas/{id}
     // @PathVariable: Indica que el parámetro de la función es un parámetro de la URL en este caso {id}
     @GetMapping("/{id}")
-    public ResponseEntity<Raqueta> getRaquetaById(@PathVariable Long id) {
+    public ResponseEntity<RaquetaResponseDto> getRaquetaById(
+            @PathVariable Long id
+    ) {
         log.info("getRaquetaById");
         // Existe la raqueta?
         var raqueta = raquetasService.findById(id);
         // Si existe la devolvemos
         if (raqueta.isPresent()) {
-            return ResponseEntity.ok(raqueta.get());
+            return ResponseEntity.ok(
+                    raquetaMapper.toResponse(raqueta.get())
+            );
         } else {
             // Si no existe devolvemos un 404
             return ResponseEntity.notFound().build();
@@ -59,13 +74,17 @@ public class RaquetasController {
     }
 
     @GetMapping("/find/{uuid}")
-    public ResponseEntity<Raqueta> getRaquetaByUuid(@PathVariable UUID uuid) {
+    public ResponseEntity<RaquetaResponseDto> getRaquetaByUuid(
+            @PathVariable UUID uuid
+    ) {
         log.info("getRaquetaByUuid");
         // Existe la raqueta?
         var raqueta = raquetasService.findByUuid(uuid);
         // Si existe la devolvemos
         if (raqueta.isPresent()) {
-            return ResponseEntity.ok(raqueta.get());
+            return ResponseEntity.ok(
+                    raquetaMapper.toResponse(raqueta.get())
+            );
         } else {
             // Si no existe devolvemos un 404
             return ResponseEntity.notFound().build();
@@ -75,21 +94,25 @@ public class RaquetasController {
     // POST: /api/raquetas
     // @RequestBody: Indica que el parámetro de la función es un parámetro del cuerpo de la petición HTTP
     @PostMapping
-    public ResponseEntity<Raqueta> postRaqueta(@RequestBody Raqueta raqueta) {
+    public ResponseEntity<RaquetaResponseDto> postRaqueta(
+            @RequestBody RaquetaRequestDto raqueta
+    ) {
         log.info("addRaqueta");
         // Añadimos la raqueta
-        var raquetaSaved = raquetasService.save(raqueta);
+        var raquetaSaved = raquetasService.save(raquetaMapper.toModel(raqueta));
         // Devolvemos created
-        return ResponseEntity.created(null).body(raquetaSaved);
+        return ResponseEntity.created(null).body(
+                raquetaMapper.toResponse(raquetaSaved)
+        );
     }
 
     // PUT: /api/raquetas/{id}
     // @PathVariable: Indica que el parámetro de la función es un parámetro de la URL en este caso {id}
     // @RequestBody: Indica que el parámetro de la función es un parámetro del cuerpo de la petición HTTP
     @PutMapping("/{id}")
-    public ResponseEntity<Raqueta> putRaqueta(
+    public ResponseEntity<RaquetaResponseDto> putRaqueta(
             @PathVariable Long id,
-            @RequestBody Raqueta raqueta
+            @RequestBody RaquetaRequestDto raqueta
     ) {
         log.info("putRaqueta");
         // Existe la raqueta?
@@ -105,13 +128,17 @@ public class RaquetasController {
         // Guardamos los cambios
         raquetasService.save(raquetaDB.get());
         // Devolvemos el OK
-        return ResponseEntity.ok(raquetaDB.get());
+        return ResponseEntity.ok(
+                raquetaMapper.toResponse(raquetaDB.get())
+        );
     }
 
     // DELETE: /api/raquetas/{id}
     // @PathVariable: Indica que el parámetro de la función es un parámetro de la URL en este caso {id}
     @DeleteMapping("/{id}")
-    public ResponseEntity<Raqueta> deleteRaqueta(@PathVariable Long id) {
+    public ResponseEntity<RaquetaResponseDto> deleteRaqueta(
+            @PathVariable Long id
+    ) {
         log.info("deleteRaqueta");
         // Existe la raqueta?
         var raquetaDB = raquetasService.findById(id);

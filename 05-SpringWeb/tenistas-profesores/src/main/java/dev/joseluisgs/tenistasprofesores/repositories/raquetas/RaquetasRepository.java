@@ -3,6 +3,7 @@ package dev.joseluisgs.tenistasprofesores.repositories.raquetas;
 import dev.joseluisgs.tenistasprofesores.models.Raqueta;
 import dev.joseluisgs.tenistasprofesores.repositories.base.CrudRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -11,7 +12,7 @@ import java.util.UUID;
  */
 public interface RaquetasRepository extends CrudRepository<Raqueta, Long> {
     // Aquí puedes añadir métodos propios de la clase Raqueta
-    Iterable<Raqueta> findAllByMarca(String marca);
+    List<Raqueta> findAllByMarca(String marca);
 
     Optional<Raqueta> findByUuid(UUID uuid);
 }

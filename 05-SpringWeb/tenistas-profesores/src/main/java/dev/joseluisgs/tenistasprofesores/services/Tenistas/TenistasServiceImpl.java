@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,7 +32,7 @@ public class TenistasServiceImpl implements TenistasService {
 
     @Override
     @Cacheable // Indicamos que se cachee, no es recomendable si hay muchos!!
-    public Iterable<Tenista> findAll() {
+    public List<Tenista> findAll() {
         log.info("findAll");
         return tenistasRepository.findAll();
     }
@@ -51,13 +52,13 @@ public class TenistasServiceImpl implements TenistasService {
     }
 
     @Override
-    public Iterable<Tenista> findAllByNombre(String nombre) {
+    public List<Tenista> findAllByNombre(String nombre) {
         log.info("findAllByNombre");
         return tenistasRepository.findAllByNombre(nombre);
     }
 
     @Override
-    public Iterable<Tenista> findAllByPais(String pais) {
+    public List<Tenista> findAllByPais(String pais) {
         log.info("findAllByPais");
         return tenistasRepository.findAllByPais(pais);
     }

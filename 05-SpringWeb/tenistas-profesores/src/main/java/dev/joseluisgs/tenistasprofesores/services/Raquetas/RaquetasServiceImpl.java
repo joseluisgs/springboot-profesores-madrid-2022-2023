@@ -10,6 +10,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -28,7 +29,7 @@ public class RaquetasServiceImpl implements RaquetasService {
 
     @Override
     @Cacheable // Indicamos que se cachee, no es recomendable si hay muchos!!
-    public Iterable<Raqueta> findAll() {
+    public List<Raqueta> findAll() {
         log.info("findAll");
         return raquetasRepository.findAll();
     }
@@ -41,7 +42,7 @@ public class RaquetasServiceImpl implements RaquetasService {
     }
 
     @Override
-    public Iterable<Raqueta> findAllByMarca(String marca) {
+    public List<Raqueta> findAllByMarca(String marca) {
         log.info("findAllByMarca");
         return raquetasRepository.findAllByMarca(marca);
     }

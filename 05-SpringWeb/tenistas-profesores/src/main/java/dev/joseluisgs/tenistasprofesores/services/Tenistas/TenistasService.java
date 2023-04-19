@@ -2,19 +2,20 @@ package dev.joseluisgs.tenistasprofesores.services.Tenistas;
 
 import dev.joseluisgs.tenistasprofesores.models.Tenista;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public interface TenistasService {
-    Iterable<Tenista> findAll();
+    List<Tenista> findAll();
 
     Optional<Tenista> findById(Long id);
 
     Optional<Tenista> findByUuid(UUID uuid);
 
-    Iterable<Tenista> findAllByNombre(String nombre);
+    List<Tenista> findAllByNombre(String nombre);
 
-    Iterable<Tenista> findAllByPais(String pais);
+    List<Tenista> findAllByPais(String pais);
 
     Optional<Tenista> findByRanking(Integer ranking);
 

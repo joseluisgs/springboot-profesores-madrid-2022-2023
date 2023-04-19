@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -17,9 +18,9 @@ public class TenistasRepositoryImpl implements TenistasRepository {
     private final Map<Long, Tenista> tenistas = TenistasFactory.getTenistasDemoData();
 
     @Override
-    public Iterable<Tenista> findAll() {
+    public List<Tenista> findAll() {
         log.info("findAll");
-        return tenistas.values();
+        return List.copyOf(tenistas.values());
     }
 
     @Override
@@ -123,7 +124,7 @@ public class TenistasRepositoryImpl implements TenistasRepository {
     }
 
     @Override
-    public Iterable<Tenista> findAllByNombre(String nombre) {
+    public List<Tenista> findAllByNombre(String nombre) {
         log.info("findAllByNombre");
         return tenistas.values().stream().
                 filter(tenista -> tenista.getNombre().toLowerCase()
@@ -132,7 +133,7 @@ public class TenistasRepositoryImpl implements TenistasRepository {
     }
 
     @Override
-    public Iterable<Tenista> findAllByPais(String pais) {
+    public List<Tenista> findAllByPais(String pais) {
         log.info("findAllByPais");
         return tenistas.values().stream().
                 filter(tenista -> tenista.getPais().toLowerCase()
