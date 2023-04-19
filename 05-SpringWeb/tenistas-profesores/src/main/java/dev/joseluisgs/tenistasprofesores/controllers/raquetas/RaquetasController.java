@@ -2,6 +2,7 @@ package dev.joseluisgs.tenistasprofesores.controllers.raquetas;
 
 import dev.joseluisgs.tenistasprofesores.models.Raqueta;
 import dev.joseluisgs.tenistasprofesores.services.Raquetas.RaquetasService;
+import jakarta.annotation.Nullable;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +32,14 @@ public class RaquetasController {
 
     // GET: /api/raquetas
     @GetMapping("")
-    public ResponseEntity<Iterable<Raqueta>> getAllRaquetas() {
+    public ResponseEntity<Iterable<Raqueta>> getAllRaquetas(
+            @RequestParam @Nullable String marca
+    ) {
         log.info("getAllRaquetas");
-        var raquetas = raquetasService.findAll();
-        return ResponseEntity.ok(raquetas);
+        if (marca != null && !marca.isEmpty()) {
+            return ResponseEntity.ok(raquetasService.findAllByMarca(marca));
+        }
+        return ResponseEntity.ok(raquetasService.findAll());
     }
 
     // GET: /api/raquetas/{id}
@@ -118,7 +123,6 @@ public class RaquetasController {
         // Devolvemos el OK o No Content
         // return ResponseEntity.ok(raquetaDB.get());
         return ResponseEntity.noContent().build();
-
     }
 
 }

@@ -4,6 +4,7 @@ package dev.joseluisgs.tenistasprofesores.controllers.raquetas;
 import dev.joseluisgs.tenistasprofesores.models.Tenista;
 import dev.joseluisgs.tenistasprofesores.services.Raquetas.RaquetasService;
 import dev.joseluisgs.tenistasprofesores.services.Tenistas.TenistasService;
+import jakarta.annotation.Nullable;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +27,21 @@ public class TenistasController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Iterable<Tenista>> getAllTenistas() {
+    public ResponseEntity<Iterable<Tenista>> getAllTenistas(
+            @RequestParam @Nullable String nombre,
+            @RequestParam @Nullable String pais
+    ) {
         log.info("getAllTenistas");
-        var tenistas = tenistasService.findAll();
-        return ResponseEntity.ok(tenistas);
+
+        if (nombre != null && !nombre.isEmpty()) {
+            return ResponseEntity.ok(tenistasService.findAllByNombre(nombre));
+        }
+        
+        if (pais != null && !pais.isEmpty()) {
+            return ResponseEntity.ok(tenistasService.findAllByPais(pais));
+        }
+
+        return ResponseEntity.ok(tenistasService.findAll());
     }
 
     @GetMapping("/{id}")
