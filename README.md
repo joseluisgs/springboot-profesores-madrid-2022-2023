@@ -32,15 +32,15 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 3. [HTTP: métodos, status, cabeceras, etc.](./03-http/README.md)
 4. [Elementos de Java: POO, Colecciones, Optional, Streams, Lombock, etc.](./04-Java/README.md)
 5. [Introducción al desarrollo de servicios web con Spring Boot y Spring Web](./05-SpringWeb/README.md)
-6. Desarrollo de componentes en SPRING BOOT con SPRING DATA y JPA: repositorios, servicios, etc.
-7. Elementos avanzados en SPRING BOOT: cache, excepciones, etc.
+6. Elementos avanzados en SPRING BOOT: cache, dto, mappers, excepciones, etc.
+7. Desarrollo de componentes en SPRING BOOT con SPRING DATA y JPA: repositorios, servicios, etc.
 8. Seguridad en servicios con SPRING SECURITY: SSL, JWT, etc.
 9. Test, pruebas, despliegue y documentación de proyectos: JUnit, Mockito, Swagger, Docker, etc.
 
 ## Sesiones presenciales
 1. 12 abril 2023: Presentación, introducción, preparación del entorno de trabajo. Mi primer proyecto con Spring Boot.
-2. 19 abril 2023:
-3. 26 abril 2023:
+2. 19 abril 2023: Nuestra primera aplicación con Spring Boot: Raquetas y Tenistas
+3. 26 abril 2023: Mejorando nuestra appi: caché, dto, mappers, excepciones, etc.
 4. 3 mayo 2023:
 5. 10 mayo 2023:
 6. 17 mayo 2023:
@@ -49,7 +49,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 
 ## Tareas por sesión
 1. 12 abril 2023: Tu primera aplicación con Spring Boot. [Tarea 1](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=256772&forceview=1)
-2. 19 abril 2023:
+2. 19 abril 2023: Creando la api de Profesores y Módulos
 3. 26 abril 2023:
 4. 3 mayo 2023:
 5. 10 mayo 2023:
