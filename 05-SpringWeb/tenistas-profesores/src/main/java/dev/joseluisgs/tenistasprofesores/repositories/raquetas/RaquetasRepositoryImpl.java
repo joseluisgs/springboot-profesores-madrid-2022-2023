@@ -5,6 +5,7 @@ import dev.joseluisgs.tenistasprofesores.models.Raqueta;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -15,7 +16,6 @@ import java.util.UUID;
 
 // Repository: Indica que es un repositorio de datos para Spring
 @Repository
-
 // Slf4j: Nos permite usar el Logger
 @Slf4j
 public class RaquetasRepositoryImpl implements RaquetasRepository {
@@ -38,27 +38,27 @@ public class RaquetasRepositoryImpl implements RaquetasRepository {
     /**
      * Devolvemos una raqueta por su ID
      *
-     * @param aLong ID de la raqueta
+     * @param id ID de la raqueta
      * @return Optional<Raqueta> con la raqueta
      */
     @Override
-    public Optional<Raqueta> findById(Long aLong) {
+    public Optional<Raqueta> findById(Long id) {
         log.info("findById");
         // Devolvemos la raqueta por su ID
-        return Optional.ofNullable(raquetas.get(aLong));
+        return Optional.ofNullable(raquetas.get(id));
     }
 
     /**
      * Comprobamos si existe una raqueta por su ID
      *
-     * @param aLong ID de la raqueta
+     * @param id ID de la raqueta
      * @return Boolean con el resultado
      */
     @Override
-    public Boolean existsById(Long aLong) {
+    public Boolean existsById(Long id) {
         log.info("existsById");
         // Comprobamos si existe la raqueta por su ID
-        return raquetas.containsKey(aLong);
+        return raquetas.containsKey(id);
     }
 
     /**
@@ -94,6 +94,7 @@ public class RaquetasRepositoryImpl implements RaquetasRepository {
         long lastId = raquetas.keySet().stream().max(Long::compareTo).orElse(0L);
         // Aumentamos el ID en 1
         lastId++;
+        LocalDateTime now = LocalDateTime.now();
         // Asignamos el nuevo ID a la raqueta, el UUID y actualizamos el createdAt y el update
         var newRaqueta = new Raqueta(
                 lastId,
@@ -102,8 +103,9 @@ public class RaquetasRepositoryImpl implements RaquetasRepository {
                 raqueta.getModelo(),
                 raqueta.getPrecio(),
                 raqueta.getImagen(),
-                raqueta.getCreatedAt(),
-                raqueta.getUpdatedAt()
+                now,
+                now,
+                false
         );
         // Guardamos la raqueta en el mapa
         raquetas.put(lastId, newRaqueta);
@@ -119,13 +121,14 @@ public class RaquetasRepositoryImpl implements RaquetasRepository {
      */
     private Raqueta update(Raqueta raqueta) {
         log.info("update");
+        var now = LocalDateTime.now();
         // Obtenemos la raqueta por su ID
         var raquetaToUpdate = raquetas.get(raqueta.getId());
         // Actualizamos los datos que pueden ser modificados
         raquetaToUpdate.setModelo(raqueta.getModelo());
         raquetaToUpdate.setPrecio(raqueta.getPrecio());
         raquetaToUpdate.setImagen(raqueta.getImagen());
-        raquetaToUpdate.setUpdatedAt(raqueta.getUpdatedAt());
+        raquetaToUpdate.setUpdatedAt(now);
         // Guardamos la raqueta en el mapa
         raquetas.put(raqueta.getId(), raquetaToUpdate);
         // Devolvemos la raqueta
@@ -191,5 +194,12 @@ public class RaquetasRepositoryImpl implements RaquetasRepository {
         return raquetas.values().stream()
                 .filter(raqueta -> raqueta.getMarca().toLowerCase().contains(marca.toLowerCase()))
                 .toList();
+    }
+
+    @Override
+    public Optional<Raqueta> findByUuid(UUID uuid) {
+        return raquetas.values().stream()
+                .filter(raqueta -> raqueta.getUuid().equals(uuid))
+                .findFirst();
     }
 }

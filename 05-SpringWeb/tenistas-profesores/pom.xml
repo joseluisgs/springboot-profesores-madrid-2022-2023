@@ -8,7 +8,7 @@
         <version>3.0.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>dev.joseluisgs</groupId>
     <artifactId>tenistas-profesores</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>tenistas-profesores</name>
@@ -34,6 +34,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
 
         <!-- Test -->
         <dependency>

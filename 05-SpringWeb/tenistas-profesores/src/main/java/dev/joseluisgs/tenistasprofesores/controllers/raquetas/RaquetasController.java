@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 /**
  * Controlador de Raquetas
  * Aquí se implementan los métodos de la API REST
@@ -17,8 +19,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/raquetas")
 @Slf4j // Para el log
 public class RaquetasController {
-
-    private static final String API_BASE = "raquetas";
     private final RaquetasRepository raquetasRepository;
 
     // Inyectamos el repositorio de raquetas con la anotación @Autowired
@@ -53,6 +53,20 @@ public class RaquetasController {
         }
     }
 
+    @GetMapping("/find/{uuid}")
+    public ResponseEntity<Raqueta> getRaquetaByUuid(@PathVariable UUID uuid) {
+        log.info("getRaquetaByUuid");
+        // Existe la raqueta?
+        var raqueta = raquetasRepository.findByUuid(uuid);
+        // Si existe la devolvemos
+        if (raqueta.isPresent()) {
+            return ResponseEntity.ok(raqueta.get());
+        } else {
+            // Si no existe devolvemos un 404
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     // POST: /api/raquetas
     // @RequestBody: Indica que el parámetro de la función es un parámetro del cuerpo de la petición HTTP
     @PostMapping
@@ -68,24 +82,25 @@ public class RaquetasController {
     // @PathVariable: Indica que el parámetro de la función es un parámetro de la URL en este caso {id}
     // @RequestBody: Indica que el parámetro de la función es un parámetro del cuerpo de la petición HTTP
     @PutMapping("/{id}")
-    public ResponseEntity<Raqueta> putRaqueta(@PathVariable Long id, @RequestBody Raqueta raqueta) {
+    public ResponseEntity<Raqueta> putRaqueta(
+            @PathVariable Long id,
+            @RequestBody Raqueta raqueta
+    ) {
         log.info("putRaqueta");
         // Existe la raqueta?
         var raquetaDB = raquetasRepository.findById(id);
         // Si existe la actualizamos
-        if (raquetaDB.isPresent()) {
-            // Actualizamos los datos
-            raquetaDB.get().setModelo(raqueta.getModelo());
-            raquetaDB.get().setPrecio(raqueta.getPrecio());
-            raquetaDB.get().setImagen(raqueta.getImagen());
-            // Guardamos los cambios
-            raquetasRepository.save(raquetaDB.get());
-            // Devolvemos el OK
-            return ResponseEntity.ok(raquetaDB.get());
-        } else {
-            // Si no existe devolvemos un 404
+        if (raquetaDB.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
+        // Actualizamos los datos
+        raquetaDB.get().setModelo(raqueta.getModelo());
+        raquetaDB.get().setPrecio(raqueta.getPrecio());
+        raquetaDB.get().setImagen(raqueta.getImagen());
+        // Guardamos los cambios
+        raquetasRepository.save(raquetaDB.get());
+        // Devolvemos el OK
+        return ResponseEntity.ok(raquetaDB.get());
     }
 
     // DELETE: /api/raquetas/{id}
@@ -96,15 +111,14 @@ public class RaquetasController {
         // Existe la raqueta?
         var raquetaDB = raquetasRepository.findById(id);
         // Si existe la borramos
-        if (raquetaDB.isPresent()) {
-            raquetasRepository.delete(raquetaDB.get());
-            // Devolvemos el OK o No Content
-            // return ResponseEntity.ok(raquetaDB.get());
-            return ResponseEntity.noContent().build();
-        } else {
-            // Si no existe devolvemos un 404
+        if (raquetaDB.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
+        raquetasRepository.delete(raquetaDB.get());
+        // Devolvemos el OK o No Content
+        // return ResponseEntity.ok(raquetaDB.get());
+        return ResponseEntity.noContent().build();
+
     }
 
 }
