@@ -32,7 +32,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 3. [HTTP: métodos, status, cabeceras, etc.](./03-http/README.md)
 4. [Elementos de Java: POO, Colecciones, Optional, Streams, Lombock, etc.](./04-Java/README.md)
 5. [Introducción al desarrollo de servicios web con Spring Boot y Spring Web](./05-SpringWeb/README.md)
-6. Elementos avanzados en SPRING BOOT: cache, dto, mappers, excepciones, etc.
+6. [Elementos avanzados en SPRING BOOT: cache, dto, mappers, excepciones, etc.](./06-ElementosAvanzados/README.md)
 7. Desarrollo de componentes en SPRING BOOT con SPRING DATA y JPA: repositorios, servicios, etc.
 8. Seguridad en servicios con SPRING SECURITY: SSL, JWT, etc.
 9. Test, pruebas, despliegue y documentación de proyectos: JUnit, Mockito, Swagger, Docker, etc.

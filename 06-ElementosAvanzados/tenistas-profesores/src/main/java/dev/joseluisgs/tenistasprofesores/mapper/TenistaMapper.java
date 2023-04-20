@@ -13,6 +13,11 @@ import java.util.UUID;
 public class TenistaMapper {
 
     // Aquí iran los metodos para mapear los DTOs a los modelos y viceversa
+    private final RaquetaMapper raquetaMapper;
+
+    public TenistaMapper(RaquetaMapper raquetaMapper) {
+        this.raquetaMapper = raquetaMapper;
+    }
 
     // Mapeamos de modelo a DTO
     public TenistaResponseDto toResponse(Tenista tenista) {
@@ -23,7 +28,7 @@ public class TenistaMapper {
                 tenista.getRanking(),
                 tenista.getPais(),
                 tenista.getImagen(),
-                tenista.getRaquetaId()
+                tenista.getRaqueta() != null ? raquetaMapper.toResponse(tenista.getRaqueta()) : null
                 // tenista.getCreatedAt(),
                 // tenista.getUpdatedAt(),
                 // tenista.getDeleted()
@@ -46,7 +51,7 @@ public class TenistaMapper {
                 dto.getRanking(),
                 dto.getPais(),
                 dto.getImagen(),
-                dto.getRaquetaId(),
+                dto.getRaquetaId() != null ? raquetaMapper.toModelfromRequestDto(dto.getRaquetaId()) : null,
                 LocalDateTime.now(),
                 LocalDateTime.now(),
                 false

@@ -63,7 +63,7 @@ public class TenistasRepositoryImpl implements TenistasRepository {
                 tenista.getRanking(),
                 tenista.getPais(),
                 tenista.getImagen(),
-                tenista.getRaquetaId(),
+                tenista.getRaqueta(),
                 tenista.getCreatedAt(),
                 tenista.getUpdatedAt(),
                 tenista.getDeleted()

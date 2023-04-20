@@ -17,7 +17,7 @@
       - [Parámetros de consulta](#parámetros-de-consulta)
       - [Peticiones con datos serializados](#peticiones-con-datos-serializados)
   - [Postman](#postman)
-  - [Practica](#practica)
+  - [Práctica](#práctica)
 
 
 
@@ -308,7 +308,7 @@ probar el resultado.
 ![postman](../images/postman.png)
 
 
-## Practica
+## Práctica
 
 1. Crea un proyecto Spring Boot con las dependencias de Spring Web
 2. Crea el modelo Raquetas con los siguientes atributos: id, uuid, marca, modelo, precio, imagen, fecha de creación y

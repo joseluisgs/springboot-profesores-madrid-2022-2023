@@ -1,5 +1,6 @@
 package dev.joseluisgs.tenistasprofesores.services.Tenistas;
 
+import dev.joseluisgs.tenistasprofesores.models.Raqueta;
 import dev.joseluisgs.tenistasprofesores.models.Tenista;
 import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepository;
 import dev.joseluisgs.tenistasprofesores.repositories.tenistas.TenistasRepository;
@@ -88,11 +89,15 @@ public class TenistasServiceImpl implements TenistasService {
     @CachePut // Indicamos que se actualice el caché
     public Tenista save(Tenista tenista) {
         log.info("save");
+
+        // Debemos asignarnos ahora el objeto completo y no el id
+        Raqueta miRaqueta = null;
+
         // Si me pasan la raqueta es porque debe existir
-        if (tenista.getRaquetaId() != null) {
-            raquetasRepository.findById(tenista.getRaquetaId()).orElseThrow(
+        if (tenista.getRaqueta() != null) {
+            miRaqueta = raquetasRepository.findById(tenista.getRaqueta().getId()).orElseThrow(
                     () -> new ResponseStatusException(
-                            HttpStatus.BAD_REQUEST, "No se puede almacenar pues no existe la raqueta con id: " + tenista.getRaquetaId())
+                            HttpStatus.BAD_REQUEST, "No se puede almacenar pues no existe la raqueta con id: " + tenista.getRaqueta().getId())
             );
         }
         // Si no me pasan la raqueta es porque debe existir o es null porque permitimos nulos!
@@ -107,6 +112,7 @@ public class TenistasServiceImpl implements TenistasService {
 
         // Ajustamos los campos
         tenista.setUuid(UUID.randomUUID());
+        tenista.setRaqueta(miRaqueta);
         tenista.setCreatedAt(LocalDateTime.now());
         tenista.setUpdatedAt(LocalDateTime.now());
         tenista.setDeleted(false);
@@ -122,11 +128,14 @@ public class TenistasServiceImpl implements TenistasService {
         // existe el id?
         var updated = this.findById(id);
 
+        // Debemos asignarnos ahora el objeto completo y no el id
+        Raqueta miRaqueta = null;
+
         // Si me pasan la raqueta es porque debe existir
-        if (tenista.getRaquetaId() != null) {
-            raquetasRepository.findById(tenista.getRaquetaId()).orElseThrow(
+        if (tenista.getRaqueta() != null) {
+            miRaqueta = raquetasRepository.findById(tenista.getRaqueta().getId()).orElseThrow(
                     () -> new ResponseStatusException(
-                            HttpStatus.BAD_REQUEST, "No se puede almacenar pues no existe la raqueta con id: " + tenista.getRaquetaId())
+                            HttpStatus.BAD_REQUEST, "No se puede almacenar pues no existe la raqueta con id: " + tenista.getRaqueta().getId())
             );
         }
 
@@ -145,7 +154,7 @@ public class TenistasServiceImpl implements TenistasService {
         updated.setPais(tenista.getPais());
         updated.setRanking(tenista.getRanking());
         updated.setImagen(tenista.getImagen());
-        updated.setRaquetaId(tenista.getRaquetaId());
+        updated.setRaqueta(miRaqueta);
         updated.setUpdatedAt(LocalDateTime.now());
 
         // Guardamos

@@ -5,13 +5,18 @@ import dev.joseluisgs.tenistasprofesores.dto.Tenistas.TenistaRequestDto;
 import dev.joseluisgs.tenistasprofesores.dto.Tenistas.TenistaResponseDto;
 import dev.joseluisgs.tenistasprofesores.mapper.TenistaMapper;
 import dev.joseluisgs.tenistasprofesores.services.Tenistas.TenistasService;
-import jakarta.annotation.Nullable;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -31,8 +36,8 @@ public class TenistasController {
 
     @GetMapping("")
     public ResponseEntity<List<TenistaResponseDto>> getAllTenistas(
-            @RequestParam @Nullable String nombre,
-            @RequestParam @Nullable String pais
+            @RequestParam(required = false) String nombre,
+            @RequestParam(required = false) String pais
     ) {
         log.info("getAllTenistas");
 
@@ -78,7 +83,7 @@ public class TenistasController {
 
     @PostMapping("")
     public ResponseEntity<TenistaResponseDto> postTenista(
-            @RequestBody TenistaRequestDto tenista
+            @Valid @RequestBody TenistaRequestDto tenista
     ) {
         log.info("addTenista");
         return ResponseEntity.created(null).body(
@@ -90,7 +95,7 @@ public class TenistasController {
     @PutMapping("/{id}")
     public ResponseEntity<TenistaResponseDto> putTenista(
             @PathVariable Long id,
-            @RequestBody TenistaRequestDto tenista
+            @Valid @RequestBody TenistaRequestDto tenista
     ) {
         log.info("putTenista");
         return ResponseEntity.ok(
@@ -105,5 +110,20 @@ public class TenistasController {
         log.info("deleteTenista");
         tenistasService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+
+    // Para capturar los errores de validación
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
     }
 }

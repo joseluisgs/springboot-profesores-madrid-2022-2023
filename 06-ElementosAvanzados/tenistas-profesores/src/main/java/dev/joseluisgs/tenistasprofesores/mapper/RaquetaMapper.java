@@ -50,4 +50,19 @@ public class RaquetaMapper {
                 false
         );
     }
+
+    // Solo me interesa un modelo con el id!!!
+    public Raqueta toModelfromRequestDto(Long raquetaId) {
+        return new Raqueta(
+                raquetaId,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+    }
 }

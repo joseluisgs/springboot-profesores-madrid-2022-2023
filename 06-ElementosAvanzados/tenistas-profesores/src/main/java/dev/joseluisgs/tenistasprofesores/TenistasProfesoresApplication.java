@@ -3,6 +3,7 @@ package dev.joseluisgs.tenistasprofesores;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 /**
  * Si quieres hacer un proyecto con Spring Boot, lo primero que tienes que hacer es crear una clase
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
+@EnableCaching // Habilitamos el caché
 public class TenistasProfesoresApplication implements CommandLineRunner {
 
     // El método main es el punto de entrada de la aplicación, no es necesario que lo modifiques
