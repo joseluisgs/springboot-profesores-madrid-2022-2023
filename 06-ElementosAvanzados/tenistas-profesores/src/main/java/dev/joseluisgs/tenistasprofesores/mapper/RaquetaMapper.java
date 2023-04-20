@@ -22,10 +22,10 @@ public class RaquetaMapper {
                 raqueta.getMarca(),
                 raqueta.getModelo(),
                 raqueta.getPrecio(),
-                raqueta.getImagen(),
-                raqueta.getCreatedAt(),
-                raqueta.getUpdatedAt(),
-                raqueta.getDeleted()
+                raqueta.getImagen()
+                //raqueta.getCreatedAt(),
+                //raqueta.getUpdatedAt(),
+                //raqueta.getDeleted()
         );
     }
 

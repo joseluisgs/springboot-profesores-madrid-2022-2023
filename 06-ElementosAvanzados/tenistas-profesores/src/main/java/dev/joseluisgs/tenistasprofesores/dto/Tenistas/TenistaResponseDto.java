@@ -2,7 +2,6 @@ package dev.joseluisgs.tenistasprofesores.dto.Tenistas;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -14,7 +13,8 @@ public class TenistaResponseDto {
     private final String pais;
     private final String imagen;
     private final Long raquetaId; // Id de la raqueta, puede ser null
-    private final LocalDateTime createdAt;
-    private final LocalDateTime updatedAt;
-    private final Boolean deleted;
+    // Si queremos podemos borrar los metadatos para no sacarlos
+    // private final LocalDateTime createdAt;
+    // private final LocalDateTime updatedAt;
+    // private final Boolean deleted;
 }

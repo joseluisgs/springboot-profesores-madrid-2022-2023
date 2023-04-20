@@ -23,10 +23,10 @@ public class TenistaMapper {
                 tenista.getRanking(),
                 tenista.getPais(),
                 tenista.getImagen(),
-                tenista.getRaquetaId(),
-                tenista.getCreatedAt(),
-                tenista.getUpdatedAt(),
-                tenista.getDeleted()
+                tenista.getRaquetaId()
+                // tenista.getCreatedAt(),
+                // tenista.getUpdatedAt(),
+                // tenista.getDeleted()
         );
     }
 
