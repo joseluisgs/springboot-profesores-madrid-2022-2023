@@ -8,7 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 @Component
 public class RaquetaValidator {
 
-    public void isValid(Raqueta raqueta) {
+    public void validate(Raqueta raqueta) {
         // las distintas condiciones
         if (raqueta.getMarca() == null || raqueta.getMarca().isEmpty()) {
             throw new ResponseStatusException(

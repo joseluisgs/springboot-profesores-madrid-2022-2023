@@ -5,7 +5,6 @@ import dev.joseluisgs.tenistasprofesores.models.Raqueta;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -95,18 +94,17 @@ public class RaquetasRepositoryImpl implements RaquetasRepository {
         long lastId = raquetas.keySet().stream().max(Long::compareTo).orElse(0L);
         // Aumentamos el ID en 1
         lastId++;
-        LocalDateTime now = LocalDateTime.now();
         // Asignamos el nuevo ID a la raqueta, el UUID y actualizamos el createdAt y el update
         var newRaqueta = new Raqueta(
                 lastId,
-                UUID.randomUUID(),
+                raqueta.getUuid(),
                 raqueta.getMarca(),
                 raqueta.getModelo(),
                 raqueta.getPrecio(),
                 raqueta.getImagen(),
-                now,
-                now,
-                false
+                raqueta.getCreatedAt(),
+                raqueta.getUpdatedAt(),
+                raqueta.getDeleted()
         );
         // Guardamos la raqueta en el mapa
         raquetas.put(lastId, newRaqueta);
@@ -122,18 +120,10 @@ public class RaquetasRepositoryImpl implements RaquetasRepository {
      */
     private Raqueta update(Raqueta raqueta) {
         log.info("update");
-        var now = LocalDateTime.now();
         // Obtenemos la raqueta por su ID
-        var raquetaToUpdate = raquetas.get(raqueta.getId());
-        // Actualizamos los datos que pueden ser modificados
-        raquetaToUpdate.setModelo(raqueta.getModelo());
-        raquetaToUpdate.setPrecio(raqueta.getPrecio());
-        raquetaToUpdate.setImagen(raqueta.getImagen());
-        raquetaToUpdate.setUpdatedAt(now);
-        // Guardamos la raqueta en el mapa
-        raquetas.put(raqueta.getId(), raquetaToUpdate);
+        raquetas.put(raqueta.getId(), raqueta);
         // Devolvemos la raqueta
-        return raquetaToUpdate;
+        return raqueta;
     }
 
     /**

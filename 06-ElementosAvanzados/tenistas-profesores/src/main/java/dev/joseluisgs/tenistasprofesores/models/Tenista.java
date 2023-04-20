@@ -9,7 +9,7 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 public class Tenista {
-    private Long id;
+    private final Long id;
     private UUID uuid;
     private String nombre;
     private Integer ranking;

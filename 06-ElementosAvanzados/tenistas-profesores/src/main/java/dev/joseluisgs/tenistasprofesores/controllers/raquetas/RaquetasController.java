@@ -43,6 +43,7 @@ public class RaquetasController {
     ) {
         log.info("getAllRaquetas");
 
+        // Jugamos con query params / api/raquetas?marca=Wilson
         if (marca != null && !marca.isEmpty()) {
             return ResponseEntity.ok(
                     raquetaMapper.toResponse(raquetasService.findAllByMarca(marca))
@@ -60,17 +61,9 @@ public class RaquetasController {
             @PathVariable Long id
     ) {
         log.info("getRaquetaById");
-        // Existe la raqueta?
-        var raqueta = raquetasService.findById(id);
-        // Si existe la devolvemos
-        if (raqueta.isPresent()) {
-            return ResponseEntity.ok(
-                    raquetaMapper.toResponse(raqueta.get())
-            );
-        } else {
-            // Si no existe devolvemos un 404
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(
+                raquetaMapper.toResponse(raquetasService.findById(id))
+        );
     }
 
     @GetMapping("/find/{uuid}")
@@ -79,16 +72,9 @@ public class RaquetasController {
     ) {
         log.info("getRaquetaByUuid");
         // Existe la raqueta?
-        var raqueta = raquetasService.findByUuid(uuid);
-        // Si existe la devolvemos
-        if (raqueta.isPresent()) {
-            return ResponseEntity.ok(
-                    raquetaMapper.toResponse(raqueta.get())
-            );
-        } else {
-            // Si no existe devolvemos un 404
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(
+                raquetaMapper.toResponse(raquetasService.findByUuid(uuid))
+        );
     }
 
     // POST: /api/raquetas
@@ -98,11 +84,10 @@ public class RaquetasController {
             @RequestBody RaquetaRequestDto raqueta
     ) {
         log.info("addRaqueta");
-        // Añadimos la raqueta
-        var raquetaSaved = raquetasService.save(raquetaMapper.toModel(raqueta));
         // Devolvemos created
         return ResponseEntity.created(null).body(
-                raquetaMapper.toResponse(raquetaSaved)
+                raquetaMapper.toResponse(
+                        raquetasService.save(raquetaMapper.toModel(raqueta)))
         );
     }
 
@@ -115,21 +100,9 @@ public class RaquetasController {
             @RequestBody RaquetaRequestDto raqueta
     ) {
         log.info("putRaqueta");
-        // Existe la raqueta?
-        var raquetaDB = raquetasService.findById(id);
-        // Si existe la actualizamos
-        if (raquetaDB.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        // Actualizamos los datos
-        raquetaDB.get().setModelo(raqueta.getModelo());
-        raquetaDB.get().setPrecio(raqueta.getPrecio());
-        raquetaDB.get().setImagen(raqueta.getImagen());
-        // Guardamos los cambios
-        raquetasService.save(raquetaDB.get());
         // Devolvemos el OK
         return ResponseEntity.ok(
-                raquetaMapper.toResponse(raquetaDB.get())
+                raquetaMapper.toResponse(raquetasService.update(id, raquetaMapper.toModel(raqueta)))
         );
     }
 
@@ -140,15 +113,7 @@ public class RaquetasController {
             @PathVariable Long id
     ) {
         log.info("deleteRaqueta");
-        // Existe la raqueta?
-        var raquetaDB = raquetasService.findById(id);
-        // Si existe la borramos
-        if (raquetaDB.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        raquetasService.deleteById(raquetaDB.get().getId());
-        // Devolvemos el OK o No Content
-        // return ResponseEntity.ok(raquetaDB.get());
+        raquetasService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

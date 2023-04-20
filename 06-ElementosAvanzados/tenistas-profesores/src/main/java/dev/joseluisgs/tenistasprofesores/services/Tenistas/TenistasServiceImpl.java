@@ -3,16 +3,19 @@ package dev.joseluisgs.tenistasprofesores.services.Tenistas;
 import dev.joseluisgs.tenistasprofesores.models.Tenista;
 import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepository;
 import dev.joseluisgs.tenistasprofesores.repositories.tenistas.TenistasRepository;
+import dev.joseluisgs.tenistasprofesores.validators.TenistaValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -21,13 +24,15 @@ import java.util.UUID;
 public class TenistasServiceImpl implements TenistasService {
     // Mis dependencias
     private final TenistasRepository tenistasRepository;
-    private final RaquetasRepository raquetasService;
+    private final RaquetasRepository raquetasRepository;
+    private final TenistaValidator tenistaValidator;
 
     // Inyectamos los repositorios
     @Autowired
-    public TenistasServiceImpl(TenistasRepository tenistasRepository, RaquetasRepository raquetasService) {
+    public TenistasServiceImpl(TenistasRepository tenistasRepository, RaquetasRepository raquetasService, TenistaValidator tenistaValidator) {
         this.tenistasRepository = tenistasRepository;
-        this.raquetasService = raquetasService;
+        this.raquetasRepository = raquetasService;
+        this.tenistaValidator = tenistaValidator;
     }
 
     @Override
@@ -39,16 +44,22 @@ public class TenistasServiceImpl implements TenistasService {
 
     @Override
     @Cacheable // Indicamos que se cachee
-    public Optional<Tenista> findById(Long id) {
+    public Tenista findById(Long id) {
         log.info("findById");
-        return tenistasRepository.findById(id);
+        return tenistasRepository.findById(id).orElseThrow(
+                () -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "No se ha encontrado el tenista con id: " + id)
+        );
     }
 
     @Override
     @Cacheable // Indicamos que se cachee
-    public Optional<Tenista> findByUuid(UUID uuid) {
+    public Tenista findByUuid(UUID uuid) {
         log.info("findByUuid");
-        return tenistasRepository.findByUuid(uuid);
+        return tenistasRepository.findByUuid(uuid).orElseThrow(
+                () -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "No se ha encontrado el tenista con uuid: " + uuid)
+        );
     }
 
     @Override
@@ -65,22 +76,88 @@ public class TenistasServiceImpl implements TenistasService {
 
     @Override
     @Cacheable // Indicamos que se cachee
-    public Optional<Tenista> findByRanking(Integer ranking) {
+    public Tenista findByRanking(Integer ranking) {
         log.info("findByRanking");
-        return tenistasRepository.findByRanking(ranking);
+        return tenistasRepository.findByRanking(ranking).orElseThrow(
+                () -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "No se ha encontrado el tenista con ranking: " + ranking)
+        );
     }
 
     @Override
     @CachePut // Indicamos que se actualice el caché
-    public Tenista save(Tenista raqueta) {
+    public Tenista save(Tenista tenista) {
         log.info("save");
-        return tenistasRepository.save(raqueta);
+        // Si me pasan la raqueta es porque debe existir
+        if (tenista.getRaquetaId() != null) {
+            raquetasRepository.findById(tenista.getRaquetaId()).orElseThrow(
+                    () -> new ResponseStatusException(
+                            HttpStatus.BAD_REQUEST, "No se puede almacenar pues no existe la raqueta con id: " + tenista.getRaquetaId())
+            );
+        }
+        // Si no me pasan la raqueta es porque debe existir o es null porque permitimos nulos!
+        // validamos
+        tenistaValidator.validate(tenista);
+
+        // No puede existir otro tenista con el mismo ranking
+        if (tenistasRepository.findByRanking(tenista.getRanking()).isPresent()) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "No se puede almacenar pues ya existe un tenista con el mismo ranking: " + tenista.getRanking());
+        }
+
+        // Ajustamos los campos
+        tenista.setUuid(UUID.randomUUID());
+        tenista.setCreatedAt(LocalDateTime.now());
+        tenista.setUpdatedAt(LocalDateTime.now());
+        tenista.setDeleted(false);
+
+        // Guardamos
+        return tenistasRepository.save(tenista);
+    }
+
+    @Override
+    @CachePut // Indicamos que se actualice el caché
+    public Tenista update(Long id, Tenista tenista) {
+        log.info("update");
+        // existe el id?
+        var updated = this.findById(id);
+
+        // Si me pasan la raqueta es porque debe existir
+        if (tenista.getRaquetaId() != null) {
+            raquetasRepository.findById(tenista.getRaquetaId()).orElseThrow(
+                    () -> new ResponseStatusException(
+                            HttpStatus.BAD_REQUEST, "No se puede almacenar pues no existe la raqueta con id: " + tenista.getRaquetaId())
+            );
+        }
+
+        // validamos
+        tenistaValidator.validate(tenista);
+
+        // No puede existir otro tenista con el mismo ranking y que no sea el mismo
+        var ranking = tenistasRepository.findByRanking(tenista.getRanking());
+        if (ranking.isPresent() && !ranking.get().getId().equals(updated.getId())) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "No se puede almacenar pues ya existe un tenista con el mismo ranking: " + tenista.getRanking() + " y no es el mismo");
+        }
+
+        // asignamos los nuevos valores
+        updated.setNombre(tenista.getNombre());
+        updated.setPais(tenista.getPais());
+        updated.setRanking(tenista.getRanking());
+        updated.setImagen(tenista.getImagen());
+        updated.setRaquetaId(tenista.getRaquetaId());
+        updated.setUpdatedAt(LocalDateTime.now());
+
+        // Guardamos
+        return tenistasRepository.save(updated);
     }
 
     @Override
     @CacheEvict // Indicamos que se elimine el caché
     public void deleteById(Long id) {
         log.info("deleteById");
+        // existe el tenista?
+        this.findById(id);
         tenistasRepository.deleteById(id);
     }
 }

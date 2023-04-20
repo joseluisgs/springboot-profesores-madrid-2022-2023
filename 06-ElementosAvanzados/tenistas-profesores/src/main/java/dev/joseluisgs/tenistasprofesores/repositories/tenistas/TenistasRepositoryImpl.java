@@ -5,7 +5,6 @@ import dev.joseluisgs.tenistasprofesores.models.Tenista;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -56,19 +55,18 @@ public class TenistasRepositoryImpl implements TenistasRepository {
         long lastId = tenistas.keySet().stream().max(Long::compareTo).orElse(0L);
         // Aumentamos el ID en 1
         lastId++;
-        LocalDateTime now = LocalDateTime.now();
         // Asignamos el nuevo ID a la raqueta, el UUID y actualizamos el createdAt y el update
         var newTenista = new Tenista(
                 lastId,
-                UUID.randomUUID(),
+                tenista.getUuid(),
                 tenista.getNombre(),
                 tenista.getRanking(),
                 tenista.getPais(),
                 tenista.getImagen(),
                 tenista.getRaquetaId(),
-                now,
-                now,
-                false
+                tenista.getCreatedAt(),
+                tenista.getUpdatedAt(),
+                tenista.getDeleted()
         );
         // Guardamos la raqueta en el mapa
         tenistas.put(lastId, newTenista);
@@ -78,20 +76,11 @@ public class TenistasRepositoryImpl implements TenistasRepository {
 
     private Tenista update(Tenista tenista) {
         log.info("update");
-        var now = LocalDateTime.now();
         // Obtenemos la raqueta por su ID
-        var tenistaToUpdate = tenistas.get(tenista.getId());
-        // Actualizamos los datos que pueden ser modificados
-        tenistaToUpdate.setNombre(tenista.getNombre());
-        tenistaToUpdate.setRanking(tenista.getRanking());
-        tenistaToUpdate.setPais(tenista.getPais());
-        tenistaToUpdate.setImagen(tenista.getImagen());
-        tenistaToUpdate.setRaquetaId(tenista.getRaquetaId());
-        tenistaToUpdate.setUpdatedAt(now);
         // Guardamos la raqueta en el mapa
-        tenistas.put(tenista.getId(), tenistaToUpdate);
+        tenistas.put(tenista.getId(), tenista);
         // Devolvemos la raqueta
-        return tenistaToUpdate;
+        return tenista;
     }
 
 

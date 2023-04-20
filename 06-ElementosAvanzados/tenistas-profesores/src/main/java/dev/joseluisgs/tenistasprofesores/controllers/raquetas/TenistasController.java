@@ -4,8 +4,6 @@ package dev.joseluisgs.tenistasprofesores.controllers.raquetas;
 import dev.joseluisgs.tenistasprofesores.dto.Tenistas.TenistaRequestDto;
 import dev.joseluisgs.tenistasprofesores.dto.Tenistas.TenistaResponseDto;
 import dev.joseluisgs.tenistasprofesores.mapper.TenistaMapper;
-import dev.joseluisgs.tenistasprofesores.models.Tenista;
-import dev.joseluisgs.tenistasprofesores.services.Raquetas.RaquetasService;
 import dev.joseluisgs.tenistasprofesores.services.Tenistas.TenistasService;
 import jakarta.annotation.Nullable;
 import lombok.extern.slf4j.Slf4j;
@@ -22,14 +20,12 @@ import java.util.UUID;
 public class TenistasController {
 
     private final TenistasService tenistasService;
-    private final RaquetasService raquetasService;
 
     private final TenistaMapper tenistaMapper;
 
     @Autowired
-    public TenistasController(TenistasService tenistasService, RaquetasService raquetasService, TenistaMapper tenistaMapper) {
+    public TenistasController(TenistasService tenistasService, TenistaMapper tenistaMapper) {
         this.tenistasService = tenistasService;
-        this.raquetasService = raquetasService;
         this.tenistaMapper = tenistaMapper;
     }
 
@@ -40,6 +36,7 @@ public class TenistasController {
     ) {
         log.info("getAllTenistas");
 
+        // Jugamos con query params / api/tenistas?nombre=Jose
         if (nombre != null && !nombre.isEmpty()) {
             return ResponseEntity.ok(
                     tenistaMapper.toResponse(tenistasService.findAllByNombre(nombre))
@@ -63,16 +60,9 @@ public class TenistasController {
     ) {
         log.info("getTenistaById");
         // Existe el tenista?
-        var tenista = tenistasService.findById(id);
-        // Si existe lo devolvemos
-        if (tenista.isPresent()) {
-            return ResponseEntity.ok(
-                    tenistaMapper.toResponse(tenista.get())
-            );
-        } else {
-            // Si no existe devolvemos un 404
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(
+                tenistaMapper.toResponse(tenistasService.findById(id))
+        );
     }
 
     @GetMapping("/find/{uuid}")
@@ -81,16 +71,9 @@ public class TenistasController {
     ) {
         log.info("getTenistaByUuid");
         // Existe el tenista?
-        var tenista = tenistasService.findByUuid(uuid);
-        // Si existe lo devolvemos
-        if (tenista.isPresent()) {
-            return ResponseEntity.ok(
-                    tenistaMapper.toResponse(tenista.get())
-            );
-        } else {
-            // Si no existe devolvemos un 404
-            return ResponseEntity.notFound().build();
-        }
+        return ResponseEntity.ok(
+                tenistaMapper.toResponse(tenistasService.findByUuid(uuid))
+        );
     }
 
     @PostMapping("")
@@ -98,54 +81,20 @@ public class TenistasController {
             @RequestBody TenistaRequestDto tenista
     ) {
         log.info("addTenista");
-        // Comprobamos si hay raqueta comprobamos que exista antes
-        if (tenista.getRaquetaId() != null) {
-            // existe la raqueta
-            var raqueta = raquetasService.findById(tenista.getRaquetaId());
-            if (raqueta.isEmpty()) {
-                // Si no existe devolvemos un 400 no es valida la peticion
-                return ResponseEntity.badRequest().build();
-            }
-        }
-        // Pase lo que pase guardamos el tenista
-        var tenistaSaved = tenistasService.save(tenistaMapper.toModel(tenista));
         return ResponseEntity.created(null).body(
-                tenistaMapper.toResponse(tenistaSaved)
+                tenistaMapper.toResponse(
+                        tenistasService.save(tenistaMapper.toModel(tenista)))
         );
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TenistaResponseDto> putTenista(
             @PathVariable Long id,
-            @RequestBody Tenista tenista
+            @RequestBody TenistaRequestDto tenista
     ) {
         log.info("putTenista");
-        // Comprobamos si hay raqueta comprobamos que exista antes
-        if (tenista.getRaquetaId() != null) {
-            // existe la raqueta
-            var raqueta = raquetasService.findById(tenista.getRaquetaId());
-            if (raqueta.isEmpty()) {
-                // Si no existe devolvemos un 400 no es valida la peticion
-                return ResponseEntity.badRequest().build();
-            }
-        }
-        // Existe el tenista?
-        var tenistaDB = tenistasService.findById(id);
-        // Si existe lo devolvemos
-        if (tenistaDB.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        // Actualizamos los datos
-        tenistaDB.get().setNombre(tenista.getNombre());
-        tenistaDB.get().setPais(tenista.getPais());
-        tenistaDB.get().setPais(tenista.getPais());
-        tenistaDB.get().setImagen(tenista.getImagen());
-        tenistaDB.get().setRanking(tenista.getRanking());
-        tenistaDB.get().setRaquetaId(tenista.getRaquetaId());
-        // Guardamos los cambios
-        var tenistaSaved = tenistasService.save(tenistaDB.get());
         return ResponseEntity.ok(
-                tenistaMapper.toResponse(tenistaSaved)
+                tenistaMapper.toResponse(tenistasService.update(id, tenistaMapper.toModel(tenista)))
         );
     }
 
@@ -154,14 +103,7 @@ public class TenistasController {
             @PathVariable Long id
     ) {
         log.info("deleteTenista");
-        // Existe el tenista?
-        var tenistaDB = tenistasService.findById(id);
-        // Si existe lo devolvemos
-        if (tenistaDB.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        // Borramos el tenista
-        tenistasService.deleteById(tenistaDB.get().getId());
+        tenistasService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 }

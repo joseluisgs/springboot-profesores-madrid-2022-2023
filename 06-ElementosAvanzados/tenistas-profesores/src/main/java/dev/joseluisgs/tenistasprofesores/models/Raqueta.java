@@ -16,8 +16,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Raqueta {
     private final Long id;
-    private final UUID uuid;
-    private final String marca;
+    private UUID uuid;
+    private String marca;
     private String modelo;
     private Double precio;
     private String imagen;
