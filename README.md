@@ -40,7 +40,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 ## Sesiones presenciales
 1. 12 abril 2023: Presentación, introducción, preparación del entorno de trabajo. Mi primer proyecto con Spring Boot.
 2. 19 abril 2023: Nuestra primera aplicación con Spring Boot: Raquetas y Tenistas
-3. 26 abril 2023: Mejorando nuestra appi: caché, dto, mappers, excepciones, etc.
+3. 26 abril 2023: Mejorando nuestra api: caché, dto, mappers, excepciones, etc.
 4. 3 mayo 2023:
 5. 10 mayo 2023:
 6. 17 mayo 2023:
@@ -49,7 +49,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 
 ## Tareas por sesión
 1. 12 abril 2023: Tu primera aplicación con Spring Boot. [Tarea 1](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=256772&forceview=1)
-2. 19 abril 2023: Creando la api de Profesores y Módulos
+2. 19 abril 2023: Creando la api de Profesores y Módulos. [Tarea 2](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=257422)
 3. 26 abril 2023:
 4. 3 mayo 2023:
 5. 10 mayo 2023:
