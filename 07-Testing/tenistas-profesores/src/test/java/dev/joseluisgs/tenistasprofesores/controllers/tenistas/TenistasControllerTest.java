@@ -122,6 +122,28 @@ class TenistasControllerTest {
     }
 
     @Test
+    void getTenistaByIdNotFound() {
+        // Lo que vamos a simular
+        when(tenistasService.findById(1L))
+                .thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        // Llamamos al método
+        var response = assertThrows(ResponseStatusException.class,
+                () -> tenistasController.getTenistaById(1L));
+
+        // Comprobamos
+        assertAll(
+                () -> assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode().value())
+        );
+
+        // Verificamos que se ha llamado al método
+        verify(tenistasService, times(1))
+                .findById(1L);
+        verify(tenistasMapper, times(0))
+                .toResponse(tenista);
+    }
+
+    @Test
     void getTenistaByUuid() {
         // Lo que vamos a simular
         when(tenistasService.findByUuid(tenista.getUuid()))
@@ -149,6 +171,87 @@ class TenistasControllerTest {
         verify(tenistasMapper, times(1))
                 .toResponse(tenista);
     }
+
+    @Test
+    void getTenistaByUuidNotFound() {
+        // Lo que vamos a simular
+        when(tenistasService.findByUuid(tenista.getUuid()))
+                .thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        // Llamamos al método
+        var response = assertThrows(ResponseStatusException.class,
+                () -> tenistasController.getTenistaByUuid(tenista.getUuid()));
+
+        // Comprobamos
+        assertAll(
+                () -> assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode().value())
+        );
+
+        // Verificamos que se ha llamado al método
+        verify(tenistasService, times(1))
+                .findByUuid(tenista.getUuid());
+        verify(tenistasMapper, times(0))
+                .toResponse(tenista);
+    }
+
+    @Test
+    void getTenistaByNombre() {
+        // Lo que vamos a simular
+        when(tenistasService.findAllByNombre(tenista.getNombre()))
+                .thenReturn(List.of(tenista));
+        when(tenistasMapper.toResponse(List.of(tenista)))
+                .thenReturn(List.of(tenistaResponseDto));
+
+        // Llamamos al método
+        var response = tenistasController.getAllTenistas(tenista.getNombre(), null);
+        // Conseguimos el cuerpo de la respuesta
+        var res = response.getBody();
+
+        // Comprobamos
+        assertAll(
+                () -> assertEquals(HttpStatus.OK.value(), response.getStatusCode().value()),
+                () -> assertEquals(res.get(0).getNombre(), tenista.getNombre()),
+                () -> assertEquals(res.get(0).getRanking(), tenista.getRanking()),
+                () -> assertEquals(res.get(0).getPais(), tenista.getPais()),
+                () -> assertEquals(res.get(0).getImagen(), tenista.getImagen())
+        );
+
+        // Verificamos que se ha llamado al método
+        verify(tenistasService, times(1))
+                .findAllByNombre(tenista.getNombre());
+        verify(tenistasMapper, times(1))
+                .toResponse(List.of(tenista));
+    }
+
+    @Test
+    void getTenistaByPais() {
+        // Lo que vamos a simular
+        when(tenistasService.findAllByPais(tenista.getPais()))
+                .thenReturn(List.of(tenista));
+        when(tenistasMapper.toResponse(List.of(tenista)))
+                .thenReturn(List.of(tenistaResponseDto));
+
+        // Llamamos al método
+        var response = tenistasController.getAllTenistas(null, tenista.getPais());
+        // Conseguimos el cuerpo de la respuesta
+        var res = response.getBody();
+
+        // Comprobamos
+        assertAll(
+                () -> assertEquals(HttpStatus.OK.value(), response.getStatusCode().value()),
+                () -> assertEquals(res.get(0).getNombre(), tenista.getNombre()),
+                () -> assertEquals(res.get(0).getRanking(), tenista.getRanking()),
+                () -> assertEquals(res.get(0).getPais(), tenista.getPais()),
+                () -> assertEquals(res.get(0).getImagen(), tenista.getImagen())
+        );
+
+        // Verificamos que se ha llamado al método
+        verify(tenistasService, times(1))
+                .findAllByPais(tenista.getPais());
+        verify(tenistasMapper, times(1))
+                .toResponse(List.of(tenista));
+    }
+
 
     @Test
     void postTenista() {

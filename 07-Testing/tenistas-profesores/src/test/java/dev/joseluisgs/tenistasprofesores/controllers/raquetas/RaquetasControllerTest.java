@@ -138,6 +138,24 @@ class RaquetasControllerTest {
     }
 
     @Test
+    void getRaquetaByIdNotFound() {
+        // Lo que vamos a simular
+        when(raquetasService.findById(raqueta.getId()))
+                .thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        // Llamamos al método
+        var response = assertThrows(ResponseStatusException.class,
+                () -> raquetasController.getRaquetaById(raqueta.getId()));
+
+        // Comprobamos
+        assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode().value());
+
+        // Verificamos que se ha llamado al método
+        verify(raquetasService, times(1))
+                .findById(raqueta.getId());
+    }
+
+    @Test
     void getRaquetaByUuid() {
         // Lo que vamos a simular
         when(raquetasService.findByUuid(raqueta.getUuid()))
@@ -163,6 +181,24 @@ class RaquetasControllerTest {
                 .findByUuid(raqueta.getUuid());
         verify(raquetaMapper, times(1))
                 .toResponse(raqueta);
+    }
+
+    @Test
+    void getRaquetaByUuidNotFound() {
+        // Lo que vamos a simular
+        when(raquetasService.findByUuid(raqueta.getUuid()))
+                .thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        // Llamamos al método
+        var response = assertThrows(ResponseStatusException.class,
+                () -> raquetasController.getRaquetaByUuid(raqueta.getUuid()));
+
+        // Comprobamos
+        assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCode().value());
+
+        // Verificamos que se ha llamado al método
+        verify(raquetasService, times(1))
+                .findByUuid(raqueta.getUuid());
     }
 
     @Test
