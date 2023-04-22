@@ -29,6 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 /**
  * Vamos a usar el propio cliente MVC de Spring para testear nuestro controlador
  * Es como el Postman pero dentro de mi suite de test
+ * Es un tes de integración porque vamos a testear el controlador, el servicio y el repositorio
  */
 
 // Indicamos que es un test de Spring
@@ -43,7 +44,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 // @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 // Ordenamos los test por orden de ejecución
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class RaquetasControllerMvcIntegration {
+public class RaquetasControllerMvcIntegrationTest {
     // Para mapear a JSON
     private final ObjectMapper mapper = new ObjectMapper();
     @Autowired
