@@ -114,8 +114,6 @@ public class RaquetasControllerMvcMockTest {
                 .findAll();
         Mockito.verify(raquetaMapper, times(1))
                 .toResponse(List.of(raqueta));
-
-
     }
 
     @Test
