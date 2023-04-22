@@ -2,6 +2,7 @@ package dev.joseluisgs.tenistasprofesores.services.raquetas;
 
 import dev.joseluisgs.tenistasprofesores.models.raquetas.Raqueta;
 import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepository;
+import dev.joseluisgs.tenistasprofesores.repositories.tenistas.TenistasRepository;
 import dev.joseluisgs.tenistasprofesores.validators.raquetas.RaquetaValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,10 @@ public class RaquetasServiceImpl implements RaquetasService {
     private final RaquetasRepository raquetasRepository;
     private final RaquetaValidator raquetaValidator;
 
+
     // Inyectamos los repositorios
     @Autowired
-    public RaquetasServiceImpl(RaquetasRepository raquetasRepository, RaquetaValidator raquetaValidator) {
+    public RaquetasServiceImpl(RaquetasRepository raquetasRepository, TenistasRepository tenistasRepository, RaquetaValidator raquetaValidator) {
         this.raquetasRepository = raquetasRepository;
         this.raquetaValidator = raquetaValidator;
     }

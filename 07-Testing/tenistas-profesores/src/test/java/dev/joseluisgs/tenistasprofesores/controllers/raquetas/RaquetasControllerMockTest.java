@@ -26,7 +26,7 @@ Esta no es la mejor forma de hacerlo, pero es la que veremos ahora, es una clase
  */
 
 @ExtendWith(MockitoExtension.class) // Extensión de Mockito para usarlo
-class RaquetasControllerTest {
+class RaquetasControllerMockTest {
     @Mock
     RaquetasServiceImpl raquetasService;
 
