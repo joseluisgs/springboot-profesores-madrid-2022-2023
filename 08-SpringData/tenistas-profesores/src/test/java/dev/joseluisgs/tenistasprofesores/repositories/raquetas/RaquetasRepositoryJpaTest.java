@@ -170,7 +170,7 @@ class RaquetasRepositoryJpaTest {
         entityManager.flush();
 
 
-        repository.delete(RaquetasFactory.getRaquetasDemoData().get(res.getId()));
+        repository.delete(res);
 
         var raqueta = repository.findById(1L);
 
@@ -195,8 +195,13 @@ class RaquetasRepositoryJpaTest {
         );
     }
 
-    @Test
+    // No lo hacemos porque no podemos borrar todas las raquetas
+    // al tener tenistas que tienen raquetas en el script de datos
+    /*@Test
     void deleteAll() {
+        entityManager.merge(raqueta);
+        entityManager.flush();
+
         repository.deleteAll();
 
         var raquetas = repository.findAll();
@@ -206,7 +211,7 @@ class RaquetasRepositoryJpaTest {
                 () -> assertEquals(0, raquetas.size())
         );
 
-    }
+    }*/
 
     @Test
     void findAllByMarca() {
@@ -214,7 +219,7 @@ class RaquetasRepositoryJpaTest {
         entityManager.merge(raqueta);
         entityManager.flush();
 
-        var raquetas = repository.findAllByMarcaContainingIgnoreCase("Babolat");
+        var raquetas = repository.findByMarcaContainsIgnoreCase("Babolat");
 
         assertAll(
                 () -> assertNotNull(raquetas),

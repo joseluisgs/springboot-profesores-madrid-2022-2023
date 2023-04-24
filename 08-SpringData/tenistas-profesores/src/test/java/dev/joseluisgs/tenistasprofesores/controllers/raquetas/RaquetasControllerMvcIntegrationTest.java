@@ -466,14 +466,35 @@ public class RaquetasControllerMvcIntegrationTest {
     @Test
     @Order(16)
     void deleteRaqueta() throws Exception {
+        // Creo la raqueta
+        // Creo la raqueta
+        RaquetaRequestDto newRaquetaDto = new RaquetaRequestDto(
+                "Marca Nueva",
+                "Modelo 1",
+                99.99,
+                "imagen nueva"
+        );
+
         // Consulto el endpoint
         MockHttpServletResponse response = mockMvc.perform(
-                        delete(myEndpoint + "/" + raqueta.getId())
+                        post(myEndpoint)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                // Le paso el body
+                                .content(jsonRaquetaRequestDto.write(newRaquetaDto).getJson())
+                                .accept(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+
+        // Proceso la respuesta
+        RaquetaResponseDto res = mapper.readValue(response.getContentAsString(), RaquetaResponseDto.class);
+
+        // Consulto el endpoint
+        var responseDel = mockMvc.perform(
+                        delete(myEndpoint + "/" + res.getId())
                                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse();
 
         assertAll(
-                () -> assertEquals(response.getStatus(), HttpStatus.NO_CONTENT.value())
+                () -> assertEquals(responseDel.getStatus(), HttpStatus.NO_CONTENT.value())
         );
     }
 

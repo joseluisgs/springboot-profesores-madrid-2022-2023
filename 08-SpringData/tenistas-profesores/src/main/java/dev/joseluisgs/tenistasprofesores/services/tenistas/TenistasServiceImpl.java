@@ -66,13 +66,13 @@ public class TenistasServiceImpl implements TenistasService {
     @Override
     public List<Tenista> findAllByNombre(String nombre) {
         log.info("findAllByNombre");
-        return tenistasRepository.findAllByNombre(nombre);
+        return tenistasRepository.findByNombreContainsIgnoreCase(nombre);
     }
 
     @Override
     public List<Tenista> findAllByPais(String pais) {
         log.info("findAllByPais");
-        return tenistasRepository.findAllByPais(pais);
+        return tenistasRepository.findByPaisContainsIgnoreCase(pais);
     }
 
     @Override

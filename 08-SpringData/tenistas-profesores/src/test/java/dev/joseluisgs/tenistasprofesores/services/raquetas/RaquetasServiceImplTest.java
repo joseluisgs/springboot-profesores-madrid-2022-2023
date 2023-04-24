@@ -101,7 +101,7 @@ class RaquetasServiceImplTest {
     @Test
     void findAllByMarca() {
         // Lo que vamos a simular
-        when(raquetasRepository.findAllByMarcaContainingIgnoreCase("Babolat"))
+        when(raquetasRepository.findByMarcaContainsIgnoreCase("Babolat"))
                 .thenReturn(List.of(raquetas.get(1L)));
 
         // Test
@@ -119,7 +119,7 @@ class RaquetasServiceImplTest {
 
         // Verificamos que se ha llamado al método
         verify(raquetasRepository, times(1))
-                .findAllByMarcaContainingIgnoreCase("Babolat");
+                .findByMarcaContainsIgnoreCase("Babolat");
     }
 
     @Test

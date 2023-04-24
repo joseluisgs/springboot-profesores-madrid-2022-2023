@@ -2,22 +2,27 @@ package dev.joseluisgs.tenistasprofesores.repositories.tenistas;
 
 import dev.joseluisgs.tenistasprofesores.data.tenistas.TenistasFactory;
 import dev.joseluisgs.tenistasprofesores.models.tenistas.Tenista;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TenistasRepositoryImplTest {
+@SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+// Levanto la BBDD en cada test y crea todo de nuevo
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
+class TenistasRepositoryIntegrationTest {
 
-    TenistasRepository repository = new TenistasRepositoryImpl();
-
-    @BeforeEach
-    void setUp() {
-        // Inicializamos las el repositorio
-        repository = new TenistasRepositoryImpl();
-    }
+    @Autowired
+    private TenistasRepository repository;
 
 
     @Test
@@ -26,7 +31,7 @@ class TenistasRepositoryImplTest {
 
         assertAll(
                 () -> assertNotNull(tenistas),
-                () -> assertEquals(4, tenistas.size())
+                () -> assertTrue(tenistas.size() > 0)
         );
     }
 
@@ -44,7 +49,7 @@ class TenistasRepositoryImplTest {
 
     @Test
     void findByIdNotFound() {
-        var tenista = repository.findById(100L);
+        var tenista = repository.findById(-100L);
 
         assertAll(
                 () -> assertNotNull(tenista),
@@ -64,7 +69,7 @@ class TenistasRepositoryImplTest {
 
     @Test
     void existsByIdNotFound() {
-        var tenista = repository.existsById(100L);
+        var tenista = repository.existsById(-100L);
 
         assertAll(
                 () -> assertNotNull(tenista),
@@ -172,7 +177,7 @@ class TenistasRepositoryImplTest {
 
     @Test
     void findAllByNombre() {
-        var tenistas = repository.findAllByNombre("Rafael Nadal");
+        var tenistas = repository.findByNombreContainsIgnoreCase("Rafael Nadal");
 
         assertAll(
                 () -> assertNotNull(tenistas),
@@ -182,7 +187,7 @@ class TenistasRepositoryImplTest {
 
     @Test
     void findAllByPais() {
-        var tenistas = repository.findAllByPais("España");
+        var tenistas = repository.findByPaisContainsIgnoreCase("España");
 
         assertAll(
                 () -> assertNotNull(tenistas),

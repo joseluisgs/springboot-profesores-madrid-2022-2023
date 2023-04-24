@@ -17,11 +17,11 @@ public interface RaquetasRepository extends JpaRepository<Raqueta, Long> {
     // Aquí puedes añadir métodos propios de la clase Raqueta
     // Genera automáticamente las consultas
     // https://www.baeldung.com/spring-data-derived-queries
-    List<Raqueta> findAllByMarcaContainingIgnoreCase(String marca);
+    List<Raqueta> findByMarcaContainsIgnoreCase(String marca);
 
     // Otra forma es hacerlo con @Query
     @Query("SELECT r FROM Raqueta r WHERE r.modelo LIKE %?1%")
-    List<Raqueta> findAllByModeloContainingIgnoreCase(String modelo);
+    List<Raqueta> findAllByModeloContainsIgnoreCase(String modelo);
 
     Optional<Raqueta> findByUuid(UUID uuid);
 }

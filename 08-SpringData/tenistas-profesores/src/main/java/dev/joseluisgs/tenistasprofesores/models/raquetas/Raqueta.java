@@ -45,4 +45,14 @@ public class Raqueta {
     @Temporal(TemporalType.TIMESTAMP) // Indicamos que es un campo de tipo fecha y hora
     private LocalDateTime updatedAt = LocalDateTime.now();
     private Boolean deleted = false;
+
+    // Si quisiesemos la lista de tenistas relación con esta raqueta, tendríamos que hacer un OneToMany
+    // Podemos añadir la anotación @JsonBackReference para evitar la recursividad
+    // cascade = CascadeType.ALL: Si borramos una raqueta, se borran todos los tenistas relacionados
+    // orphanRemoval = true: Si borramos un tenista, se borra de la lista de tenistas de la raqueta
+    // @OneToMany(mappedBy = "raqueta", cascade = CascadeType.ALL, orphanRemoval = true)
+    // @JsonBackReference // Evitamos recursividad
+    // private Set<Tenista> tenistas;
+
+
 }

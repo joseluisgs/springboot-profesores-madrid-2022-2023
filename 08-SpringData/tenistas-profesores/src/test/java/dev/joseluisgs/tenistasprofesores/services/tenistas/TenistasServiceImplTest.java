@@ -4,7 +4,7 @@ import dev.joseluisgs.tenistasprofesores.data.raquetas.RaquetasFactory;
 import dev.joseluisgs.tenistasprofesores.data.tenistas.TenistasFactory;
 import dev.joseluisgs.tenistasprofesores.models.tenistas.Tenista;
 import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepository;
-import dev.joseluisgs.tenistasprofesores.repositories.tenistas.TenistasRepositoryImpl;
+import dev.joseluisgs.tenistasprofesores.repositories.tenistas.TenistasRepository;
 import dev.joseluisgs.tenistasprofesores.validators.tenistas.TenistaValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ class TenistasServiceImplTest {
     Map<Long, Tenista> tenistas = TenistasFactory.getTenistasDemoData();
 
     @Mock
-    private TenistasRepositoryImpl tenistasRepository;
+    private TenistasRepository tenistasRepository;
 
     @Mock
     private RaquetasRepository raquetasRepository;
@@ -150,7 +150,7 @@ class TenistasServiceImplTest {
     @Test
     void findAllByNombre() {
         // Lo que vamos a simular
-        when(tenistasRepository.findAllByNombre("Rafael Nadal"))
+        when(tenistasRepository.findByNombreContainsIgnoreCase("Rafael Nadal"))
                 .thenReturn(List.of(tenistas.get(1L)));
 
         // test
@@ -168,13 +168,13 @@ class TenistasServiceImplTest {
 
         // verificamos que se ha llamado al método
         verify(tenistasRepository, times(1))
-                .findAllByNombre("Rafael Nadal");
+                .findByNombreContainsIgnoreCase("Rafael Nadal");
     }
 
     @Test
     void findAllByPais() {
         // Lo que vamos a simular
-        when(tenistasRepository.findAllByPais("España"))
+        when(tenistasRepository.findByPaisContainsIgnoreCase("España"))
                 .thenReturn(List.of(tenistas.get(1L)));
 
         // test

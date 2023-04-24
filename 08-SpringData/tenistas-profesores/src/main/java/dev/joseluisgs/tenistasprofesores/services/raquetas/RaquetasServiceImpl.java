@@ -58,7 +58,7 @@ public class RaquetasServiceImpl implements RaquetasService {
     @Override
     public List<Raqueta> findAllByMarca(String marca) {
         log.info("findAllByMarca");
-        return raquetasRepository.findAllByMarcaContainingIgnoreCase(marca);
+        return raquetasRepository.findByMarcaContainsIgnoreCase(marca);
     }
 
     @Override
@@ -118,6 +118,11 @@ public class RaquetasServiceImpl implements RaquetasService {
         log.info("deleteById");
         // Existe el id?
         this.findById(id);
-        raquetasRepository.deleteById(id);
+        try {
+            raquetasRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "No se ha podido eliminar la raqueta con id: " + id + " ya que tiene tenistas asociados");
+        }
     }
 }
