@@ -1,0 +1,362 @@
+{
+	"info": {
+		"_postman_id": "8a3e8975-9f42-4f79-b9ec-25ec928a4f7a",
+		"name": "Spring Boot Profesores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11271351"
+	},
+	"item": [
+		{
+			"name": "Raquetas",
+			"item": [
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL Query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas?marca=babo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas"
+							],
+							"query": [
+								{
+									"key": "marca",
+									"value": "babo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"marca\": \"Raqueta Nueva\",\n    \"modelo\": \"Modelo Nuevo\",\n    \"precio\": 199.95,\n    \"imagen\": \"https://img.tenniswarehouse-europe.com/watermark/rs.php?path=BPAR22-1.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"marca\": \"Raqueta Updated\",\n    \"modelo\": \"Modelo Updated\",\n    \"precio\": 199.95,\n    \"imagen\": \"https://img.tenniswarehouse-europe.com/watermark/rs.php?path=BPAR22-1.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/find/e5b017cc-ac2a-4d6b-90c3-a6d2629d9846",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"find",
+								"e5b017cc-ac2a-4d6b-90c3-a6d2629d9846"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tenistas",
+			"item": [
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL Query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas?pais=es&nombre=alca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas"
+							],
+							"query": [
+								{
+									"key": "pais",
+									"value": "es"
+								},
+								{
+									"key": "nombre",
+									"value": "alca"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Tenista Nuevo\",\n    \"ranking\": 34,\n    \"pais\": \"España\",\n    \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/9/9b/Rafael_Nadal_10%2C_Aegon_Championships%2C_London%2C_UK_-_Diliff_%28cropped%29.jpg\",\n    \"raquetaId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Tenista Updated\",\n    \"ranking\": 34,\n    \"pais\": \"España\",\n    \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/9/9b/Rafael_Nadal_10%2C_Aegon_Championships%2C_London%2C_UK_-_Diliff_%28cropped%29.jpg\",\n    \"raquetaId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/find/27dee3b0-39f0-4317-b0a4-340f9824615e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"find",
+								"27dee3b0-39f0-4317-b0a4-340f9824615e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
