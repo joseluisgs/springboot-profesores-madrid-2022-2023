@@ -467,7 +467,6 @@ public class RaquetasControllerMvcIntegrationTest {
     @Order(16)
     void deleteRaqueta() throws Exception {
         // Creo la raqueta
-        // Creo la raqueta
         RaquetaRequestDto newRaquetaDto = new RaquetaRequestDto(
                 "Marca Nueva",
                 "Modelo 1",
