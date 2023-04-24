@@ -2,6 +2,7 @@ package dev.joseluisgs.tenistasprofesores.services.raquetas;
 
 import dev.joseluisgs.tenistasprofesores.data.raquetas.RaquetasFactory;
 import dev.joseluisgs.tenistasprofesores.models.raquetas.Raqueta;
+import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepository;
 import dev.joseluisgs.tenistasprofesores.validators.raquetas.RaquetaValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ class RaquetasServiceImplTest {
     @Mock
     private RaquetaValidator raquetaValidator;
     @Mock
-    private RaquetasRepositoryImpl raquetasRepository;
+    private RaquetasRepository raquetasRepository;
     @InjectMocks
     private RaquetasServiceImpl raquetasService;
 
@@ -100,7 +101,7 @@ class RaquetasServiceImplTest {
     @Test
     void findAllByMarca() {
         // Lo que vamos a simular
-        when(raquetasRepository.findAllByMarca("Babolat"))
+        when(raquetasRepository.findAllByMarcaContainingIgnoreCase("Babolat"))
                 .thenReturn(List.of(raquetas.get(1L)));
 
         // Test
@@ -118,7 +119,7 @@ class RaquetasServiceImplTest {
 
         // Verificamos que se ha llamado al método
         verify(raquetasRepository, times(1))
-                .findAllByMarca("Babolat");
+                .findAllByMarcaContainingIgnoreCase("Babolat");
     }
 
     @Test

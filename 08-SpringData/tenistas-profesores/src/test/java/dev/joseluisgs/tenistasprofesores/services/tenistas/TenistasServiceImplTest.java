@@ -3,6 +3,7 @@ package dev.joseluisgs.tenistasprofesores.services.tenistas;
 import dev.joseluisgs.tenistasprofesores.data.raquetas.RaquetasFactory;
 import dev.joseluisgs.tenistasprofesores.data.tenistas.TenistasFactory;
 import dev.joseluisgs.tenistasprofesores.models.tenistas.Tenista;
+import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepository;
 import dev.joseluisgs.tenistasprofesores.repositories.tenistas.TenistasRepositoryImpl;
 import dev.joseluisgs.tenistasprofesores.validators.tenistas.TenistaValidator;
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +33,7 @@ class TenistasServiceImplTest {
     private TenistasRepositoryImpl tenistasRepository;
 
     @Mock
-    private RaquetasRepositoryImpl raquetasRepository;
+    private RaquetasRepository raquetasRepository;
 
     @Mock
     private TenistaValidator tenistaValidator;
