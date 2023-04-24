@@ -62,7 +62,7 @@ public class RaquetaMapper {
                 null,
                 null,
                 null,
-                null
+                false
         );
     }
 }

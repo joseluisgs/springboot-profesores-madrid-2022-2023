@@ -2,7 +2,6 @@ package dev.joseluisgs.tenistasprofesores.services.raquetas;
 
 import dev.joseluisgs.tenistasprofesores.data.raquetas.RaquetasFactory;
 import dev.joseluisgs.tenistasprofesores.models.raquetas.Raqueta;
-import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepositoryImpl;
 import dev.joseluisgs.tenistasprofesores.validators.raquetas.RaquetaValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

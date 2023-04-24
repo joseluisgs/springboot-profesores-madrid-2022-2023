@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,7 +39,10 @@ public class RaquetasServiceImpl implements RaquetasService {
     @Cacheable // Indicamos que se cachee, no es recomendable si hay muchos!!
     public List<Raqueta> findAll() {
         log.info("findAll");
-        return raquetasRepository.findAll();
+        // Para no cambiar todos los iterbles lo cambio a lista
+        var res = new ArrayList<Raqueta>();
+        raquetasRepository.findAll().forEach(res::add);
+        return res;
     }
 
     @Override
@@ -54,7 +58,7 @@ public class RaquetasServiceImpl implements RaquetasService {
     @Override
     public List<Raqueta> findAllByMarca(String marca) {
         log.info("findAllByMarca");
-        return raquetasRepository.findAllByMarca(marca);
+        return raquetasRepository.findAllByMarcaContainingIgnoreCase(marca);
     }
 
     @Override
@@ -80,6 +84,8 @@ public class RaquetasServiceImpl implements RaquetasService {
         raqueta.setCreatedAt(LocalDateTime.now());
         raqueta.setUpdatedAt(LocalDateTime.now());
         raqueta.setDeleted(false);
+
+        System.out.println(raqueta);
 
         // Si todo va bien guardamos
         return raquetasRepository.save(raqueta);

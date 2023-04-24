@@ -22,7 +22,6 @@ public class RaquetasFactory {
         map.put(3L,
                 new Raqueta(3L, UUID.fromString("6eb07f7e-e3fa-4673-817b-dd5102a71a3e"), "Wilson", "Blade 98", 250.00, "https://www.onlytenis.com/21761-large_default/raqueta-wilson-blade-98-v8-305-gr-16x19-2022.jpg", LocalDateTime.now(), LocalDateTime.now(), false));
 
-
         return map;
     }
 }
