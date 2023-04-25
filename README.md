@@ -1,6 +1,6 @@
 # Spring Boot para Profesores de la Comunidad de Madrid 2022-2022
 
-Material del curso de formación del profesorado de la Comunidad de Madrid: Desarrollo en entorno cliente con Vue.js y JavaScript.
+Material del curso de formación del profesorado de la Comunidad de Madrid: Desarrollo en entorno servidor con Spring Boot
 
 [![SpringBoot](https://img.shields.io/badge/Code-SpringBoot-%2342b983)](https://spring.io/projects/spring-boot)
 [![LICENSE](https://img.shields.io/badge/License-CC-%23e64545)](https://joseluisgs.github.dev/docs/license/)
@@ -33,29 +33,29 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 4. [Elementos de Java: POO, Colecciones, Optional, Streams, Lombock, etc.](./04-Java/README.md)
 5. [Introducción al desarrollo de servicios web con Spring Boot y Spring Web](./05-SpringWeb/README.md)
 6. [Elementos avanzados en SPRING BOOT: cache, dto, mappers, excepciones, etc.](./06-ElementosAvanzados/README.md)
-7. Desarrollo de componentes en SPRING BOOT con SPRING DATA y JPA: repositorios, servicios, etc.
-8. Seguridad en servicios con SPRING SECURITY: SSL, JWT, etc.
-9. Test, pruebas, despliegue y documentación de proyectos: JUnit, Mockito, Swagger, Docker, etc.
+7. Testeando nuestros servicios con JUnit y Mockito.
+8. Acceso a Datos con Spring Data y JPA.
+9. Documentación con Swagger/OpenAPI y despliegue.
 
 ## Sesiones presenciales
 1. 12 abril 2023: Presentación, introducción, preparación del entorno de trabajo. Mi primer proyecto con Spring Boot.
 2. 19 abril 2023: Nuestra primera aplicación con Spring Boot: Raquetas y Tenistas
 3. 26 abril 2023: Mejorando nuestra api: caché, dto, mappers, excepciones, etc.
-4. 3 mayo 2023:
-5. 10 mayo 2023:
-6. 17 mayo 2023:
-7. 24 mayo 2023:
-8. 31 mayo 2023:
+4. 3 mayo 2023: Nuestros primeros test: JUnit y Mockito.
+5. 10 mayo 2023: Creando componentes con Spring Data y JPA.
+6. 17 mayo 2023: Testeando nuestra aplicación con Spring Data y JPA.
+7. 24 mayo 2023: Seguridad en servicios con Spring Security.
+8. 31 mayo 2023: Documentando y desplegando nuestra aplicación.
 
 ## Tareas por sesión
 1. 12 abril 2023: Tu primera aplicación con Spring Boot. [Tarea 1](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=256772&forceview=1)
 2. 19 abril 2023: Creando la api de Profesores y Módulos. [Tarea 2](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=257422)
-3. 26 abril 2023:
-4. 3 mayo 2023:
-5. 10 mayo 2023:
-6. 17 mayo 2023:
-7. 24 mayo 2023:
-8. 31 mayo 2023:
+3. 26 abril 2023: Mejorando nuestros servicios.
+4. 3 mayo 2023: Nuestros primeros tests.
+5. 10 mayo 2023: Creando componentes con Spring Data y JPA.
+6. 17 mayo 2023: Testeando nuestros repositorios con Spring Data y JPA.
+7. 24 mayo 2023: Securizando nuestra api con Spring Security.
+8. 31 mayo 2023: Documentando y desplegando nuestra aplicación.
 9. Tareas finales: recopilación de todo lo aprendido en el curso y entrega de un proyecto final.
 
 
