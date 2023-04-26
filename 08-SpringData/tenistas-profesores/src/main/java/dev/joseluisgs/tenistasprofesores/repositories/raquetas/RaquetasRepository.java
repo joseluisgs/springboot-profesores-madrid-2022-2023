@@ -24,4 +24,5 @@ public interface RaquetasRepository extends JpaRepository<Raqueta, Long> {
     List<Raqueta> findAllByModeloContainsIgnoreCase(String modelo);
 
     Optional<Raqueta> findByUuid(UUID uuid);
+
 }

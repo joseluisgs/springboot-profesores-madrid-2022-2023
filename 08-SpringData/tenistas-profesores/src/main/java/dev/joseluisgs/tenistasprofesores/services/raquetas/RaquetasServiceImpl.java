@@ -10,6 +10,8 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -125,4 +127,11 @@ public class RaquetasServiceImpl implements RaquetasService {
                     HttpStatus.BAD_REQUEST, "No se ha podido eliminar la raqueta con id: " + id + " ya que tiene tenistas asociados");
         }
     }
+
+    @Override
+    public Page<Raqueta> findAllUsingPage(Pageable pageable) {
+        log.info("findAllUsingPage");
+        return raquetasRepository.findAll(pageable);
+    }
+
 }

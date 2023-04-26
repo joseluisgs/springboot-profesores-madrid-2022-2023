@@ -2,16 +2,21 @@ package dev.joseluisgs.tenistasprofesores.controllers.raquetas;
 
 import dev.joseluisgs.tenistasprofesores.dto.raquetas.RaquetaRequestDto;
 import dev.joseluisgs.tenistasprofesores.dto.raquetas.RaquetaResponseDto;
+import dev.joseluisgs.tenistasprofesores.dto.raquetas.RaquetaResponsePageDto;
 import dev.joseluisgs.tenistasprofesores.mapper.raquetas.RaquetaMapper;
 import dev.joseluisgs.tenistasprofesores.services.raquetas.RaquetasService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -122,6 +127,30 @@ public class RaquetasController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<RaquetaResponsePageDto> listado(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sort
+    ) {
+        try {
+            // Consulto en base a las páginas
+            Pageable paging = PageRequest.of(page, size, Sort.Direction.ASC, sort);
+            var result = raquetasService.findAllUsingPage(paging);
+            RaquetaResponsePageDto raquetaResponsePageDto = new RaquetaResponsePageDto(
+                    raquetaMapper.toResponse(result.getContent()),
+                    result.getTotalPages(),
+                    result.getTotalElements(),
+                    result.getNumber(),
+                    result.getSort().toString()
+            );
+
+            return ResponseEntity.ok(raquetaResponsePageDto);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
+
     // Para capturar los errores de validación
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -135,5 +164,6 @@ public class RaquetasController {
         });
         return errors;
     }
+
 
 }

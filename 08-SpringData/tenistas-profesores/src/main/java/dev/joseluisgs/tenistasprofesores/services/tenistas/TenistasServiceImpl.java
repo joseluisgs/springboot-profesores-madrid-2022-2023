@@ -11,6 +11,8 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -170,5 +172,11 @@ public class TenistasServiceImpl implements TenistasService {
         // existe el tenista?
         this.findById(id);
         tenistasRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Tenista> findAllUsingPage(Pageable pageable) {
+        log.info("findAllUsingPage");
+        return tenistasRepository.findAll(pageable);
     }
 }

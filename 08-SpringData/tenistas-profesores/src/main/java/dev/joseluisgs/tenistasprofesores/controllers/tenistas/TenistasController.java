@@ -3,16 +3,21 @@ package dev.joseluisgs.tenistasprofesores.controllers.tenistas;
 
 import dev.joseluisgs.tenistasprofesores.dto.tenistas.TenistaRequestDto;
 import dev.joseluisgs.tenistasprofesores.dto.tenistas.TenistaResponseDto;
+import dev.joseluisgs.tenistasprofesores.dto.tenistas.TenistaResponsePageDto;
 import dev.joseluisgs.tenistasprofesores.mapper.tenistas.TenistaMapper;
 import dev.joseluisgs.tenistasprofesores.services.tenistas.TenistasService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -110,6 +115,30 @@ public class TenistasController {
         log.info("deleteTenista");
         tenistasService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<TenistaResponsePageDto> listado(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sort
+    ) {
+        try {
+            // Consulto en base a las páginas
+            Pageable paging = PageRequest.of(page, size, Sort.Direction.ASC, sort);
+            var result = tenistasService.findAllUsingPage(paging);
+            TenistaResponsePageDto tenistaResponsePageDto = new TenistaResponsePageDto(
+                    tenistaMapper.toResponse(result.getContent()),
+                    result.getTotalPages(),
+                    result.getTotalElements(),
+                    result.getNumber(),
+                    result.getSort().toString()
+            );
+
+            return ResponseEntity.ok(tenistaResponsePageDto);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
 
