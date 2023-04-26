@@ -40,11 +40,23 @@
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
 
-        <!-- Starter de Spring Validatio -->
+        <!-- Starter de Spring Validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+
+        <!-- Para responder en XML  -->
+        <!-- https://howtodoinjava.com/spring-boot/xml-request-response-body/-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+        <!-- Si queremos usar JAXB para los mmapeos a XML
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+        </dependency>-->
 
         <!-- Lombok -->
         <dependency>

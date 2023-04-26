@@ -33,7 +33,7 @@ public class RaquetasServiceImpl implements RaquetasService {
     }
 
     @Override
-    @Cacheable // Indicamos que se cachee, no es recomendable si hay muchos!!
+    //@Cacheable // Indicamos que se cachee, no es recomendable si hay muchos!!
     public List<Raqueta> findAll() {
         log.info("findAll");
         return raquetasRepository.findAll();

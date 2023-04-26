@@ -1,5 +1,6 @@
 package dev.joseluisgs.tenistasprofesores.dto.tenistas;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import dev.joseluisgs.tenistasprofesores.dto.raquetas.RaquetaResponseDto;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor(force = true) // Para que no me de error en el constructor de jackson
 @RequiredArgsConstructor // Para que me cree un constructor con los atributos finales
 @Builder // Para poder usar el patrón Builder
+@JacksonXmlRootElement(localName = "tenista") // Para XML
 public class TenistaResponseDto {
     private final Long id;
     private final UUID uuid;

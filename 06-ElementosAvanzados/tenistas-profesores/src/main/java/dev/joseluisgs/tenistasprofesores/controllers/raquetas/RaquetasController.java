@@ -48,7 +48,7 @@ public class RaquetasController {
     ) {
         log.info("getAllRaquetas");
 
-        // Jugamos con query params / api/raquetas?marca=Wilson
+        // Jugamos con query params /api/raquetas?marca=Wilson
         if (marca != null && !marca.isEmpty()) {
             return ResponseEntity.ok(
                     raquetaMapper.toResponse(raquetasService.findAllByMarca(marca))

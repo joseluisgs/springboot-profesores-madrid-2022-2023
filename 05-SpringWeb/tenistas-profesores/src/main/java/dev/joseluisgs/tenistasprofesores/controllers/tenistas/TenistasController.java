@@ -1,4 +1,4 @@
-package dev.joseluisgs.tenistasprofesores.controllers.raquetas;
+package dev.joseluisgs.tenistasprofesores.controllers.tenistas;
 
 
 import dev.joseluisgs.tenistasprofesores.dto.Tenistas.TenistaRequestDto;

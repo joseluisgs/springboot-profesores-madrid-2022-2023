@@ -30,6 +30,41 @@
 					"response": []
 				},
 				{
+					"name": "GET ALL Pages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/all?page=0&size=1&sort=modelo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "modelo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "GET ALL Query",
 					"request": {
 						"method": "GET",
@@ -83,7 +118,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"marca\": \"Raqueta Nueva\",\n    \"modelo\": \"Modelo Nuevo\",\n    \"precio\": 199.95,\n    \"imagen\": \"https://img.tenniswarehouse-europe.com/watermark/rs.php?path=BPAR22-1.jpg\"\n}",
+							"raw": "{\n    \"marca\": \"Raqueta Nueva\",\n    \"modelo\": \"Modelo Nuevo\",\n    \"precio\":  199.95,\n    \"imagen\": \"https://img.tenniswarehouse-europe.com/watermark/rs.php?path=BPAR22-1.jpg\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -136,6 +171,38 @@
 					"response": []
 				},
 				{
+					"name": "PATCH Imagen",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/joseluisgs/Proyectos/springboot-profesores-madrid-2022-2023/08-SpringData/postman/raqueta.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/imagen/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"imagen",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "DELETE",
 					"request": {
 						"method": "DELETE",
@@ -177,6 +244,42 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GET ALL XML",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -198,6 +301,41 @@
 							"path": [
 								"api",
 								"tenistas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL Pages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/all?page=0&size=1&sort=pais",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "pais"
+								}
 							]
 						}
 					},
@@ -314,6 +452,38 @@
 					"response": []
 				},
 				{
+					"name": "PATCH Imagen",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/joseluisgs/Proyectos/springboot-profesores-madrid-2022-2023/08-SpringData/postman/tenista.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/imagen/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"imagen",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "DELETE",
 					"request": {
 						"method": "DELETE",
@@ -351,6 +521,42 @@
 								"tenistas",
 								"find",
 								"27dee3b0-39f0-4317-b0a4-340f9824615e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL XML",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas"
 							]
 						}
 					},
