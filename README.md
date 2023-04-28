@@ -33,9 +33,9 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 4. [Elementos de Java: POO, Colecciones, Optional, Streams, Lombock, etc.](./04-Java/README.md)
 5. [Introducción al desarrollo de servicios web con Spring Boot y Spring Web](./05-SpringWeb/README.md)
 6. [Elementos avanzados en SPRING BOOT: cache, dto, mappers, excepciones, etc.](./06-ElementosAvanzados/README.md)
-7. Testeando nuestros servicios con JUnit y Mockito.
-8. Acceso a Datos con Spring Data y JPA.
-9. Documentación con Swagger/OpenAPI y despliegue.
+7. [Testeando nuestros servicios con JUnit y Mockito](./07-Testing/README.md)
+8. Acceso a Datos con Spring Data y JPA
+9. Documentación con Swagger/OpenAPI y despliegue
 
 ## Sesiones presenciales
 1. 12 abril 2023: Presentación, introducción, preparación del entorno de trabajo. Mi primer proyecto con Spring Boot.
