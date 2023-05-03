@@ -156,6 +156,11 @@ public class RaquetasController {
         }
     }
 
+    // PATCH: /api/raquetas//imagen/{id}
+    // consumes = MediaType.MULTIPART_FORM_DATA_VALUE: Indica que el parámetro de la función es un parámetro del cuerpo de la petición HTTP
+    // @PathVariable: Indica que el parámetro de la función es un parámetro de la URL en este caso {id}
+    // @RequestPart: Indica que el parámetro de la función es un parámetro del cuerpo de la petición HTTP
+    // En este caso es un fichero, por lo que se indica con @RequestPart y mMltipartFile
     @PatchMapping(value = "/imagen/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<RaquetaResponseDto> nuevoProducto(
             @PathVariable Long id,

@@ -165,6 +165,10 @@ public class FileSystemStorageService implements StorageService {
 
     }
 
+    /**
+     * Método que devuelve la URL de un fichero a partir de su nombre
+     * Devuelve un objeto de tipo String
+     */
     @Override
     public String getUrl(String filename) {
         return MvcUriComponentsBuilder
