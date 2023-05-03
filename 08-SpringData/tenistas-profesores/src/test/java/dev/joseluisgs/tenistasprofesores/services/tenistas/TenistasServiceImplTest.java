@@ -2,6 +2,8 @@ package dev.joseluisgs.tenistasprofesores.services.tenistas;
 
 import dev.joseluisgs.tenistasprofesores.data.raquetas.RaquetasFactory;
 import dev.joseluisgs.tenistasprofesores.data.tenistas.TenistasFactory;
+import dev.joseluisgs.tenistasprofesores.exceptions.tenista.TenistaBadRequestException;
+import dev.joseluisgs.tenistasprofesores.exceptions.tenista.TenistaNotFoundException;
 import dev.joseluisgs.tenistasprofesores.models.tenistas.Tenista;
 import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepository;
 import dev.joseluisgs.tenistasprofesores.repositories.tenistas.TenistasRepository;
@@ -96,7 +98,7 @@ class TenistasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaNotFoundException.class, () -> {
             tenistasService.findById(-100L);
         });
         // Comprobamos que la excepción es la esperada
@@ -136,7 +138,7 @@ class TenistasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaNotFoundException.class, () -> {
             tenistasService.findByUuid(tenistas.get(1L).getUuid());
         });
         // Comprobamos que la excepción es la esperada
@@ -222,7 +224,7 @@ class TenistasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaNotFoundException.class, () -> {
             tenistasService.findByRanking(1);
         });
         // Comprobamos que la excepción es la esperada
@@ -274,7 +276,7 @@ class TenistasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaBadRequestException.class, () -> {
             tenistasService.save(tenistas.get(1L));
         });
         // Comprobamos que la excepción es la esperada
@@ -381,7 +383,7 @@ class TenistasServiceImplTest {
                 .thenReturn(Optional.of(tenistas.get(1L)));
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaBadRequestException.class, () -> {
             tenistasService.save(tenistas.get(1L));
         });
         // Comprobamos que la excepción es la esperada
@@ -444,7 +446,7 @@ class TenistasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaNotFoundException.class, () -> {
             tenistasService.update(1L, tenistas.get(1L));
         });
 
@@ -465,7 +467,7 @@ class TenistasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaBadRequestException.class, () -> {
             tenistasService.update(1L, tenistas.get(1L));
         });
 
@@ -580,7 +582,7 @@ class TenistasServiceImplTest {
                 .thenReturn(Optional.of(tenistas.get(2L)));
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaBadRequestException.class, () -> {
             tenistasService.update(1L, tenistas.get(1L));
         });
 
@@ -625,7 +627,7 @@ class TenistasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaNotFoundException.class, () -> {
             tenistasService.deleteById(1L);
         });
         // Comprobamos que la excepción es la esperada

@@ -1,16 +1,17 @@
 package dev.joseluisgs.tenistasprofesores.services.storage;
 
 import dev.joseluisgs.tenistasprofesores.controllers.files.FilesController;
+import dev.joseluisgs.tenistasprofesores.exceptions.storage.StorageBadRequestException;
+import dev.joseluisgs.tenistasprofesores.exceptions.storage.StorageInternalException;
+import dev.joseluisgs.tenistasprofesores.exceptions.storage.StorageNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import java.io.IOException;
@@ -62,12 +63,13 @@ public class FileSystemStorageService implements StorageService {
         String storedFilename = System.currentTimeMillis() + "_" + justFilename + "." + extension;
         try {
             if (file.isEmpty()) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Fichero vacío " + filename);
+                throw new StorageBadRequestException("Fichero vacío " + filename);
             }
             if (filename.contains("..")) {
                 // This is a security check
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se puede almacenar un fichero fuera del path permitido "
-                        + filename);
+                throw new StorageBadRequestException(
+                        "No se puede almacenar un fichero con una ruta relativa fuera del directorio actual "
+                                + filename);
             }
 
             try (InputStream inputStream = file.getInputStream()) {
@@ -77,7 +79,7 @@ public class FileSystemStorageService implements StorageService {
             }
 
         } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Fallo al almacenar fichero " + filename, e);
+            throw new StorageInternalException("Fallo al almacenar fichero " + filename + " " + e);
         }
 
     }
@@ -93,7 +95,7 @@ public class FileSystemStorageService implements StorageService {
                     .filter(path -> !path.equals(this.rootLocation))
                     .map(this.rootLocation::relativize);
         } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Fallo al leer ficheros almacenados", e);
+            throw new StorageInternalException("Fallo al leer ficheros almacenados " + e);
         }
 
     }
@@ -120,11 +122,10 @@ public class FileSystemStorageService implements StorageService {
             if (resource.exists() || resource.isReadable()) {
                 return resource;
             } else {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se puede leer fichero: " + filename);
-
+                throw new StorageNotFoundException("No se puede leer fichero: " + filename);
             }
         } catch (MalformedURLException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se puede leer fichero: " + filename, e);
+            throw new StorageNotFoundException("No se puede leer fichero: " + filename + " " + e);
         }
     }
 
@@ -147,7 +148,7 @@ public class FileSystemStorageService implements StorageService {
         try {
             Files.createDirectories(rootLocation);
         } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "No se puede inicializar el almacenamiento", e);
+            throw new StorageInternalException("No se puede inicializar el almacenamiento " + e);
         }
     }
 
@@ -159,7 +160,7 @@ public class FileSystemStorageService implements StorageService {
             Path file = load(justFilename);
             Files.deleteIfExists(file);
         } catch (IOException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "No se puede eliminar el fichero " + filename, e);
+            throw new StorageInternalException("No se puede eliminar el fichero " + filename + " " + e);
         }
 
     }

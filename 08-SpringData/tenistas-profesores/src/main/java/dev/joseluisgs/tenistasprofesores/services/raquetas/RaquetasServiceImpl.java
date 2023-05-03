@@ -1,5 +1,7 @@
 package dev.joseluisgs.tenistasprofesores.services.raquetas;
 
+import dev.joseluisgs.tenistasprofesores.exceptions.raqueta.RaquetaBadRequestException;
+import dev.joseluisgs.tenistasprofesores.exceptions.raqueta.RaquetaNotFoundException;
 import dev.joseluisgs.tenistasprofesores.models.raquetas.Raqueta;
 import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepository;
 import dev.joseluisgs.tenistasprofesores.repositories.tenistas.TenistasRepository;
@@ -12,9 +14,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -52,8 +52,7 @@ public class RaquetasServiceImpl implements RaquetasService {
     public Raqueta findById(Long id) {
         log.info("findById");
         return raquetasRepository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "No se ha encontrado la raqueta con id: " + id)
+                () -> new RaquetaNotFoundException("No se ha encontrado la raqueta con id: " + id)
         );
     }
 
@@ -68,8 +67,7 @@ public class RaquetasServiceImpl implements RaquetasService {
     public Raqueta findByUuid(UUID uuid) {
         log.info("findByUuid");
         return raquetasRepository.findByUuid(uuid).orElseThrow(
-                () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "No se ha encontrado la raqueta con uuid: " + uuid)
+                () -> new RaquetaNotFoundException("No se ha encontrado la raqueta con uuid: " + uuid)
         );
     }
 
@@ -123,8 +121,7 @@ public class RaquetasServiceImpl implements RaquetasService {
         try {
             raquetasRepository.deleteById(id);
         } catch (Exception e) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "No se ha podido eliminar la raqueta con id: " + id + " ya que tiene tenistas asociados");
+            throw new RaquetaBadRequestException("No se ha podido eliminar la raqueta con id: " + id + " ya que tiene tenistas asociados");
         }
     }
 

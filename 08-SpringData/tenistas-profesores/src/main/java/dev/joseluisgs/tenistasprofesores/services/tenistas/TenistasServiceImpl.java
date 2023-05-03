@@ -1,5 +1,7 @@
 package dev.joseluisgs.tenistasprofesores.services.tenistas;
 
+import dev.joseluisgs.tenistasprofesores.exceptions.tenista.TenistaBadRequestException;
+import dev.joseluisgs.tenistasprofesores.exceptions.tenista.TenistaNotFoundException;
 import dev.joseluisgs.tenistasprofesores.models.raquetas.Raqueta;
 import dev.joseluisgs.tenistasprofesores.models.tenistas.Tenista;
 import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepository;
@@ -13,9 +15,7 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -50,8 +50,7 @@ public class TenistasServiceImpl implements TenistasService {
     public Tenista findById(Long id) {
         log.info("findById");
         return tenistasRepository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "No se ha encontrado el tenista con id: " + id)
+                () -> new TenistaNotFoundException("No se ha encontrado el tenista con id: " + id)
         );
     }
 
@@ -60,8 +59,7 @@ public class TenistasServiceImpl implements TenistasService {
     public Tenista findByUuid(UUID uuid) {
         log.info("findByUuid");
         return tenistasRepository.findByUuid(uuid).orElseThrow(
-                () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "No se ha encontrado el tenista con uuid: " + uuid)
+                () -> new TenistaNotFoundException("No se ha encontrado el tenista con uuid: " + uuid)
         );
     }
 
@@ -82,8 +80,7 @@ public class TenistasServiceImpl implements TenistasService {
     public Tenista findByRanking(Integer ranking) {
         log.info("findByRanking");
         return tenistasRepository.findByRanking(ranking).orElseThrow(
-                () -> new ResponseStatusException(
-                        HttpStatus.NOT_FOUND, "No se ha encontrado el tenista con ranking: " + ranking)
+                () -> new TenistaNotFoundException("No se ha encontrado el tenista con ranking: " + ranking)
         );
     }
 
@@ -98,8 +95,7 @@ public class TenistasServiceImpl implements TenistasService {
         // Si me pasan la raqueta es porque debe existir
         if (tenista.getRaqueta() != null) {
             miRaqueta = raquetasRepository.findById(tenista.getRaqueta().getId()).orElseThrow(
-                    () -> new ResponseStatusException(
-                            HttpStatus.BAD_REQUEST, "No se puede almacenar pues no existe la raqueta con id: " + tenista.getRaqueta().getId())
+                    () -> new TenistaBadRequestException("No se puede almacenar pues no existe la raqueta con id: " + tenista.getRaqueta().getId())
             );
         }
         // Si no me pasan la raqueta es porque debe existir o es null porque permitimos nulos!
@@ -108,8 +104,7 @@ public class TenistasServiceImpl implements TenistasService {
 
         // No puede existir otro tenista con el mismo ranking
         if (tenistasRepository.findByRanking(tenista.getRanking()).isPresent()) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "No se puede almacenar pues ya existe un tenista con el mismo ranking: " + tenista.getRanking());
+            throw new TenistaBadRequestException("No se puede almacenar pues ya existe un tenista con el mismo ranking: " + tenista.getRanking());
         }
 
         // Ajustamos los campos
@@ -136,8 +131,7 @@ public class TenistasServiceImpl implements TenistasService {
         // Si me pasan la raqueta es porque debe existir
         if (tenista.getRaqueta() != null) {
             miRaqueta = raquetasRepository.findById(tenista.getRaqueta().getId()).orElseThrow(
-                    () -> new ResponseStatusException(
-                            HttpStatus.BAD_REQUEST, "No se puede almacenar pues no existe la raqueta con id: " + tenista.getRaqueta().getId())
+                    () -> new TenistaBadRequestException("No se puede almacenar pues no existe la raqueta con id: " + tenista.getRaqueta().getId())
             );
         }
 
@@ -147,10 +141,7 @@ public class TenistasServiceImpl implements TenistasService {
         // No puede existir otro tenista con el mismo ranking y que no sea el mismo
         var ranking = tenistasRepository.findByRanking(tenista.getRanking());
         if (ranking.isPresent() && !ranking.get().getUuid().equals(updated.getUuid())) {
-            System.out.println(updated);
-            System.out.println(ranking.get());
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "No se puede almacenar pues ya existe un tenista con el mismo ranking: " + tenista.getRanking() + " y no es el mismo");
+            throw new TenistaBadRequestException("No se puede almacenar pues ya existe un tenista con el mismo ranking: " + tenista.getRanking() + " y no es el mismo");
         }
 
         // asignamos los nuevos valores

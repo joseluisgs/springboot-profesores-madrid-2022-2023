@@ -1,9 +1,9 @@
 package dev.joseluisgs.tenistasprofesores.validators.raquetas;
 
 import dev.joseluisgs.tenistasprofesores.data.raquetas.RaquetasFactory;
+import dev.joseluisgs.tenistasprofesores.exceptions.raqueta.RaquetaBadRequestException;
 import dev.joseluisgs.tenistasprofesores.models.raquetas.Raqueta;
 import org.junit.jupiter.api.Test;
-import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -31,7 +31,7 @@ class RaquetaValidatorTest {
         raqueta.setPrecio(200.0);
         // La validamos
         // Comprobamos que da una excepción
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(RaquetaBadRequestException.class, () -> {
             validator.validate(raqueta);
         });
         // Comprobamos que la excepción es la esperada
@@ -46,7 +46,7 @@ class RaquetaValidatorTest {
         raqueta.setPrecio(200.0);
         // La validamos
         // Comprobamos que da una excepción
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(RaquetaBadRequestException.class, () -> {
             validator.validate(raqueta);
         });
         // Comprobamos que la excepción es la esperada
@@ -61,7 +61,7 @@ class RaquetaValidatorTest {
         raqueta.setPrecio(-1.0);
         // La validamos
         // Comprobamos que da una excepción
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(RaquetaBadRequestException.class, () -> {
             validator.validate(raqueta);
         });
         // Comprobamos que la excepción es la esperada

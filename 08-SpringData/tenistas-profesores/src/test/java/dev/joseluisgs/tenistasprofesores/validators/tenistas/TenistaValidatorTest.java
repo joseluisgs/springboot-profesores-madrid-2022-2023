@@ -1,9 +1,9 @@
 package dev.joseluisgs.tenistasprofesores.validators.tenistas;
 
 import dev.joseluisgs.tenistasprofesores.data.tenistas.TenistasFactory;
+import dev.joseluisgs.tenistasprofesores.exceptions.tenista.TenistaBadRequestException;
 import dev.joseluisgs.tenistasprofesores.models.tenistas.Tenista;
 import org.junit.jupiter.api.Test;
-import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -25,7 +25,7 @@ class TenistaValidatorTest {
         tenista.setPais("España");
         tenista.setRanking(1);
         // Capturamos la excepción
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaBadRequestException.class, () -> {
             validator.validate(tenista);
         });
         // Comprobamos que la excepción es la esperada
@@ -38,7 +38,7 @@ class TenistaValidatorTest {
         tenista.setPais("");
         tenista.setRanking(1);
         // Capturamos la excepción
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaBadRequestException.class, () -> {
             validator.validate(tenista);
         });
         // Comprobamos que la excepción es la esperada
@@ -51,7 +51,7 @@ class TenistaValidatorTest {
         tenista.setPais("España");
         tenista.setRanking(-1);
         // Capturamos la excepción
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(TenistaBadRequestException.class, () -> {
             validator.validate(tenista);
         });
         // Comprobamos que la excepción es la esperada

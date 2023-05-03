@@ -1,6 +1,7 @@
 package dev.joseluisgs.tenistasprofesores.services.raquetas;
 
 import dev.joseluisgs.tenistasprofesores.data.raquetas.RaquetasFactory;
+import dev.joseluisgs.tenistasprofesores.exceptions.raqueta.RaquetaNotFoundException;
 import dev.joseluisgs.tenistasprofesores.models.raquetas.Raqueta;
 import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepository;
 import dev.joseluisgs.tenistasprofesores.validators.raquetas.RaquetaValidator;
@@ -87,7 +88,7 @@ class RaquetasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(RaquetaNotFoundException.class, () -> {
             raquetasService.findById(-100L);
         });
         // Comprobamos que la excepción es la esperada
@@ -151,7 +152,7 @@ class RaquetasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(RaquetaNotFoundException.class, () -> {
             raquetasService.findByUuid(raquetas.get(1L).getUuid());
         });
 
@@ -292,7 +293,7 @@ class RaquetasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(RaquetaNotFoundException.class, () -> {
             raquetasService.update(raquetas.get(1L).getId(), raquetas.get(1L));
         });
 
@@ -316,7 +317,7 @@ class RaquetasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(RaquetaNotFoundException.class, () -> {
             raquetasService.update(1L, raquetas.get(1L));
         });
 
@@ -436,7 +437,7 @@ class RaquetasServiceImplTest {
                 .thenReturn(Optional.empty());
 
         // Salta la excepcion
-        var res = assertThrows(ResponseStatusException.class, () -> {
+        var res = assertThrows(RaquetaNotFoundException.class, () -> {
             raquetasService.deleteById(raquetas.get(1L).getId());
         });
 

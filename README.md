@@ -16,7 +16,6 @@ Material del curso de formación del profesorado de la Comunidad de Madrid: Desa
   - [Referencias](#referencias)
   - [Autor](#autor)
     - [Contacto](#contacto)
-    - [¿Un café?](#un-café)
   - [Licencia de uso](#licencia-de-uso)
 
 
@@ -65,9 +64,9 @@ Las referencias importantes o recomendadas para el curso las encontrarás en el 
 
 ## Autor
 
-Codificado con :sparkling_heart: por [José Luis González Sánchez](https://twitter.com/joseluisgonsan)
+Codificado con :sparkling_heart: por [José Luis González Sánchez](https://twitter.com/JoseLuisGS_)
 
-[![Twitter](https://img.shields.io/twitter/follow/joseluisgonsan?style=social)](https://twitter.com/joseluisgonsan)
+[![Twitter](https://img.shields.io/twitter/follow/JoseLuisGS_?style=social)](https://twitter.com/JoseLuisGS_)
 [![GitHub](https://img.shields.io/github/followers/joseluisgs?style=social)](https://github.com/joseluisgs)
 
 ### Contacto
@@ -76,7 +75,7 @@ Codificado con :sparkling_heart: por [José Luis González Sánchez](https://twi
   Cualquier cosa que necesites házmelo saber por si puedo ayudarte 💬.
 </p>
 <p>
- <a href="https://joseluisgs.github.io/" target="_blank">
+ <a href="https://joseluisgs.github.dev/" target="_blank">
         <img src="https://joseluisgs.github.io/img/favicon.png" 
     height="30">
     </a>  &nbsp;&nbsp;
@@ -84,7 +83,7 @@ Codificado con :sparkling_heart: por [José Luis González Sánchez](https://twi
         <img src="https://distreau.com/github.svg" 
     height="30">
     </a> &nbsp;&nbsp;
-        <a href="https://twitter.com/joseluisgonsan" target="_blank">
+        <a href="https://twitter.com/JoseLuisGS_" target="_blank">
         <img src="https://i.imgur.com/U4Uiaef.png" 
     height="30">
     </a> &nbsp;&nbsp;
@@ -101,10 +100,6 @@ Codificado con :sparkling_heart: por [José Luis González Sánchez](https://twi
     height="30">
     </a>    
 </p>
-
-### ¿Un café?
-
-<p><a href="https://www.buymeacoffee.com/joseluisgs"> <img align="left" src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" height="50" alt="joseluisgs" /></a></p><br><br><br>
 
 ## Licencia de uso
 
