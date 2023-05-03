@@ -4,6 +4,7 @@ import dev.joseluisgs.tenistasprofesores.dto.tenistas.TenistaRequestDto;
 import dev.joseluisgs.tenistasprofesores.dto.tenistas.TenistaResponseDto;
 import dev.joseluisgs.tenistasprofesores.mapper.raquetas.RaquetaMapper;
 import dev.joseluisgs.tenistasprofesores.models.tenistas.Tenista;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public class TenistaMapper {
     // Aquí iran los metodos para mapear los DTOs a los modelos y viceversa
     private final RaquetaMapper raquetaMapper;
 
+    @Autowired
     public TenistaMapper(RaquetaMapper raquetaMapper) {
         this.raquetaMapper = raquetaMapper;
     }

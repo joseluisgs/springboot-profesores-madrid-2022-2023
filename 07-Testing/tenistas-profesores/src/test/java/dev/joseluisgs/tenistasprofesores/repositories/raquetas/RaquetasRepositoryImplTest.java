@@ -9,6 +9,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class RaquetasRepositoryImplTest {
     RaquetasRepository repository = new RaquetasRepositoryImpl();
 
@@ -21,12 +22,14 @@ class RaquetasRepositoryImplTest {
 
 
     @Test
+        // @Order(1)
     void findAll() {
         var raquetas = repository.findAll();
 
         assertAll(
                 () -> assertNotNull(raquetas),
-                () -> assertEquals(3, raquetas.size())
+                () -> assertEquals(3, raquetas.size()),
+                () -> assertTrue(raquetas.size() > 0)
         );
     }
 
@@ -36,6 +39,8 @@ class RaquetasRepositoryImplTest {
 
         assertAll(
                 () -> assertNotNull(raqueta),
+                () -> assertTrue(raqueta.isPresent()),
+                () -> assertEquals(1L, raqueta.get().getId()),
                 () -> assertEquals("Babolat", raqueta.get().getMarca()),
                 () -> assertEquals("Pure Aero", raqueta.get().getModelo()),
                 () -> assertEquals(199.95, raqueta.get().getPrecio())

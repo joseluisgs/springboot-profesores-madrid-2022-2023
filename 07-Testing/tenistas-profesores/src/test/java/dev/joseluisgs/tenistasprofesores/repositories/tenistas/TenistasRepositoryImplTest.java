@@ -3,6 +3,7 @@ package dev.joseluisgs.tenistasprofesores.repositories.tenistas;
 import dev.joseluisgs.tenistasprofesores.data.tenistas.TenistasFactory;
 import dev.joseluisgs.tenistasprofesores.models.tenistas.Tenista;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
@@ -63,6 +64,7 @@ class TenistasRepositoryImplTest {
     }
 
     @Test
+    @DisplayName("existsById not found y devuelve false")
     void existsByIdNotFound() {
         var tenista = repository.existsById(100L);
 

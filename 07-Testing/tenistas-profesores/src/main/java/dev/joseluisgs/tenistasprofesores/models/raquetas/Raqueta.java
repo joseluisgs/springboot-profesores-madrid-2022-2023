@@ -3,7 +3,6 @@ package dev.joseluisgs.tenistasprofesores.models.raquetas;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -15,9 +14,7 @@ import java.util.UUID;
 
 // Data: Genera los getters y setters, toString, equals, hashCode y el constructor con todos los parámetros necesarios (finals)
 @Data
-// AllArgsConstructor: Genera el constructor con todos los parámetros
 @AllArgsConstructor
-@Builder // Para poder usar el patrón Builder
 public class Raqueta {
     private final Long id;
     private UUID uuid;

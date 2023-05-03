@@ -4,7 +4,6 @@ import dev.joseluisgs.tenistasprofesores.models.raquetas.Raqueta;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,7 +11,6 @@ import java.util.UUID;
 
 @Data
 @AllArgsConstructor
-@Builder // Para poder usar el patrón Builder
 public class Tenista {
     private final Long id;
     private UUID uuid;

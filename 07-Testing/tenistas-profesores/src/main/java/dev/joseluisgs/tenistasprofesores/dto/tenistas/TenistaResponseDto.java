@@ -1,17 +1,15 @@
 package dev.joseluisgs.tenistasprofesores.dto.tenistas;
 
 import dev.joseluisgs.tenistasprofesores.dto.raquetas.RaquetaResponseDto;
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
 @NoArgsConstructor(force = true) // Para que no me de error en el constructor de jackson
-@RequiredArgsConstructor // Para que me cree un constructor con los atributos finales
-@Builder // Para poder usar el patrón Builder
 public class TenistaResponseDto {
     private final Long id;
     private final UUID uuid;

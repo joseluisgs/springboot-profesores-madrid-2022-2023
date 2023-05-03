@@ -2,18 +2,16 @@ package dev.joseluisgs.tenistasprofesores.dto.raquetas;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 /**
  * DTO para crear una raqueta
  */
 @Data
 @NoArgsConstructor(force = true) // Para que no me de error en el constructor de jackson
-@RequiredArgsConstructor // Para que me cree un constructor con los atributos finales
-@Builder // Para poder usar el patrón Builder
+@AllArgsConstructor // Para que me cree un constructor con los atributos finales
 public class RaquetaRequestDto {
     @NotBlank(message = "La marca no puede estar vacía")
     private final String marca;
