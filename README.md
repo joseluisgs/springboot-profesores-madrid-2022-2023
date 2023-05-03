@@ -42,7 +42,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 2. 19 abril 2023: Nuestra primera aplicación con Spring Boot: Raquetas y Tenistas
 3. 26 abril 2023: Mejorando nuestra api: caché, dto, mappers, excepciones, etc.
 4. 3 mayo 2023: Nuestros primeros test: JUnit y Mockito.
-5. 10 mayo 2023: Creando componentes con Spring Data y JPA.
+5. 10 mayo 2023: Creando componentes de Acceso a Datos con Spring Data y JPA.
 6. 17 mayo 2023: Testeando nuestra aplicación con Spring Data y JPA.
 7. 24 mayo 2023: Seguridad en servicios con Spring Security.
 8. 31 mayo 2023: Perfilando, Documentando y desplegando nuestra aplicación.
@@ -51,8 +51,8 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 1. 12 abril 2023: Tu primera aplicación con Spring Boot. [Tarea 1](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=256772&forceview=1)
 2. 19 abril 2023: Creando la api de Profesores y Módulos. [Tarea 2](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=257422)
 3. 26 abril 2023: Mejorando nuestros servicios. [Tarea 3](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=257840)
-4. 3 mayo 2023: Nuestros primeros tests.
-5. 10 mayo 2023: Creando componentes con Spring Data y JPA.
+4. 3 mayo 2023: Nuestros primeros tests. [Tarea 4](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=258686)
+5. 10 mayo 2023: Creando componentes de Acceso a Datos con Spring Data y JPA.
 6. 17 mayo 2023: Testeando nuestros repositorios con Spring Data y JPA.
 7. 24 mayo 2023: Securizando nuestra api con Spring Security.
 8. 31 mayo 2023: Documentando y desplegando nuestra aplicación.
