@@ -1,0 +1,94 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > TenistasService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.joseluisgs.tenistasprofesores.services.tenistas</a>
+</div>
+
+<h1>Coverage Summary for Class: TenistasService (dev.joseluisgs.tenistasprofesores.services.tenistas)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">TenistasService</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.joseluisgs.tenistasprofesores.services.tenistas;
+&nbsp;
+&nbsp;import dev.joseluisgs.tenistasprofesores.models.tenistas.Tenista;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;public interface TenistasService {
+&nbsp;    List&lt;Tenista&gt; findAll();
+&nbsp;
+&nbsp;    Tenista findById(Long id);
+&nbsp;
+&nbsp;    Tenista findByUuid(UUID uuid);
+&nbsp;
+&nbsp;    List&lt;Tenista&gt; findAllByNombre(String nombre);
+&nbsp;
+&nbsp;    List&lt;Tenista&gt; findAllByPais(String pais);
+&nbsp;
+&nbsp;    Tenista findByRanking(Integer ranking);
+&nbsp;
+&nbsp;    Tenista save(Tenista tenista);
+&nbsp;
+&nbsp;    Tenista update(Long id, Tenista tenista);
+&nbsp;
+&nbsp;    void deleteById(Long id);
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 17:51</div>
+</div>
+</body>
+</html>

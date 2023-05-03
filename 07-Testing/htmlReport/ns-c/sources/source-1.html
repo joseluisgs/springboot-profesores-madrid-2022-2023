@@ -1,0 +1,345 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > RaquetasRepositoryImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.joseluisgs.tenistasprofesores.repositories.raquetas</a>
+</div>
+
+<h1>Coverage Summary for Class: RaquetasRepositoryImpl (dev.joseluisgs.tenistasprofesores.repositories.raquetas)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RaquetasRepositoryImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (46/46)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$49iz2xWR</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$65mn5l70</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$D8khgTZj</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$fByhD182</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$HlVUDyzF</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$LnTvrVft</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$NU4qlKoY</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$P5mO8iTk</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$Q7a8BxA0</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$T6Qa5CZ0</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$vtBqmyE6</td>
+  </tr>
+  <tr>
+    <td class="name">RaquetasRepositoryImpl$MockitoMock$5vIQuLb7$auxiliary$YZC3zIcJ</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (46/46)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.joseluisgs.tenistasprofesores.repositories.raquetas;
+&nbsp;
+&nbsp;import dev.joseluisgs.tenistasprofesores.data.raquetas.RaquetasFactory;
+&nbsp;import dev.joseluisgs.tenistasprofesores.models.raquetas.Raqueta;
+&nbsp;import lombok.extern.slf4j.Slf4j;
+&nbsp;import org.springframework.stereotype.Repository;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;import java.util.Optional;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;/**
+&nbsp; * Implementación de la interfaz RaquetasRepository para la gestión de datos
+&nbsp; */
+&nbsp;
+&nbsp;// Repository: Indica que es un repositorio de datos para Spring
+&nbsp;@Repository
+&nbsp;// Slf4j: Nos permite usar el Logger
+<b class="fc">&nbsp;@Slf4j</b>
+<b class="fc">&nbsp;public class RaquetasRepositoryImpl implements RaquetasRepository {</b>
+&nbsp;
+&nbsp;    // Creamos un mapa de raquetas
+<b class="fc">&nbsp;    private final Map&lt;Long, Raqueta&gt; raquetas = RaquetasFactory.getRaquetasDemoData();</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Devolvemos todas las raquetas
+&nbsp;     *
+&nbsp;     * @return Iterable&lt;Raqueta&gt; con todas las raquetas
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public List&lt;Raqueta&gt; findAll() {
+<b class="fc">&nbsp;        log.info(&quot;findAll&quot;);</b>
+&nbsp;        // Devolvemos el mapa de raquetas
+<b class="fc">&nbsp;        return List.copyOf(raquetas.values());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Devolvemos una raqueta por su ID
+&nbsp;     *
+&nbsp;     * @param id ID de la raqueta
+&nbsp;     * @return Optional&lt;Raqueta&gt; con la raqueta
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public Optional&lt;Raqueta&gt; findById(Long id) {
+<b class="fc">&nbsp;        log.info(&quot;findById&quot;);</b>
+&nbsp;        // Devolvemos la raqueta por su ID
+<b class="fc">&nbsp;        return Optional.ofNullable(raquetas.get(id));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Comprobamos si existe una raqueta por su ID
+&nbsp;     *
+&nbsp;     * @param id ID de la raqueta
+&nbsp;     * @return Boolean con el resultado
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public Boolean existsById(Long id) {
+<b class="fc">&nbsp;        log.info(&quot;existsById&quot;);</b>
+&nbsp;        // Comprobamos si existe la raqueta por su ID
+<b class="fc">&nbsp;        return raquetas.containsKey(id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Guardamos/Actualizamos una raqueta
+&nbsp;     *
+&nbsp;     * @param raqueta Raqueta a guardar
+&nbsp;     * @return Raqueta guardada
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public Raqueta save(Raqueta raqueta) {
+<b class="fc">&nbsp;        log.info(&quot;save&quot;);</b>
+&nbsp;        // Guardamos la raqueta en el mapa, si no existe la crea
+&nbsp;        // Existe?
+<b class="fc">&nbsp;        if (raquetas.containsKey(raqueta.getId())) {</b>
+&nbsp;            // Si existe la actualizamos
+<b class="fc">&nbsp;            return update(raqueta);</b>
+&nbsp;
+&nbsp;        } else {
+&nbsp;            // Si no existe la creamos
+<b class="fc">&nbsp;            return create(raqueta);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creamos una raqueta
+&nbsp;     *
+&nbsp;     * @param raqueta Raqueta a crear
+&nbsp;     * @return Raqueta creada
+&nbsp;     */
+&nbsp;    private Raqueta create(Raqueta raqueta) {
+<b class="fc">&nbsp;        log.info(&quot;create&quot;);</b>
+&nbsp;        // Lo primero es obtener el último ID
+<b class="fc">&nbsp;        long lastId = raquetas.keySet().stream().max(Long::compareTo).orElse(0L);</b>
+&nbsp;        // Aumentamos el ID en 1
+<b class="fc">&nbsp;        lastId++;</b>
+&nbsp;        // Asignamos el nuevo ID a la raqueta, el UUID y actualizamos el createdAt y el update
+<b class="fc">&nbsp;        var newRaqueta = new Raqueta(</b>
+<b class="fc">&nbsp;                lastId,</b>
+<b class="fc">&nbsp;                raqueta.getUuid(),</b>
+<b class="fc">&nbsp;                raqueta.getMarca(),</b>
+<b class="fc">&nbsp;                raqueta.getModelo(),</b>
+<b class="fc">&nbsp;                raqueta.getPrecio(),</b>
+<b class="fc">&nbsp;                raqueta.getImagen(),</b>
+<b class="fc">&nbsp;                raqueta.getCreatedAt(),</b>
+<b class="fc">&nbsp;                raqueta.getUpdatedAt(),</b>
+<b class="fc">&nbsp;                raqueta.getDeleted()</b>
+&nbsp;        );
+&nbsp;        // Guardamos la raqueta en el mapa
+<b class="fc">&nbsp;        raquetas.put(lastId, newRaqueta);</b>
+&nbsp;        // Devolvemos la raqueta
+<b class="fc">&nbsp;        return newRaqueta;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Actualizamos una raqueta
+&nbsp;     *
+&nbsp;     * @param raqueta Raqueta a actualizar
+&nbsp;     * @return Raqueta actualizada
+&nbsp;     */
+&nbsp;    private Raqueta update(Raqueta raqueta) {
+<b class="fc">&nbsp;        log.info(&quot;update&quot;);</b>
+&nbsp;        // Obtenemos la raqueta por su ID
+<b class="fc">&nbsp;        raquetas.put(raqueta.getId(), raqueta);</b>
+&nbsp;        // Devolvemos la raqueta
+<b class="fc">&nbsp;        return raqueta;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Borramos una raqueta por su ID
+&nbsp;     *
+&nbsp;     * @param id ID de la raqueta
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void deleteById(Long id) {
+<b class="fc">&nbsp;        log.info(&quot;deleteById&quot;);</b>
+&nbsp;        // Borramos la raqueta por su ID
+<b class="fc">&nbsp;        raquetas.remove(id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Borramos una raqueta
+&nbsp;     *
+&nbsp;     * @param raqueta Raqueta a borrar
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void delete(Raqueta raqueta) {
+<b class="fc">&nbsp;        log.info(&quot;delete&quot;);</b>
+&nbsp;        // Borramos la raqueta por su ID
+<b class="fc">&nbsp;        raquetas.remove(raqueta.getId());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Devolvemos el número de raquetas
+&nbsp;     *
+&nbsp;     * @return long con el número de raquetas
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public long count() {
+<b class="fc">&nbsp;        log.info(&quot;count&quot;);</b>
+&nbsp;        // Devolvemos el número de raquetas
+<b class="fc">&nbsp;        return raquetas.size();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Borramos todas las raquetas
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void deleteAll() {
+<b class="fc">&nbsp;        log.info(&quot;deleteAll&quot;);</b>
+&nbsp;        // Borramos todas las raquetas
+<b class="fc">&nbsp;        raquetas.clear();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Devolvemos todas las raquetas de una marca
+&nbsp;     *
+&nbsp;     * @param marca Marca de las raquetas
+&nbsp;     * @return Iterable&lt;Raqueta&gt; con las raquetas de una marca
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public List&lt;Raqueta&gt; findAllByMarca(String marca) {
+<b class="fc">&nbsp;        log.info(&quot;findAllByMarca&quot;);</b>
+&nbsp;        // Devolvemos todas las raquetas de una marca
+<b class="fc">&nbsp;        return raquetas.values().stream()</b>
+<b class="fc">&nbsp;                .filter(raqueta -&gt; raqueta.getMarca().toLowerCase().contains(marca.toLowerCase()))</b>
+<b class="fc">&nbsp;                .toList();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Optional&lt;Raqueta&gt; findByUuid(UUID uuid) {
+<b class="fc">&nbsp;        return raquetas.values().stream()</b>
+<b class="fc">&nbsp;                .filter(raqueta -&gt; raqueta.getUuid().equals(uuid))</b>
+<b class="fc">&nbsp;                .findFirst();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 17:51</div>
+</div>
+</body>
+</html>

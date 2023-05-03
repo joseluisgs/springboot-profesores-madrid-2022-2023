@@ -1,0 +1,142 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > TenistasProfesoresApplication</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.joseluisgs.tenistasprofesores</a>
+</div>
+
+<h1>Coverage Summary for Class: TenistasProfesoresApplication (dev.joseluisgs.tenistasprofesores)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TenistasProfesoresApplication</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TenistasProfesoresApplication$$SpringCGLIB$$0</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.joseluisgs.tenistasprofesores;
+&nbsp;
+&nbsp;import org.springframework.boot.CommandLineRunner;
+&nbsp;import org.springframework.boot.SpringApplication;
+&nbsp;import org.springframework.boot.autoconfigure.SpringBootApplication;
+&nbsp;import org.springframework.cache.annotation.EnableCaching;
+&nbsp;
+&nbsp;/**
+&nbsp; * Si quieres hacer un proyecto con Spring Boot, lo primero que tienes que hacer es crear una clase
+&nbsp; * con la anotación @SpringBootApplication, que es la que indica que es una aplicación Spring Boot.
+&nbsp; * Si quieres que tu aplicación haga algo despues de arrancar todo el sistema de Spring, puedes implementar la interfaz
+&nbsp; * CommandLineRunner y sobreescribir el método run.
+&nbsp; */
+&nbsp;
+&nbsp;@SpringBootApplication
+&nbsp;@EnableCaching // Habilitamos el caché
+<b class="fc">&nbsp;public class TenistasProfesoresApplication implements CommandLineRunner {</b>
+&nbsp;
+&nbsp;    // El método main es el punto de entrada de la aplicación, no es necesario que lo modifiques
+&nbsp;    public static void main(String[] args) {
+<b class="nc">&nbsp;        SpringApplication.run(TenistasProfesoresApplication.class, args);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void run(String... args) throws Exception {
+&nbsp;        // Aquí puedes poner el código que quieras que se ejecute al arrancar la aplicación
+<b class="fc">&nbsp;        System.out.println(&quot;Hola mundo desde Spring Boot! 👋&quot;);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 17:51</div>
+</div>
+</body>
+</html>

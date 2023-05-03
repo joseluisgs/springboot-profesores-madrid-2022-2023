@@ -1,0 +1,242 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > RaquetasController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.joseluisgs.tenistasprofesores.controllers.raquetas</a>
+</div>
+
+<h1>Coverage Summary for Class: RaquetasController (dev.joseluisgs.tenistasprofesores.controllers.raquetas)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RaquetasController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (32/32)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.joseluisgs.tenistasprofesores.controllers.raquetas;
+&nbsp;
+&nbsp;import dev.joseluisgs.tenistasprofesores.dto.raquetas.RaquetaRequestDto;
+&nbsp;import dev.joseluisgs.tenistasprofesores.dto.raquetas.RaquetaResponseDto;
+&nbsp;import dev.joseluisgs.tenistasprofesores.mapper.raquetas.RaquetaMapper;
+&nbsp;import dev.joseluisgs.tenistasprofesores.services.raquetas.RaquetasService;
+&nbsp;import jakarta.validation.Valid;
+&nbsp;import lombok.extern.slf4j.Slf4j;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.validation.FieldError;
+&nbsp;import org.springframework.web.bind.MethodArgumentNotValidException;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;/**
+&nbsp; * Controlador de Raquetas
+&nbsp; * Aquí se implementan los métodos de la API REST
+&nbsp; * Es un controlador REST, por lo que se le indica con la anotación @RestController
+&nbsp; * El path base de la API REST es /api/raquetas y se le indica con la anotación @RequestMapping
+&nbsp; */
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/api/raquetas&quot;)
+<b class="fc">&nbsp;@Slf4j // Para el log</b>
+&nbsp;public class RaquetasController {
+&nbsp;    // Mis dependecias
+&nbsp;    private final RaquetasService raquetasService;
+&nbsp;    private final RaquetaMapper raquetaMapper;
+&nbsp;
+&nbsp;    // Inyectamos el repositorio de raquetas con la anotación @Autowired
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public RaquetasController(RaquetasService raquetasService, RaquetaMapper raquetaMapper) {</b>
+<b class="fc">&nbsp;        this.raquetasService = raquetasService;</b>
+<b class="fc">&nbsp;        this.raquetaMapper = raquetaMapper;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Aquí se implementan los métodos de la API REST
+&nbsp;
+&nbsp;    // GET: /api/raquetas
+&nbsp;    @GetMapping(&quot;&quot;)
+&nbsp;    public ResponseEntity&lt;List&lt;RaquetaResponseDto&gt;&gt; getAllRaquetas(
+&nbsp;            @RequestParam(required = false) String marca
+&nbsp;    ) {
+<b class="fc">&nbsp;        log.info(&quot;getAllRaquetas&quot;);</b>
+&nbsp;
+&nbsp;        // Jugamos con query params / api/raquetas?marca=Wilson
+<b class="fc">&nbsp;        if (marca != null &amp;&amp; !marca.isEmpty()) {</b>
+<b class="fc">&nbsp;            return ResponseEntity.ok(</b>
+<b class="fc">&nbsp;                    raquetaMapper.toResponse(raquetasService.findAllByMarca(marca))</b>
+&nbsp;            );
+&nbsp;        }
+<b class="fc">&nbsp;        return ResponseEntity.ok(</b>
+<b class="fc">&nbsp;                raquetaMapper.toResponse(raquetasService.findAll())</b>
+&nbsp;        );
+&nbsp;    }
+&nbsp;
+&nbsp;    // GET: /api/raquetas/{id}
+&nbsp;    // @PathVariable: Indica que el parámetro de la función es un parámetro de la URL en este caso {id}
+&nbsp;    @GetMapping(&quot;/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;RaquetaResponseDto&gt; getRaquetaById(
+&nbsp;            @PathVariable Long id
+&nbsp;    ) {
+<b class="fc">&nbsp;        log.info(&quot;getRaquetaById&quot;);</b>
+<b class="fc">&nbsp;        return ResponseEntity.ok(</b>
+<b class="fc">&nbsp;                raquetaMapper.toResponse(raquetasService.findById(id))</b>
+&nbsp;        );
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/find/{uuid}&quot;)
+&nbsp;    public ResponseEntity&lt;RaquetaResponseDto&gt; getRaquetaByUuid(
+&nbsp;            @PathVariable UUID uuid
+&nbsp;    ) {
+<b class="fc">&nbsp;        log.info(&quot;getRaquetaByUuid&quot;);</b>
+&nbsp;        // Existe la raqueta?
+<b class="fc">&nbsp;        return ResponseEntity.ok(</b>
+<b class="fc">&nbsp;                raquetaMapper.toResponse(raquetasService.findByUuid(uuid))</b>
+&nbsp;        );
+&nbsp;    }
+&nbsp;
+&nbsp;    // POST: /api/raquetas
+&nbsp;    // @RequestBody: Indica que el parámetro de la función es un parámetro del cuerpo de la petición HTTP
+&nbsp;    @PostMapping
+&nbsp;    public ResponseEntity&lt;RaquetaResponseDto&gt; postRaqueta(
+&nbsp;            @Valid @RequestBody RaquetaRequestDto raqueta
+&nbsp;    ) {
+<b class="fc">&nbsp;        log.info(&quot;addRaqueta&quot;);</b>
+&nbsp;        // Devolvemos created
+<b class="fc">&nbsp;        return ResponseEntity.created(null).body(</b>
+<b class="fc">&nbsp;                raquetaMapper.toResponse(</b>
+<b class="fc">&nbsp;                        raquetasService.save(raquetaMapper.toModel(raqueta)))</b>
+&nbsp;        );
+&nbsp;    }
+&nbsp;
+&nbsp;    // PUT: /api/raquetas/{id}
+&nbsp;    // @PathVariable: Indica que el parámetro de la función es un parámetro de la URL en este caso {id}
+&nbsp;    // @RequestBody: Indica que el parámetro de la función es un parámetro del cuerpo de la petición HTTP
+&nbsp;    @PutMapping(&quot;/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;RaquetaResponseDto&gt; putRaqueta(
+&nbsp;            @PathVariable Long id,
+&nbsp;            @Valid @RequestBody RaquetaRequestDto raqueta
+&nbsp;    ) {
+<b class="fc">&nbsp;        log.info(&quot;putRaqueta&quot;);</b>
+&nbsp;        // Devolvemos el OK
+<b class="fc">&nbsp;        return ResponseEntity.ok(</b>
+<b class="fc">&nbsp;                raquetaMapper.toResponse(raquetasService.update(id, raquetaMapper.toModel(raqueta)))</b>
+&nbsp;        );
+&nbsp;    }
+&nbsp;
+&nbsp;    // DELETE: /api/raquetas/{id}
+&nbsp;    // @PathVariable: Indica que el parámetro de la función es un parámetro de la URL en este caso {id}
+&nbsp;    @DeleteMapping(&quot;/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;RaquetaResponseDto&gt; deleteRaqueta(
+&nbsp;            @PathVariable Long id
+&nbsp;    ) {
+<b class="fc">&nbsp;        log.info(&quot;deleteRaqueta&quot;);</b>
+<b class="fc">&nbsp;        raquetasService.deleteById(id);</b>
+<b class="fc">&nbsp;        return ResponseEntity.noContent().build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // Para capturar los errores de validación
+&nbsp;    @ResponseStatus(HttpStatus.BAD_REQUEST)
+&nbsp;    @ExceptionHandler(MethodArgumentNotValidException.class)
+&nbsp;    public Map&lt;String, String&gt; handleValidationExceptions(
+&nbsp;            MethodArgumentNotValidException ex) {
+<b class="fc">&nbsp;        Map&lt;String, String&gt; errors = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        ex.getBindingResult().getAllErrors().forEach((error) -&gt; {</b>
+<b class="fc">&nbsp;            String fieldName = ((FieldError) error).getField();</b>
+<b class="fc">&nbsp;            String errorMessage = error.getDefaultMessage();</b>
+<b class="fc">&nbsp;            errors.put(fieldName, errorMessage);</b>
+&nbsp;        });
+<b class="fc">&nbsp;        return errors;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 17:51</div>
+</div>
+</body>
+</html>

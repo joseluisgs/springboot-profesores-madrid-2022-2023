@@ -1,0 +1,303 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > TenistasRepositoryImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.joseluisgs.tenistasprofesores.repositories.tenistas</a>
+</div>
+
+<h1>Coverage Summary for Class: TenistasRepositoryImpl (dev.joseluisgs.tenistasprofesores.repositories.tenistas)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TenistasRepositoryImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (58/58)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$0lVSsHW1</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$0ORsUgWw</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$2rLiHrdq</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$c3Bg8B00</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$d7RbDMpb</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$Mq0C1drY</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$nhjwV7mu</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$nv9H8cwn</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$ooF8VnkZ</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$Ti6b0ign</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$VR10zC1i</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$WAttjRmU</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$Y1aZWpB1</td>
+  </tr>
+  <tr>
+    <td class="name">TenistasRepositoryImpl$MockitoMock$bSPF6LoI$auxiliary$ZTn1o5dP</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (18/18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (58/58)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.joseluisgs.tenistasprofesores.repositories.tenistas;
+&nbsp;
+&nbsp;import dev.joseluisgs.tenistasprofesores.data.tenistas.TenistasFactory;
+&nbsp;import dev.joseluisgs.tenistasprofesores.models.tenistas.Tenista;
+&nbsp;import lombok.extern.slf4j.Slf4j;
+&nbsp;import org.springframework.stereotype.Repository;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;import java.util.Optional;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;@Repository
+<b class="fc">&nbsp;@Slf4j</b>
+<b class="fc">&nbsp;public class TenistasRepositoryImpl implements TenistasRepository {</b>
+&nbsp;
+<b class="fc">&nbsp;    private final Map&lt;Long, Tenista&gt; tenistas = TenistasFactory.getTenistasDemoData();</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Tenista&gt; findAll() {
+<b class="fc">&nbsp;        log.info(&quot;findAll&quot;);</b>
+<b class="fc">&nbsp;        return List.copyOf(tenistas.values());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Optional&lt;Tenista&gt; findById(Long id) {
+<b class="fc">&nbsp;        log.info(&quot;findById&quot;);</b>
+<b class="fc">&nbsp;        return Optional.ofNullable(tenistas.get(id));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Boolean existsById(Long id) {
+<b class="fc">&nbsp;        log.info(&quot;existsById&quot;);</b>
+<b class="fc">&nbsp;        return tenistas.containsKey(id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Tenista save(Tenista tenista) {
+<b class="fc">&nbsp;        log.info(&quot;save&quot;);</b>
+&nbsp;        // Guardamos la raqueta en el mapa, si no existe la crea
+&nbsp;        // Existe?
+<b class="fc">&nbsp;        if (tenistas.containsKey(tenista.getId())) {</b>
+&nbsp;            // Si existe la actualizamos
+<b class="fc">&nbsp;            return update(tenista);</b>
+&nbsp;
+&nbsp;        } else {
+&nbsp;            // Si no existe la creamos
+<b class="fc">&nbsp;            return create(tenista);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private Tenista create(Tenista tenista) {
+<b class="fc">&nbsp;        log.info(&quot;create&quot;);</b>
+&nbsp;        // Lo primero es obtener el último ID
+<b class="fc">&nbsp;        long lastId = tenistas.keySet().stream().max(Long::compareTo).orElse(0L);</b>
+&nbsp;        // Aumentamos el ID en 1
+<b class="fc">&nbsp;        lastId++;</b>
+&nbsp;        // Asignamos el nuevo ID a la raqueta, el UUID y actualizamos el createdAt y el update
+<b class="fc">&nbsp;        var newTenista = new Tenista(</b>
+<b class="fc">&nbsp;                lastId,</b>
+<b class="fc">&nbsp;                tenista.getUuid(),</b>
+<b class="fc">&nbsp;                tenista.getNombre(),</b>
+<b class="fc">&nbsp;                tenista.getRanking(),</b>
+<b class="fc">&nbsp;                tenista.getPais(),</b>
+<b class="fc">&nbsp;                tenista.getImagen(),</b>
+<b class="fc">&nbsp;                tenista.getRaqueta(),</b>
+<b class="fc">&nbsp;                tenista.getCreatedAt(),</b>
+<b class="fc">&nbsp;                tenista.getUpdatedAt(),</b>
+<b class="fc">&nbsp;                tenista.getDeleted()</b>
+&nbsp;        );
+&nbsp;        // Guardamos la raqueta en el mapa
+<b class="fc">&nbsp;        tenistas.put(lastId, newTenista);</b>
+&nbsp;        // Devolvemos la raqueta
+<b class="fc">&nbsp;        return newTenista;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private Tenista update(Tenista tenista) {
+<b class="fc">&nbsp;        log.info(&quot;update&quot;);</b>
+&nbsp;        // Obtenemos la raqueta por su ID
+&nbsp;        // Guardamos la raqueta en el mapa
+<b class="fc">&nbsp;        tenistas.put(tenista.getId(), tenista);</b>
+&nbsp;        // Devolvemos la raqueta
+<b class="fc">&nbsp;        return tenista;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void deleteById(Long id) {
+<b class="fc">&nbsp;        log.info(&quot;deleteById&quot;);</b>
+&nbsp;        // Obtenemos la raqueta por su ID
+<b class="fc">&nbsp;        tenistas.remove(id);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void delete(Tenista tenista) {
+<b class="fc">&nbsp;        log.info(&quot;delete&quot;);</b>
+&nbsp;        // Obtenemos la raqueta por su ID
+<b class="fc">&nbsp;        tenistas.remove(tenista.getId());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public long count() {
+<b class="fc">&nbsp;        log.info(&quot;count&quot;);</b>
+<b class="fc">&nbsp;        return tenistas.size();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void deleteAll() {
+<b class="fc">&nbsp;        log.info(&quot;deleteAll&quot;);</b>
+<b class="fc">&nbsp;        tenistas.clear();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Tenista&gt; findAllByNombre(String nombre) {
+<b class="fc">&nbsp;        log.info(&quot;findAllByNombre&quot;);</b>
+<b class="fc">&nbsp;        return tenistas.values().stream().</b>
+<b class="fc">&nbsp;                filter(tenista -&gt; tenista.getNombre().toLowerCase()</b>
+<b class="fc">&nbsp;                        .contains(nombre.toLowerCase()))</b>
+<b class="fc">&nbsp;                .toList();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Tenista&gt; findAllByPais(String pais) {
+<b class="fc">&nbsp;        log.info(&quot;findAllByPais&quot;);</b>
+<b class="fc">&nbsp;        return tenistas.values().stream().</b>
+<b class="fc">&nbsp;                filter(tenista -&gt; tenista.getPais().toLowerCase()</b>
+<b class="fc">&nbsp;                        .contains(pais.toLowerCase()))</b>
+<b class="fc">&nbsp;                .toList();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Optional&lt;Tenista&gt; findByUuid(UUID uuid) {
+<b class="fc">&nbsp;        log.info(&quot;findByUuid&quot;);</b>
+<b class="fc">&nbsp;        return tenistas.values().stream().</b>
+<b class="fc">&nbsp;                filter(tenista -&gt; tenista.getUuid().equals(uuid))</b>
+<b class="fc">&nbsp;                .findFirst();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public Optional&lt;Tenista&gt; findByRanking(Integer ranking) {
+<b class="fc">&nbsp;        log.info(&quot;findByRanking&quot;);</b>
+<b class="fc">&nbsp;        return tenistas.values().stream().</b>
+<b class="fc">&nbsp;                filter(tenista -&gt; tenista.getRanking().equals(ranking))</b>
+<b class="fc">&nbsp;                .findFirst();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 17:51</div>
+</div>
+</body>
+</html>

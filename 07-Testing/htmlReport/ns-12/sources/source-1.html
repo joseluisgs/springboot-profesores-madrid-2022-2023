@@ -1,0 +1,95 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > CrudRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">dev.joseluisgs.tenistasprofesores.repositories.base</a>
+</div>
+
+<h1>Coverage Summary for Class: CrudRepository (dev.joseluisgs.tenistasprofesores.repositories.base)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">CrudRepository</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package dev.joseluisgs.tenistasprofesores.repositories.base;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;/**
+&nbsp; * Interfaz base para los repositorios con las operaciones CRUD
+&nbsp; *
+&nbsp; * @param &lt;T&gt;  Tipo de dato
+&nbsp; * @param &lt;ID&gt; Tipo de dato del ID
+&nbsp; */
+&nbsp;public interface CrudRepository&lt;T, ID&gt; {
+&nbsp;    List&lt;T&gt; findAll();
+&nbsp;
+&nbsp;    Optional&lt;T&gt; findById(ID id);
+&nbsp;
+&nbsp;    Boolean existsById(ID id);
+&nbsp;
+&nbsp;    T save(T t);
+&nbsp;
+&nbsp;    void deleteById(ID id);
+&nbsp;
+&nbsp;    void delete(T t);
+&nbsp;
+&nbsp;    long count();
+&nbsp;
+&nbsp;    void deleteAll();
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-05-03 17:51</div>
+</div>
+</body>
+</html>
