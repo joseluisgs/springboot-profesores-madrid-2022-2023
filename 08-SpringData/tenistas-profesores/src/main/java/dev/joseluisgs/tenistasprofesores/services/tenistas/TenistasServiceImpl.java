@@ -99,8 +99,8 @@ public class TenistasServiceImpl implements TenistasService {
             );
         }
         // Si no me pasan la raqueta es porque debe existir o es null porque permitimos nulos!
-        // validamos
-        tenistaValidator.validate(tenista);
+        // validamos --> Ya lo estamos haciendo con @Valid en el controlador
+        // tenistaValidator.validate(tenista);
 
         // No puede existir otro tenista con el mismo ranking
         if (tenistasRepository.findByRanking(tenista.getRanking()).isPresent()) {
@@ -135,8 +135,8 @@ public class TenistasServiceImpl implements TenistasService {
             );
         }
 
-        // validamos
-        tenistaValidator.validate(tenista);
+        // validamos --> Ya lo estamos haciendo con @Valid en el controlador
+        // tenistaValidator.validate(tenista);
 
         // No puede existir otro tenista con el mismo ranking y que no sea el mismo
         var ranking = tenistasRepository.findByRanking(tenista.getRanking());

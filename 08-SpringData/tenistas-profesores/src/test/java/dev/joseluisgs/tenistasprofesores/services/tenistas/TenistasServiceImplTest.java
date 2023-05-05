@@ -481,7 +481,10 @@ class TenistasServiceImplTest {
                 .findById(1L);
     }
 
-    @Test
+    // Los pasa el controlador, por eso ya no hacen falta por aquí!!
+   /*
+
+   @Test
     void updateNombreFails() {
         // Lo que vamos a simular
         when(tenistasRepository.findById(1L))
@@ -601,6 +604,8 @@ class TenistasServiceImplTest {
         verify(tenistasRepository, times(0))
                 .save(tenistas.get(1L));
     }
+
+    */
 
     @Test
     void deleteById() {

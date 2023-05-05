@@ -1,6 +1,6 @@
 package dev.joseluisgs.tenistasprofesores.services.raquetas;
 
-import dev.joseluisgs.tenistasprofesores.exceptions.raqueta.RaquetaBadRequestException;
+import dev.joseluisgs.tenistasprofesores.exceptions.raqueta.RaquetaConflicIntegrityException;
 import dev.joseluisgs.tenistasprofesores.exceptions.raqueta.RaquetaNotFoundException;
 import dev.joseluisgs.tenistasprofesores.models.raquetas.Raqueta;
 import dev.joseluisgs.tenistasprofesores.repositories.raquetas.RaquetasRepository;
@@ -76,8 +76,8 @@ public class RaquetasServiceImpl implements RaquetasService {
     public Raqueta save(Raqueta raqueta) {
         log.info("save");
 
-        // Validamos!!!
-        raquetaValidator.validate(raqueta);
+        // validamos --> Ya lo estamos haciendo con @Valid en el controlador
+        // raquetaValidator.validate(raqueta);
 
         // Ajustamos los campos
         raqueta.setUuid(UUID.randomUUID());
@@ -98,8 +98,8 @@ public class RaquetasServiceImpl implements RaquetasService {
         // existe el id?
         var updated = this.findById(id);
 
-        // Validamos!!!
-        raquetaValidator.validate(raqueta);
+        // validamos --> Ya lo estamos haciendo con @Valid en el controlador
+        // raquetaValidator.validate(raqueta);
 
         // asignamos los nuevos valores
         updated.setMarca(raqueta.getMarca());
@@ -121,7 +121,7 @@ public class RaquetasServiceImpl implements RaquetasService {
         try {
             raquetasRepository.deleteById(id);
         } catch (Exception e) {
-            throw new RaquetaBadRequestException("No se ha podido eliminar la raqueta con id: " + id + " ya que tiene tenistas asociados");
+            throw new RaquetaConflicIntegrityException("No se ha podido eliminar la raqueta con id: " + id + " ya que tiene tenistas asociados");
         }
     }
 

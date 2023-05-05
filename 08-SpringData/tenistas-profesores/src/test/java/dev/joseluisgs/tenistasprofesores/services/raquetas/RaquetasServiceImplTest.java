@@ -333,6 +333,9 @@ class RaquetasServiceImplTest {
                 .validate(raquetas.get(1L));
     }
 
+    // lo pasa el controlador, por eso no lo testeamos aquñi ya!!!
+    /*
+
     @Test
     void updateFailsMarca() {
         // Lo que vamos a simular
@@ -411,6 +414,7 @@ class RaquetasServiceImplTest {
                 .validate(raquetas.get(1L));
     }
 
+   */
     @Test
     void deleteById() {
         // Lo que vamos a simular
