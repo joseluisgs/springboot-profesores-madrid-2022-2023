@@ -565,7 +565,7 @@
 			]
 		},
 		{
-			"name": "Usuarios",
+			"name": "Security",
 			"item": [
 				{
 					"name": "POST Register",
@@ -698,7 +698,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4MzQ4NzQ4OCwiZXhwIjoxNjgzNTczODg4fQ.8lDQ79zqg-KsTrfzLlXGKrriVX55UNwWGf0KKs2mCUyPsvnv0XitOJsfEuN1K-jRtoRZrXEy7SeV6K5pRsR2nQ",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4MzUyNjc4OCwiZXhwIjoxNjgzNjEzMTg4fQ.8W4kv_r5V6UBZXDdk0Ki62jffV4EEu_xVtbj4ewZU0lW3754PzF9HA6hEo6n1bdzKays3SkJlzQ8RNb9f8o-Ug",
 									"type": "string"
 								}
 							]
@@ -766,6 +766,221 @@
 							"path": [
 								"api",
 								"managment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Demo Todos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwiaWF0IjoxNjgzNDg3NDY3LCJleHAiOjE2ODM1NzM4Njd9.X75cgLtQFWjUNfxCfBUQS7uU3oWNQi8iSn_e1SUKpVKX5Y1hrKdrJSVgLWZivk_JfjeJZ_CHNNqeeEHvW8JfrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/demo/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"demo",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Demo Admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4MzUyNjc4OCwiZXhwIjoxNjgzNjEzMTg4fQ.8W4kv_r5V6UBZXDdk0Ki62jffV4EEu_xVtbj4ewZU0lW3754PzF9HA6hEo6n1bdzKays3SkJlzQ8RNb9f8o-Ug",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/demo/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"demo",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Demo Manager",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwiaWF0IjoxNjgzNTI2OTk1LCJleHAiOjE2ODM2MTMzOTV9.3rWGOAxh4ziFrcLgtxMXhYulhbHYibPelTL0A8ADxHfDBQmo5gyFvF7kCA8ucH_ke0CPBiSmZHvJ4rfWHM8t0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/demo/manager",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"demo",
+								"manager"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Demo User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQG1haWwuY29tIiwiaWF0IjoxNjgzNTI3MDYwLCJleHAiOjE2ODM2MTM0NjB9.q5q6G_RN-XYNUn1lqFJnT-Mc6THV0ZGltzd5MZkrI7h74i1xCDWwnYogGZL9TeChPZrvjSk4y-fktZmReG3GDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/demo/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"demo",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Demo Auth",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4MzUyNjc4OCwiZXhwIjoxNjgzNjEzMTg4fQ.8W4kv_r5V6UBZXDdk0Ki62jffV4EEu_xVtbj4ewZU0lW3754PzF9HA6hEo6n1bdzKays3SkJlzQ8RNb9f8o-Ug",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/demo/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"demo",
+								"auth"
 							]
 						}
 					},
