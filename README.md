@@ -34,7 +34,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 6. [Elementos avanzados en SPRING BOOT: cache, dto, mappers, excepciones, etc.](./06-ElementosAvanzados/README.md)
 7. [Testeando nuestros servicios con JUnit y Mockito](./07-Testing/README.md)
 8. [Acceso a Datos con Spring Data y JPA](./08-SpringData/README.md)
-9. Seguridad, autenticación y autorización en servicios con Spring Security
+9. [Seguridad, autenticación y autorización en servicios con Spring Security](./09-SpringSecurity/README.md)
 10. Perfiles. Documentación con Swagger/OpenAPI y despliegue con Docker
 
 ## Sesiones presenciales

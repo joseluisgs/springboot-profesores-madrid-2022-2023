@@ -43,7 +43,8 @@ public class SecurityConfiguration {
 
                 // Permiso para errores y mostrarlos, si no no los veremos, sobre todo los de validación
                 // y los de excepciones personalizadas
-                .requestMatchers("/error/**").permitAll()
+                .requestMatchers("/error/**")
+                .permitAll()
 
                 // Permitimos el acceso a los endpoints de swagger
                 // .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()

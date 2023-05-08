@@ -62,5 +62,4 @@ public class DemoController {
                         + user.getAuthorities()
         );
     }
-
 }
