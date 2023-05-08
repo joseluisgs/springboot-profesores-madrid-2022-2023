@@ -35,7 +35,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 7. [Testeando nuestros servicios con JUnit y Mockito](./07-Testing/README.md)
 8. [Acceso a Datos con Spring Data y JPA](./08-SpringData/README.md)
 9. [Seguridad, autenticación y autorización en servicios con Spring Security](./09-SpringSecurity/README.md)
-10. Perfiles. Documentación con Swagger/OpenAPI y despliegue con Docker
+10. [Distribución: Perfiles, documentación y contenedores](./10-Distribucion/README.md)
 
 ## Sesiones presenciales
 1. 12 abril 2023: Presentación, introducción, preparación del entorno de trabajo. Mi primer proyecto con Spring Boot.

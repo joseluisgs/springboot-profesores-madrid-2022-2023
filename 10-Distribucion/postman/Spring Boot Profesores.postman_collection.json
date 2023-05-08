@@ -1,0 +1,1035 @@
+{
+	"info": {
+		"_postman_id": "8a3e8975-9f42-4f79-b9ec-25ec928a4f7a",
+		"name": "Spring Boot Profesores",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11271351"
+	},
+	"item": [
+		{
+			"name": "Raquetas",
+			"item": [
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL Pages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/all?page=0&size=1&sort=modelo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "modelo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL Query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas?marca=babo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas"
+							],
+							"query": [
+								{
+									"key": "marca",
+									"value": "babo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"marca\": \"Raqueta Nueva\",\n    \"modelo\": \"Modelo Nuevo\",\n    \"precio\":  199.95,\n    \"imagen\": \"https://img.tenniswarehouse-europe.com/watermark/rs.php?path=BPAR22-1.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"marca\": \"Raqueta Updated\",\n    \"modelo\": \"Modelo Updated\",\n    \"precio\": 199.95,\n    \"imagen\": \"https://img.tenniswarehouse-europe.com/watermark/rs.php?path=BPAR22-1.jpg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Imagen",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/joseluisgs/Proyectos/springboot-profesores-madrid-2022-2023/08-SpringData/postman/raqueta.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/imagen/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"imagen",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas/find/e5b017cc-ac2a-4d6b-90c3-a6d2629d9846",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas",
+								"find",
+								"e5b017cc-ac2a-4d6b-90c3-a6d2629d9846"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL XML",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:6980/api/raquetas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"raquetas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tenistas",
+			"item": [
+				{
+					"name": "GET ALL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL Pages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/all?page=0&size=1&sort=pais",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "pais"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL Query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas?pais=es&nombre=alca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas"
+							],
+							"query": [
+								{
+									"key": "pais",
+									"value": "es"
+								},
+								{
+									"key": "nombre",
+									"value": "alca"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Tenista Nuevo\",\n    \"ranking\": 34,\n    \"pais\": \"España\",\n    \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/9/9b/Rafael_Nadal_10%2C_Aegon_Championships%2C_London%2C_UK_-_Diliff_%28cropped%29.jpg\",\n    \"raquetaId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Tenista Updated\",\n    \"ranking\": 34,\n    \"pais\": \"España\",\n    \"imagen\": \"https://upload.wikimedia.org/wikipedia/commons/9/9b/Rafael_Nadal_10%2C_Aegon_Championships%2C_London%2C_UK_-_Diliff_%28cropped%29.jpg\",\n    \"raquetaId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Imagen",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/home/joseluisgs/Proyectos/springboot-profesores-madrid-2022-2023/08-SpringData/postman/tenista.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/imagen/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"imagen",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET BY UUID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas/find/27dee3b0-39f0-4317-b0a4-340f9824615e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas",
+								"find",
+								"27dee3b0-39f0-4317-b0a4-340f9824615e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL XML",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "text/xml",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:6980/api/tenistas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"tenistas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Security",
+			"item": [
+				{
+					"name": "POST Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"create\",\n    \"lastname\": \"usuario create\",\n    \"email\": \"usuario@create.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@mail.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Login Manager",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"manager@mail.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Login Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@mail.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TEST Admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4MzUyNjc4OCwiZXhwIjoxNjgzNjEzMTg4fQ.8W4kv_r5V6UBZXDdk0Ki62jffV4EEu_xVtbj4ewZU0lW3754PzF9HA6hEo6n1bdzKays3SkJlzQ8RNb9f8o-Ug",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Manager",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwiaWF0IjoxNjgzNDg3NDY3LCJleHAiOjE2ODM1NzM4Njd9.X75cgLtQFWjUNfxCfBUQS7uU3oWNQi8iSn_e1SUKpVKX5Y1hrKdrJSVgLWZivk_JfjeJZ_CHNNqeeEHvW8JfrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/managment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"managment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Demo Todos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwiaWF0IjoxNjgzNDg3NDY3LCJleHAiOjE2ODM1NzM4Njd9.X75cgLtQFWjUNfxCfBUQS7uU3oWNQi8iSn_e1SUKpVKX5Y1hrKdrJSVgLWZivk_JfjeJZ_CHNNqeeEHvW8JfrA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/demo/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"demo",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Demo Admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4MzUyNjc4OCwiZXhwIjoxNjgzNjEzMTg4fQ.8W4kv_r5V6UBZXDdk0Ki62jffV4EEu_xVtbj4ewZU0lW3754PzF9HA6hEo6n1bdzKays3SkJlzQ8RNb9f8o-Ug",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/demo/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"demo",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Demo Manager",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJtYW5hZ2VyQG1haWwuY29tIiwiaWF0IjoxNjgzNTI2OTk1LCJleHAiOjE2ODM2MTMzOTV9.3rWGOAxh4ziFrcLgtxMXhYulhbHYibPelTL0A8ADxHfDBQmo5gyFvF7kCA8ucH_ke0CPBiSmZHvJ4rfWHM8t0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/demo/manager",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"demo",
+								"manager"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Demo User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyQG1haWwuY29tIiwiaWF0IjoxNjgzNTI3MDYwLCJleHAiOjE2ODM2MTM0NjB9.q5q6G_RN-XYNUn1lqFJnT-Mc6THV0ZGltzd5MZkrI7h74i1xCDWwnYogGZL9TeChPZrvjSk4y-fktZmReG3GDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/demo/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"demo",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Demo Auth",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4MzUyNjc4OCwiZXhwIjoxNjgzNjEzMTg4fQ.8W4kv_r5V6UBZXDdk0Ki62jffV4EEu_xVtbj4ewZU0lW3754PzF9HA6hEo6n1bdzKays3SkJlzQ8RNb9f8o-Ug",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/demo/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"demo",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Demo Me",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbkBtYWlsLmNvbSIsImlhdCI6MTY4MzUyODM5OCwiZXhwIjoxNjgzNjE0Nzk4fQ.Pnsh2hxENFN3E5KYALFpJ9Qg_iDyD6LmSTzQ2Umarh07GJALcHet4Z1CmhjqzCaj77ig4VWb32G7yE0Jfd3_Mg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6980/api/demo/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6980",
+							"path": [
+								"api",
+								"demo",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
