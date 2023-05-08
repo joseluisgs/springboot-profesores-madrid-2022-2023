@@ -60,18 +60,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             // datos del usuario
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
+            // Comprobamos que el token es válido y no está revocado
             var isTokenValid = tokenRepository.findByToken(jwt)
                     .map(t -> !t.isExpired() && !t.isRevoked())
                     .orElse(false);
             if (jwtService.isTokenValid(jwt, userDetails) && isTokenValid) {
+                // Si es válido lo añadimos al contexto de seguridad
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
                         userDetails.getAuthorities()
                 );
+                // Añadimos los detalles de la petición
                 authToken.setDetails(
                         new WebAuthenticationDetailsSource().buildDetails(request)
                 );
+                // Lo añadimos al contexto de seguridad
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }

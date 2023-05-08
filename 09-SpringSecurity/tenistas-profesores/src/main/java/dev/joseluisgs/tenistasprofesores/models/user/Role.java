@@ -40,6 +40,7 @@ public enum Role {
     @Getter
     private final Set<Permission> permissions;
 
+    // Obtenemos los permisos del role en formato SimpleGrantedAuthority de Spring
     public List<SimpleGrantedAuthority> getAuthorities() {
         var authorities = getPermissions()
                 .stream()

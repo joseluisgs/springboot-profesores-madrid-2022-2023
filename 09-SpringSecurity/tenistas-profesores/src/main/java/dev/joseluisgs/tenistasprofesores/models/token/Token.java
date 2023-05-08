@@ -28,6 +28,8 @@ public class Token {
 
     public boolean expired;
 
+    // Relación con el usuario, un token pertenece a un usuario
+    // y un usuario puede tener varios tokens
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     public User user;

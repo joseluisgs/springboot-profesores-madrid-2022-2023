@@ -1,5 +1,6 @@
 package dev.joseluisgs.tenistasprofesores.controllers.auth;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -7,22 +8,22 @@ import org.springframework.web.bind.annotation.*;
 // @PreAuthorize("hasRole('MANAGER')") // Solo los administradores pueden acceder a este recurso
 public class ManagementController {
     @GetMapping
-    public String get() {
-        return "GET:: management controller";
+    public ResponseEntity<String> get() {
+        return ResponseEntity.ok("GET:: management controller");
     }
 
     @PostMapping
-    public String post() {
-        return "POST:: management controller";
+    public ResponseEntity<String> post() {
+        return ResponseEntity.ok("POST:: management controller");
     }
 
     @PutMapping
-    public String put() {
-        return "PUT:: management controller";
+    public ResponseEntity<String> put() {
+        return ResponseEntity.ok("PUT:: management controller");
     }
 
     @DeleteMapping
-    public String delete() {
-        return "DELETE:: management controller";
+    public ResponseEntity<String> delete() {
+        return ResponseEntity.ok("DELETE:: management controller");
     }
 }

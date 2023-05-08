@@ -53,9 +53,11 @@ public class SecurityConfiguration {
 
                 // Vamos a jugar con los permisos de los endpoints y sus permisos
                 // Podemos dar los permisos individualmente por cada método y rol
+                // en este caso solo los administradores y managers pueden acceder a los endpoints de gestión
                 .requestMatchers("/api/management/**").hasAnyRole(ADMIN.name(), MANAGER.name())
 
                 // podemos ir más allá y dar permisos por cada método y rol y tipo de permiso
+                // Para ello podemos hacer uso de los permisos que hemos creado o del rol!
                 .requestMatchers(GET, "/api/management/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
                 .requestMatchers(POST, "/api/management/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
                 .requestMatchers(PUT, "/api/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
@@ -63,6 +65,7 @@ public class SecurityConfiguration {
 
 
                 // Esto lo quitamos para hacerlo en el controlador!!!
+                // Veremos que es otra forma de hacerlo
                 /* .requestMatchers("/api/v1/admin/**").hasRole(ADMIN.name())
 
                  .requestMatchers(GET, "/api/v1/admin/**").hasAuthority(ADMIN_READ.name())
@@ -70,15 +73,23 @@ public class SecurityConfiguration {
                  .requestMatchers(PUT, "/api/v1/admin/**").hasAuthority(ADMIN_UPDATE.name())
                  .requestMatchers(DELETE, "/api/v1/admin/**").hasAuthority(ADMIN_DELETE.name())*/
 
-
+                // Cualquier otra petición requiere autenticación
                 .anyRequest()
                 .authenticated()
                 .and()
+
+                // Configuración de sesión
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // No hay estado de sesión
                 .and()
+
+                // Configuración de autenticación
                 .authenticationProvider(authenticationProvider) // Nuestro proveedor de autenticación
+
+                // Configuración de filtros
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class) // Nuestro filtro de autenticación
+
+                // Configuración de logout
                 .logout()
                 .logoutUrl("/api/auth/logout") // URL de logout
                 .addLogoutHandler(logoutHandler)

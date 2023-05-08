@@ -1,4 +1,4 @@
-package dev.joseluisgs.tenistasprofesores.config.security;
+package dev.joseluisgs.tenistasprofesores.services.auth;
 
 import dev.joseluisgs.tenistasprofesores.repositories.token.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,18 +28,22 @@ public class LogoutService implements LogoutHandler {
             HttpServletResponse response,
             Authentication authentication
     ) {
+
+        // Y ser el token que queremos
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return;
         }
         jwt = authHeader.substring(7);
+        // Invalidamos el token
         var storedToken = tokenRepository.findByToken(jwt)
                 .orElse(null);
         if (storedToken != null) {
             storedToken.setExpired(true);
             storedToken.setRevoked(true);
             tokenRepository.save(storedToken);
+            // Limpiamos el contexto de seguridad
             SecurityContextHolder.clearContext();
         }
     }

@@ -17,7 +17,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
+@Table(name = "usuarios")
+// Lo importante es que implemente UserDetails
+// Esta interfaz nos obliga a implementar los métodos y propiedades para que Spring Security
 public class User implements UserDetails {
 
     @Id
@@ -29,11 +31,13 @@ public class User implements UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Role role = Role.USER;
+    private Role role = Role.USER; // Por defecto
 
+    // Relación con el token, un usuario puede tener varios tokens y un token pertenece a un usuario
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
+    // Perfiles de seguridad en base a sus roles
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return role.getAuthorities();

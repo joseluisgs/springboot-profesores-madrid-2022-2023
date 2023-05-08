@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 // Configuración de la aplicación
+// Aquí guardamos los beans que necesitamos para la aplicación a nivel General
+// Por ejemplo, el UserDetailsService, el AuthenticationProvider, el AuthenticationManager, etc...
 @Configuration
 public class ApplicationConfig {
 
@@ -25,7 +27,9 @@ public class ApplicationConfig {
     }
 
     // Cada vez que se necesite un UserDetailsService, se devolverá el siguiente
-    // con el repositorio de usuarios
+    // con el repositorio de usuarios, de esa forma, Spring Security podrá
+    // autenticar a los usuarios y me ahorro implementarlo por mi cuenta
+    // y me ahorro implementar el UserDetailsService, ya tengo el repositorio
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> repository.findByEmail(username)
@@ -35,6 +39,7 @@ public class ApplicationConfig {
     // Cada vez que se necesite un AuthenticationProvider, se devolverá el siguiente
     @Bean
     public AuthenticationProvider authenticationProvider() {
+        // Usamos el anterior UserDetailsService y el PasswordEncoder
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());

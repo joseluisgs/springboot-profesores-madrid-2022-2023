@@ -41,8 +41,8 @@ public class AuthenticationService {
 
 
     // Registra a un usuario y le devuelve un token
-
     public LoginResponseDto register(RegisterRequestDto request) {
+        // construimos el usuario
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
@@ -50,10 +50,14 @@ public class AuthenticationService {
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())
                 .build();
+
+        // Lo guardamos y generamos el token y el refresh token para el usuario (salvamos!)
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
+
+        // Devolvemos la respuesta
         return LoginResponseDto.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
@@ -62,12 +66,15 @@ public class AuthenticationService {
 
     // Autentica a un usuario y le devuelve un token
     public LoginResponseDto authenticate(LoginRequestDto request) {
+        // Autenticamos al usuario
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword()
                 )
         );
+
+        // Buscamos al usuario y generamos el token y el refresh token para el usuario (salvamos!)
         var user = repository.findByEmail(request.getEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
