@@ -35,7 +35,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 7. [Testeando nuestros servicios con JUnit y Mockito](./07-Testing/README.md)
 8. [Acceso a Datos con Spring Data y JPA](./08-SpringData/README.md)
 9. [Seguridad, autenticación y autorización en servicios con Spring Security](./09-SpringSecurity/README.md)
-10. [Distribución: Perfiles, documentación y contenedores](./10-Distribucion/README.md)
+10. [Perfiles, documentación y despliegue](./10-Distribucion/README.md)
 
 ## Sesiones presenciales
 1. 12 abril 2023: Presentación, introducción, preparación del entorno de trabajo. Mi primer proyecto con Spring Boot.
@@ -45,7 +45,7 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 5. 10 mayo 2023: Creando componentes de Acceso a Datos con Spring Data y JPA.
 6. 17 mayo 2023: Testeando nuestra aplicación con Spring Data y JPA.
 7. 24 mayo 2023: Seguridad en servicios con Spring Security.
-8. 31 mayo 2023: Perfilando, Documentando y desplegando nuestra aplicación.
+8. 31 mayo 2023: Perfiles, documentación y despliegue.
 
 ## Tareas por sesión
 1. 12 abril 2023: Tu primera aplicación con Spring Boot. [Tarea 1](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=256772&forceview=1)

@@ -1,8 +1,8 @@
-# Perfilando, Documentando y desplegando nuestra aplicación
+# Perfiles, Documentación y Despliegue
 
 ![logo](https://rubensa.files.wordpress.com/2021/05/spring-boot-logo.png)
 
-- [Perfilando, Documentando y desplegando nuestra aplicación](#perfilando-documentando-y-desplegando-nuestra-aplicación)
+- [Perfiles, Documentación y Despliegue](#perfiles-documentación-y-despliegue)
   - [Perfiles de Spring Boot](#perfiles-de-spring-boot)
   - [Configuración de CORS](#configuración-de-cors)
   - [Documentación con Swagger y OpenAPI](#documentación-con-swagger-y-openapi)
