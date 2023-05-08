@@ -14,7 +14,7 @@
     - [Security Config](#security-config)
       - [Permisos de acceso a los endpoints](#permisos-de-acceso-a-los-endpoints)
       - [AuthenticationPrincipal](#authenticationprincipal)
-  - [SSL](#ssl)
+  - [SSL y TSL](#ssl-y-tsl)
 
 ## Spring Security
 Spring Security es un marco de seguridad de nivel empresarial para aplicaciones web basadas en Java. Proporciona una amplia gama de características de seguridad para proteger aplicaciones web contra vulnerabilidades como la autenticación y la autorización, la gestión de roles de usuario, la protección contra ataques CSRF, la prevención de inyecciones SQL, protección de rutas y muchas otras.
@@ -262,6 +262,15 @@ El uso y manejo de tokens lo tendremos en nuestra JwtService.
 
 Además, para almacenar los tokens y asociarlos a los usuarios crearemos las relaciones pertinentes en el modelo de Usuario y Token (para almacenar los tokens válidos y activos de cada usuario).
 
+Para configurar el token hemos añadido unos campos en nuestro fichero de propiedades.
+
+```properties
+##JWT Configuracion de secreto y tiempo de token
+jwt.secret-key=Señ0r@DeJavaYSpringB00tT0keN2023-MeGustanLosPepinosDeLeganesSonGrandesYMaduros?$
+jwt.expiration=86400000
+jwt.refresh-token=604800000
+```
+
 ### AuthenticantionFilter
 Un authentication filter en Spring Boot es un tipo de filtro de seguridad que se utiliza para autenticar las solicitudes de los usuarios en una aplicación web. Los filtros de autenticación en Spring Boot se ejecutan antes de que se procese la solicitud del usuario y se utilizan para validar la identidad del usuario y determinar si se le permite acceder a los recursos protegidos por la aplicación. En definitiva es un middleware que actúa por cada request para decir si debe o no ser atendida la petición.
 
@@ -432,8 +441,52 @@ Una de las cosas que podemos hacer es obtener el usuario que está en el context
     }
 ```
 
-## SSL
+## SSL y TSL
+Podemos configurar nuestro servidor para que use SSL y TSL para que las comunicaciones sean seguras. Para ello vamos a necesitar un certificado y una clave privada. Para ello es importante saber el nombre del llavero, el alias y la clave de acceso al mismo. Podemos generarlos con el siguiente comando:
 
+```bash
+## Llavero Servidor: Par de claves del servidor (privada y pública) formato PEM
+keytool -genkeypair -alias serverKeyPair -keyalg RSA -keysize 4096 -validity 365 -storetype PKCS12 -keystore server_keystore.p12 -storepass 1234567
+
+## Llavero Cliente: Par de claves del cliente (privada y pública) formato JKS
+keytool -genkeypair -alias serverKeyPair -keyalg RSA -keysize 4096 -validity 365 -storetype JKS -keystore server_keystore.jks -storepass 1234567
+```
+
+Este certificado lo podremos en la carpeta cert de resources. Posteriormente podemos acceder a él desde el application.properties.
+
+```properties
+## SSL
+server.ssl.key-store-type=PKCS12
+server.ssl.key-store=classpath:cert/server_keystore.p12
+# La contraseñaa usada para generar el certificado
+server.ssl.key-store-password=1234567
+# El alias usado para mapear o referenciar el certificado
+server.ssl.key-alias=serverKeyPair
+server.ssl.enabled=true
+```
+
+Por defecto el servidor arranca en modo SSL/TSL, por lo que si queremos operar de los dos modos, debemos hacer un Bean de configuración para que arranque en modo HTTP y HTTPS de acuerdo los puertos que le indiquemos.
+
+```java
+// Por defecto la conexion es con SSL, por lo que vamos a decirle que use el puerto 6980
+// para la conexión sin SSL
+@Configuration
+public class SSLConfig {
+    // (User-defined Property)
+    @Value("${server.http.port}")
+    private int httpPort;
+
+    // Creamos un bean que nos permita configurar el puerto de conexión sin SSL
+    @Bean
+    ServletWebServerFactory servletContainer() {
+        var connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+        connector.setPort(httpPort);
+        var tomcat = new TomcatServletWebServerFactory();
+        tomcat.addAdditionalTomcatConnectors(connector);
+        return tomcat;
+    }
+}
+```
 
 
 
