@@ -72,6 +72,7 @@ class RaquetasRepositoryJpaTest {
                 () -> assertEquals("Pure Aero", raqueta.get().getModelo()),
                 () -> assertEquals(199.95, raqueta.get().getPrecio())
         );
+        entityManager.clear();
     }
 
     @Test

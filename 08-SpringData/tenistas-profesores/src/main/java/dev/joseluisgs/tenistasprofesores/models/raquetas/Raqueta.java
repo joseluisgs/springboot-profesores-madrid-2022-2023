@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,11 +23,11 @@ import java.util.UUID;
 @NoArgsConstructor // Necesario para JPA
 @AllArgsConstructor
 @Builder // Para poder usar el patrón Builder
-@Entity // Para que sea una entidad de JPA
+@Entity// Para que sea una entidad de JPA
 @Table(name = "raquetas") // Para indicar la tabla de la BD, si no coge el nombre de la clase
 public class Raqueta {
     @Id // Indicamos que es el ID de la tabla
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) // Indicamos que es el ID generado automáticamente
     // Que se genera siguiendo el mecanismo  de la BD (Seguira una secuencia, esto lo hago porque uso un script de creación de la BD)
     @Column(name = "id") // Le cambiamos el nombre a la columna
     private Long id; // Inicializamos a 0, ya que es un valor que se genera automáticamente
@@ -40,9 +42,11 @@ public class Raqueta {
     private String imagen;
     @Column(name = "created_at") // Le cambiamos el nombre a la columna
     @Temporal(TemporalType.TIMESTAMP) // Indicamos que es un campo de tipo fecha y hora
+    @CreatedDate
     private LocalDateTime createdAt = LocalDateTime.now();
     @Column(name = "updated_at") // Le cambiamos el nombre a la columna
     @Temporal(TemporalType.TIMESTAMP) // Indicamos que es un campo de tipo fecha y hora
+    @LastModifiedDate
     private LocalDateTime updatedAt = LocalDateTime.now();
     private Boolean deleted = false;
 
@@ -53,6 +57,4 @@ public class Raqueta {
     // @OneToMany(mappedBy = "raqueta", cascade = CascadeType.ALL, orphanRemoval = true)
     // @JsonBackReference // Evitamos recursividad
     // private Set<Tenista> tenistas;
-
-
 }
