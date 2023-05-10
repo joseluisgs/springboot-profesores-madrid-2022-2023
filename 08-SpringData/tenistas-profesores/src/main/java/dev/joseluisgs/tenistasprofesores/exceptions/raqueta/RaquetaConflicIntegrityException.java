@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.io.Serial;
 
 // Nos permite devolver un estado cuando salta la excepción
-@ResponseStatus(HttpStatus.BAD_REQUEST)
+@ResponseStatus(HttpStatus.CONFLICT)
 public class RaquetaConflicIntegrityException extends RaquetaException {
     // Por si debemos serializar
     @Serial
