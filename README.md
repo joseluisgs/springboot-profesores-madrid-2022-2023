@@ -52,8 +52,8 @@ Estos materiales se irán actualizando a medida que se vaya impartiendo el curso
 2. 19 abril 2023: Creando la api de Profesores y Módulos. [Tarea 2](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=257422)
 3. 26 abril 2023: Mejorando nuestros servicios. [Tarea 3](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=257840)
 4. 3 mayo 2023: Nuestros primeros tests. [Tarea 4](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=258686)
-5. 10 mayo 2023: Creando componentes de Acceso a Datos con Spring Data y JPA.
-6. 17 mayo 2023: Testeando nuestros repositorios con Spring Data y JPA.
+5. [10 mayo 2023: Creando componentes de Acceso a Datos con Spring Data y JPA.](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=259095)
+6. [17 mayo 2023: Testeando nuestros repositorios con Spring Data y JPA.](https://aulavirtual32.educa.madrid.org/ismie/mod/assign/view.php?id=259281)
 7. 24 mayo 2023: Securizando nuestra api con Spring Security.
 8. 31 mayo 2023: Documentando y desplegando nuestra aplicación.
 9. Tareas finales: recopilación de todo lo aprendido en el curso y entrega de un proyecto final.
