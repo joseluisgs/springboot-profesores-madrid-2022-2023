@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 // Todo eso es @DataJpaTest, pero a veces falla al cargar la configuración
-//@DataJpaTest
+// @DataJpaTest
 class RaquetasRepositoryJpaTest {
     private final Raqueta raqueta = RaquetasFactory.getRaquetasDemoData().get(1L);
 
@@ -54,7 +54,8 @@ class RaquetasRepositoryJpaTest {
 
         assertAll(
                 () -> assertNotNull(raquetas),
-                () -> assertTrue(raquetas.size() > 0)
+                () -> assertTrue(raquetas.size() > 0),
+                () -> assertEquals(1, raquetas.size())
         );
     }
 

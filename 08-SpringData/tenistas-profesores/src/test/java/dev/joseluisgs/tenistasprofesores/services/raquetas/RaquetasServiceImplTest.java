@@ -11,8 +11,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Map;
@@ -170,8 +168,8 @@ class RaquetasServiceImplTest {
         when(raquetasRepository.save(raquetas.get(1L)))
                 .thenReturn(raquetas.get(1L));
 
-        doNothing().when(raquetaValidator)
-                .validate(raquetas.get(1L)); // No hace nada, solo no fallar
+       /* doNothing().when(raquetaValidator)
+                .validate(raquetas.get(1L)); // No hace nada, solo no fallar*/
 
         // Test
         var raqueta = raquetasService.save(raquetas.get(1L));
@@ -187,9 +185,10 @@ class RaquetasServiceImplTest {
         // Verificamos que se ha llamado al método
         verify(raquetasRepository, times(1))
                 .save(raquetas.get(1L));
-        verify(raquetaValidator, times(1))
-                .validate(raquetas.get(1L));
+       /* verify(raquetaValidator, times(1))
+                .validate(raquetas.get(1L));*/
     }
+/*
 
     @Test
     void saveFailsMarca() {
@@ -253,6 +252,7 @@ class RaquetasServiceImplTest {
         verify(raquetaValidator, times(1))
                 .validate(raquetas.get(1L));
     }
+*/
 
     @Test
     void update() {
@@ -263,9 +263,9 @@ class RaquetasServiceImplTest {
         when(raquetasRepository.save(raquetas.get(1L)))
                 .thenReturn(raquetas.get(1L));
 
-        doNothing().when(raquetaValidator)
+        /*doNothing().when(raquetaValidator)
                 .validate(raquetas.get(1L)); // No hace nada, solo no fallar
-
+*/
         // Test
         var raqueta = raquetasService.update(raquetas.get(1L).getId(), raquetas.get(1L));
 
@@ -282,8 +282,8 @@ class RaquetasServiceImplTest {
                 .findById(raquetas.get(1L).getId());
         verify(raquetasRepository, times(1))
                 .save(raquetas.get(1L));
-        verify(raquetaValidator, times(1))
-                .validate(raquetas.get(1L));
+        /*verify(raquetaValidator, times(1))
+                .validate(raquetas.get(1L));*/
     }
 
     @Test

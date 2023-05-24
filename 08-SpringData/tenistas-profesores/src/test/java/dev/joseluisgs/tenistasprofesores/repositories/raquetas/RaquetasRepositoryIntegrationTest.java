@@ -2,9 +2,7 @@ package dev.joseluisgs.tenistasprofesores.repositories.raquetas;
 
 import dev.joseluisgs.tenistasprofesores.data.raquetas.RaquetasFactory;
 import dev.joseluisgs.tenistasprofesores.models.raquetas.Raqueta;
-import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 // Test de integración del repositorio
 // La peor manera, porque si ya probamos integración lo hacemos desde el controlador "final"
 @SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 // Levanto la BBDD en cada test y crea todo de nuevo
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)

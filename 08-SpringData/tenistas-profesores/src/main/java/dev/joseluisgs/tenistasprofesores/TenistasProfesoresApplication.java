@@ -21,8 +21,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing // Habilitamos la auditoría, idual para el tiempo
 public class TenistasProfesoresApplication implements CommandLineRunner {
     // Para leer los datos de application.properties
-    @Value("${upload.delete}")
-    private String deleteAll = "false";
+   /* @Value("${upload.delete}")
+    private String deleteAll = "false";*/
 
     // Por si quiero cargar los datos, aunque prefiero por script!!
     // @Autowired
@@ -44,7 +44,7 @@ public class TenistasProfesoresApplication implements CommandLineRunner {
 
     @Bean
     // Este bean se ejecuta al arrancar la aplicación, CommandLinerRunner
-    public CommandLineRunner init(StorageService storageService) {
+    public CommandLineRunner init(StorageService storageService, @Value("${upload.delete}") String deleteAll) {
         return args -> {
             // Inicializamos el servicio de ficheros
             // Leemos de application.properties si necesitamos borra todo o no

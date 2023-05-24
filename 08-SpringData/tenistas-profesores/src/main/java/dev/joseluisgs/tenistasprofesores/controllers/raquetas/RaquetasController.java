@@ -164,7 +164,7 @@ public class RaquetasController {
     @PatchMapping(value = "/imagen/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<RaquetaResponseDto> nuevoProducto(
             @PathVariable Long id,
-            @RequestPart("file") MultipartFile file) {
+            @RequestPart("fichero") MultipartFile file) {
 
         log.info("patchRaqueta");
 
@@ -197,6 +197,26 @@ public class RaquetasController {
             errors.put(fieldName, errorMessage);
         });
         return errors;
+    }
+
+    @PostMapping(value = "/nuevaconimagen", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<RaquetaResponseDto> postNuevaConImagen(
+            @RequestPart("file") MultipartFile file,
+            @Valid @RequestPart("raqueta") RaquetaRequestDto raqueta
+    ) {
+        log.info("addRaqueta");
+        // Devolvemos created
+
+        String imagen = storageService.store(file);
+        String urlImagen = storageService.getUrl(imagen);
+
+        var raquetaModel = raquetaMapper.toModel(raqueta);
+        raquetaModel.setImagen(urlImagen);
+
+        return ResponseEntity.created(null).body(
+                raquetaMapper.toResponse(raquetasService.save(raquetaModel)
+                )
+        );
     }
 
 
