@@ -47,9 +47,9 @@ public class JwtService {
 
     private Algorithm getSignInKey() {
         // Si lo ponemos en base 64, lo convertimos a bytes
-        // byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+        // byte[] keyBytes = Base64.getDecoder().decode(secretKey);
         // Si es un string, lo convertimos a bytes
-        return Algorithm.HMAC512(secretKey);
+        return Algorithm.HMAC512(secretKey.getBytes());
     }
 
     private DecodedJWT extractAllClaims(String token) {

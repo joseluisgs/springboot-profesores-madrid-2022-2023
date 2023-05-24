@@ -36,6 +36,12 @@ public class ApplicationConfig {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
+    // Cada vez que se necesite un PasswordEncoder, se devolverá el siguiente
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     // Cada vez que se necesite un AuthenticationProvider, se devolverá el siguiente
     @Bean
     public AuthenticationProvider authenticationProvider() {
@@ -50,12 +56,6 @@ public class ApplicationConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
-    }
-
-    // Cada vez que se necesite un PasswordEncoder, se devolverá el siguiente
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
 }

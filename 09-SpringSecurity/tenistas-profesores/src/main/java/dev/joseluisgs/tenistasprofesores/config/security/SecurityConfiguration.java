@@ -1,5 +1,6 @@
 package dev.joseluisgs.tenistasprofesores.config.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -12,10 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 
-import static dev.joseluisgs.tenistasprofesores.models.user.Permission.*;
 import static dev.joseluisgs.tenistasprofesores.models.user.Role.ADMIN;
 import static dev.joseluisgs.tenistasprofesores.models.user.Role.MANAGER;
-import static org.springframework.http.HttpMethod.*;
 
 // Configuración del Contexto de Seguridad
 @Configuration
@@ -27,6 +26,7 @@ public class SecurityConfiguration {
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
 
+    @Autowired
     public SecurityConfiguration(JwtAuthenticationFilter jwtAuthFilter, AuthenticationProvider authenticationProvider, LogoutHandler logoutHandler) {
         this.jwtAuthFilter = jwtAuthFilter;
         this.authenticationProvider = authenticationProvider;
@@ -52,6 +52,10 @@ public class SecurityConfiguration {
                 .requestMatchers("/api/**")
                 .permitAll()
 
+                // Permitimos el acceso a los endpoints de autenticación O lo ponemos aquí o en el filtro
+                .requestMatchers("/api/auth/**")
+                .permitAll()
+
                 // Vamos a jugar con los permisos de los endpoints y sus permisos
                 // Podemos dar los permisos individualmente por cada método y rol
                 // en este caso solo los administradores y managers pueden acceder a los endpoints de gestión
@@ -59,10 +63,10 @@ public class SecurityConfiguration {
 
                 // podemos ir más allá y dar permisos por cada método y rol y tipo de permiso
                 // Para ello podemos hacer uso de los permisos que hemos creado o del rol!
-                .requestMatchers(GET, "/api/management/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
-                .requestMatchers(POST, "/api/management/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
-                .requestMatchers(PUT, "/api/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
-                .requestMatchers(DELETE, "/api/management/**").hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name())
+                //.requestMatchers(GET, "/api/management/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
+                //.requestMatchers(POST, "/api/management/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
+                //.requestMatchers(PUT, "/api/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
+                //.requestMatchers(DELETE, "/api/management/**").hasRole(ADMIN.name())
 
 
                 // Esto lo quitamos para hacerlo en el controlador!!!
