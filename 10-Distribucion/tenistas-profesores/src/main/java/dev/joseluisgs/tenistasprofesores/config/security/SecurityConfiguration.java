@@ -1,5 +1,6 @@
 package dev.joseluisgs.tenistasprofesores.config.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -27,6 +28,9 @@ public class SecurityConfiguration {
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
 
+    @Value("${swagger.enabled:false}")
+    private boolean swaggerEnabled;
+
     public SecurityConfiguration(JwtAuthenticationFilter jwtAuthFilter, AuthenticationProvider authenticationProvider, LogoutHandler logoutHandler) {
         this.jwtAuthFilter = jwtAuthFilter;
         this.authenticationProvider = authenticationProvider;
@@ -47,7 +51,7 @@ public class SecurityConfiguration {
                 .permitAll()
 
                 // Permitimos el acceso a los endpoints de swagger
-                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                //.requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
 
                 .requestMatchers("/api/**")
                 .permitAll()
@@ -62,11 +66,11 @@ public class SecurityConfiguration {
                 .requestMatchers(GET, "/api/management/**").hasAnyAuthority(ADMIN_READ.name(), MANAGER_READ.name())
                 .requestMatchers(POST, "/api/management/**").hasAnyAuthority(ADMIN_CREATE.name(), MANAGER_CREATE.name())
                 .requestMatchers(PUT, "/api/management/**").hasAnyAuthority(ADMIN_UPDATE.name(), MANAGER_UPDATE.name())
-                .requestMatchers(DELETE, "/api/management/**").hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name())
+                .requestMatchers(DELETE, "/api/management/**").hasAnyAuthority(ADMIN_DELETE.name(), MANAGER_DELETE.name());
 
 
-                // Esto lo quitamos para hacerlo en el controlador!!!
-                // Veremos que es otra forma de hacerlo
+        // Esto lo quitamos para hacerlo en el controlador!!!
+        // Veremos que es otra forma de hacerlo
                 /* .requestMatchers("/api/v1/admin/**").hasRole(ADMIN.name())
 
                  .requestMatchers(GET, "/api/v1/admin/**").hasAuthority(ADMIN_READ.name())
@@ -74,6 +78,13 @@ public class SecurityConfiguration {
                  .requestMatchers(PUT, "/api/v1/admin/**").hasAuthority(ADMIN_UPDATE.name())
                  .requestMatchers(DELETE, "/api/v1/admin/**").hasAuthority(ADMIN_DELETE.name())*/
 
+
+        if (swaggerEnabled) {
+            System.out.println("Swagger enabled");
+            http.authorizeHttpRequests().requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll();
+        }
+
+        http.authorizeHttpRequests()
                 // Cualquier otra petición requiere autenticación
                 .anyRequest()
                 .authenticated()
@@ -94,8 +105,7 @@ public class SecurityConfiguration {
                 .logout()
                 .logoutUrl("/api/auth/logout") // URL de logout
                 .addLogoutHandler(logoutHandler)
-                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-        ;
+                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext());
 
         return http.build();
     }

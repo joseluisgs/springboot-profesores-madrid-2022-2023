@@ -37,9 +37,13 @@ public class CorsConfig {
             // e indicamos los verbos que queremos usar
             // Debes probar con uncliente desde ese puerto
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/rest/producto/**")
+                registry.addMapping("/api/raquetas/**")
                         //.allowedOrigins("http://localhost:6980")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .maxAge(3600);
+                registry.addMapping("/api/tenistas/**")
+                        //.allowedOrigins("http://localhost:6980")
+                        .allowedMethods("GET", "POST", "PUT")
                         .maxAge(3600);
             }
 

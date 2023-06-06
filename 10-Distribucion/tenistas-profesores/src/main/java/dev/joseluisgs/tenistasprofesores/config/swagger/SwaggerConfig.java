@@ -6,6 +6,7 @@ import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import org.springdoc.core.models.GroupedOpenApi;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,7 +14,10 @@ import org.springframework.context.annotation.Configuration;
 // https://stackoverflow.com/questions/74614369/how-to-run-swagger-3-on-spring-boot-3
 // http://localhost:XXXX/swagger-ui/index.html
 @Configuration
+@ConditionalOnProperty(name = "swagger.enabled", havingValue = "true", matchIfMissing = true)
+//@Profile({"!prod"})
 class SwaggerConfig {
+
     @Bean
     OpenAPI apiInfo() {
         return new OpenAPI()
@@ -48,8 +52,8 @@ class SwaggerConfig {
     GroupedOpenApi httpApi() {
         return GroupedOpenApi.builder()
                 .group("http")
-                //.pathsToMatch("/api/**") // Todas las rutas
-                .pathsToMatch("/api/tenistas/**") 
+                .pathsToMatch("/api/**") // Todas las rutas
+                //.pathsToMatch("/api/tenistas/**")
                 //.pathsToMatch("/api/test/**")
                 .displayName("HTTP-API Tenistas Test")
                 .build();

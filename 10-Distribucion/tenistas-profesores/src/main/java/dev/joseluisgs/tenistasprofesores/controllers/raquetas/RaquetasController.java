@@ -35,6 +35,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/raquetas")
 @Slf4j // Para el log
+@CrossOrigin(maxAge = 3600) // Para peticiones AJAX desde fuera de dominio
 public class RaquetasController {
     // Mis dependecias
     private final RaquetasService raquetasService;

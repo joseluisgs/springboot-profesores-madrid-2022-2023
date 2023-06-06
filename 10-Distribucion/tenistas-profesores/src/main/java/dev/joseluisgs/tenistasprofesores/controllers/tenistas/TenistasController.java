@@ -45,10 +45,12 @@ public class TenistasController {
         this.storageService = storageService;
     }
 
-    @Operation(summary = "Get all Tenistas", description = "Obtiene una lista de Tenistas", tags = {"tenistas}"})
+    @Operation(summary = "Get all Tenistas", description = "Obtiene una lista de Tenistas", tags = {"tenistas"})
     @Parameter(name = "nombre", description = "nombre del tenista a buscar", required = false, example = "Rafa")
     @Parameter(name = "pais", description = "pais del tenista a buscar", required = false, example = "España")
     @ApiResponse(responseCode = "200", description = "Lista de Tenistas")
+    // @CrossOrigin(origins = "*", methods = {RequestMethod.GET})
+    @CrossOrigin
     @GetMapping("")
     public ResponseEntity<List<TenistaResponseDto>> getAllTenistas(
             @RequestParam(required = false) String nombre,
@@ -74,7 +76,7 @@ public class TenistasController {
         );
     }
 
-    @Operation(summary = "Get Tenista dado un id", description = "Obtiene un Tenista dado su id", tags = {"tenistas}"})
+    @Operation(summary = "Get Tenista dado un id", description = "Obtiene un Tenista dado su id", tags = {"tenistas"})
     @Parameter(name = "id", description = "ID del Tenista", required = true, example = "1")
     @ApiResponse(responseCode = "200", description = "Tenista")
     @ApiResponse(responseCode = "404", description = "Tenista no encontrado")
@@ -104,7 +106,10 @@ public class TenistasController {
         );
     }
 
-    @Operation(summary = "Crea un Tenista", description = "Agrega un Tenista a nuestra colección", tags = {"tenistas}"})
+    @Operation(summary = "Crea un Tenista", description = "Agrega un Tenista a nuestra colección", tags = {"tenistas"})
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Tenista a crear", required = true,
+            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
+                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = TenistaRequestDto.class)))
     @ApiResponse(responseCode = "201", description = "Tenista creado")
     @ApiResponse(responseCode = "400", description = "Tenista no válido")
     @PostMapping("")
@@ -118,8 +123,11 @@ public class TenistasController {
         );
     }
 
-    @Operation(summary = "Actualiza un Tenista", description = "Actualiza un Tenista dado su id", tags = {"tenistas}"})
+    @Operation(summary = "Actualiza un Tenista", description = "Actualiza un Tenista dado su id", tags = {"tenistas"})
     @Parameter(name = "id", description = "ID del Tenista", required = true, example = "1")
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Tenista a actualizar", required = true,
+            content = @io.swagger.v3.oas.annotations.media.Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
+                    schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = TenistaRequestDto.class)))
     @ApiResponse(responseCode = "200", description = "Tenista actualizado")
     @ApiResponse(responseCode = "404", description = "Tenista no encontrado")
     @ApiResponse(responseCode = "400", description = "Tenista no válido")
@@ -134,7 +142,7 @@ public class TenistasController {
         );
     }
 
-    @Operation(summary = "Elimina un Tenista", description = "Elimina un Tenista dado su id", tags = {"tenistas}"})
+    @Operation(summary = "Elimina un Tenista", description = "Elimina un Tenista dado su id", tags = {"tenistas"})
     @Parameter(name = "id", description = "ID del Tenista", required = true, example = "1")
     @ApiResponse(responseCode = "204", description = "Tenista eliminado")
     @ApiResponse(responseCode = "404", description = "Tenista no encontrado")
@@ -147,7 +155,7 @@ public class TenistasController {
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Obtiene una lista de tenistas paginada", description = "Lista de tenistas paginada", tags = {"tenistas}"})
+    @Operation(summary = "Obtiene una lista de tenistas paginada", description = "Lista de tenistas paginada", tags = {"tenistas"})
     @Parameter(name = "page", description = "Página a consultar", required = false, example = "0")
     @Parameter(name = "size", description = "Tamaño de la página", required = false, example = "10")
     @Parameter(name = "sort", description = "Campo por el que ordenar", required = false, example = "id")
@@ -176,7 +184,7 @@ public class TenistasController {
         }
     }
 
-    @Operation(summary = "Actualiza la imagen de un Tenista", description = "Actualiza la imagen de un Tenista dado su id", tags = {"tenistas}"})
+    @Operation(summary = "Actualiza la imagen de un Tenista", description = "Actualiza la imagen de un Tenista dado su id", tags = {"tenistas"})
     @Parameter(name = "id", description = "ID del Tenista", required = true, example = "1")
     @ApiResponse(responseCode = "200", description = "Tenista actualizado")
     @ApiResponse(responseCode = "404", description = "Tenista no encontrado")
